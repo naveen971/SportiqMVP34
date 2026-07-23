@@ -1,9 +1,10 @@
-// Entry point for SportIQ React Application
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { App } from './app/App';
+import './theme/global.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <div>SportIQ App Initialized</div>
+    <App />
   </React.StrictMode>
 );

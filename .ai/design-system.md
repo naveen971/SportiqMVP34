@@ -2,6 +2,8 @@
 
 Everything generated from Stitch should follow this design system.
 
+> **Note**: The actual, concrete token values (colors, spacing, typography) are defined in `src/theme/tokens.css`. All React components must use these CSS variables rather than hardcoding values.
+
 ## Typography
 Define the core font families, sizes, and weights to be used consistently across all components. Avoid custom font sizes outside of the defined tokens.
 

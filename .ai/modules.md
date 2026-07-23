@@ -2,65 +2,25 @@
 
 This tells AI what exists.
 
-## Authentication
-Status: Pending
+## Active MVP Modules (src/modules/)
+- Authentication (Pending)
+- Profile (Pending)
+- Social (Pending)
+- Search (Pending)
+- Messaging (Pending)
+- Notifications (Pending)
+- Settings (Pending)
 
----
+## Future Modules (docs/future-modules/)
+- Achievements
+- Events
+- Leaderboard
+- AI Assessment
+- Tournament
+- Coach
+- Organiser
+- Government
+- Scheduling
+- Analytics
 
-## Profile
-Status: Pending
-
----
-
-## Social Feed
-Status: Pending
-
----
-
-## Search
-Status: Pending
-
----
-
-## Messaging
-Status: Pending
-
----
-
-## Notifications
-Status: Pending
-
----
-
-## Achievements
-Status: Pending
-
----
-
-## Events
-Status: Pending
-
----
-
-## Leaderboard
-Status: Pending
-
----
-
-## AI Assessment
-Status: Placeholder
-
----
-
-## Tournament
-Status: Placeholder
-
----
-
-## Coach Dashboard
-Status: Placeholder
-
----
-
-## Government Dashboard
-Status: Placeholder
+Note: Future modules should only exist as documentation in `docs/future-modules/` and must not be implemented in `src/modules/` until their respective phases.

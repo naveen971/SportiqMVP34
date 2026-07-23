@@ -3,15 +3,20 @@
 This file tells AI where everything belongs.
 
 ```text
-src/
-├── core/
-├── shared/
-├── modules/
-├── routing/
-├── state/
-├── assets/
-├── tests/
-└── backend/
+sportiq-mvp/
+├── .ai/              # AI knowledge base
+├── assets/           # Static files
+├── backend/          # Backend services
+├── database/         # Database schemas
+├── docs/             # Documentation and future module specs
+├── src/
+│   ├── app/          # App shell and root component
+│   ├── core/         # Core infrastructure
+│   ├── shared/       # Reusable components and layouts
+│   ├── modules/      # Feature modules
+│   ├── routing/      # Routes and guards
+│   └── theme/        # Design tokens and global CSS
+└── tests/            # Tests
 ```
 
 ## core/
@@ -29,14 +34,14 @@ Contains all business features. Each module (e.g., auth, athlete-dashboard, tour
 ## routing/
 Manages the application's navigation flows, role-based route guards, and path definitions. This is where Authentication and Role Detection dictate which Modules are loaded.
 
-## state/
-Contains global state management (e.g., Redux, Zustand, or Context). Only state that must be accessed by multiple independent modules should live here.
+## theme/
+Contains the global design system tokens (colors, typography, spacing) implemented as CSS custom properties in `tokens.css`, and global CSS resets.
 
-## assets/
-Stores static files such as images, icons, fonts, and global stylesheets.
+## assets/ (Root level)
+Stores static files such as images, icons, and fonts.
 
-## tests/
-Contains end-to-end (E2E) and integration tests. Unit tests may be co-located with their respective components/modules, but broad application tests reside here.
+## tests/ (Root level)
+Contains end-to-end (E2E) and integration tests.
 
-## backend/
+## backend/ (Root level)
 Contains the server-side code, API routes, database models, and business logic for the backend services.

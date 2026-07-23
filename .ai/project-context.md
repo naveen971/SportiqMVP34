@@ -30,9 +30,10 @@ The Minimum Viable Product focuses on core onboarding, basic role-based dashboar
 Integration with wearables for real-time biometric tracking, AI-driven performance analytics, automated video highlight generation, and advanced monetization pathways for athletes and organizers.
 
 ## Tech Stack
-- Frontend: To be defined
-- Backend: To be defined
-- Database: To be defined
+- Frontend: React 18, TypeScript, Vite
+- Routing: React Router v6
+- Styling: CSS Modules with design tokens
+- State Management: React Context (lightweight app shell)
 
 ## Product Philosophy
 - User-Centric: Every feature must solve a real problem for the specific user role.
