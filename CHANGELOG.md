@@ -1,6 +1,17 @@
 # Changelog
 
+## [0.2.0] — 2026-07-24
+
+### Added
+- Integration of Google Stitch designs for the Authentication module.
+- Splash Screen featuring animated loading indicator, logo, and automatic redirection logic.
+- Login Screen with form validations, password visibility toggle, and mockup Google sign-in.
+- Sign Up Screen with validation, signup data persistence (using localStorage), and role selection (Athlete, Coach, Organiser, Govt Official).
+- Guarded routes via `ProtectedRoute` and `PublicRoute` wrappers in `AppRouter`.
+- Interactive logout mechanism in placeholder layouts to allow end-to-end flow testing.
+
 ## [0.1.0] — 2026-07-23
+
 
 ### Added
 - Project initialization with React 18, TypeScript, and Vite

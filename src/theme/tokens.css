@@ -1,69 +1,60 @@
 :root {
   /* ========================================
-     Colors — Primary (Sports Blue)
+     Colors — Primary (High-Performance Green)
+     Source: Stitch › SportIQ Mobile Design System
+     primary:           #006c46
+     primary_container: #00b87a  ← CTA / action color
      ======================================== */
-  --color-primary-50: #EFF6FF;
-  --color-primary-100: #DBEAFE;
-  --color-primary-200: #BFDBFE;
-  --color-primary-300: #93C5FD;
-  --color-primary-400: #60A5FA;
-  --color-primary-500: #2563EB;
-  --color-primary-600: #1D4ED8;
-  --color-primary-700: #1E40AF;
-  --color-primary-800: #1E3A8A;
-  --color-primary-900: #172554;
+  --color-primary-50:  #F0FAF5;
+  --color-primary-100: #C8EDD9;
+  --color-primary-200: #6DFCB7;  /* primary_fixed */
+  --color-primary-300: #4CDF9D;  /* primary_fixed_dim */
+  --color-primary-400: #00B87A;  /* primary_container — main CTA */
+  --color-primary-500: #006C46;  /* primary — brand anchor */
+  --color-primary-600: #005234;  /* on_primary_fixed_variant */
+  --color-primary-700: #004128;  /* on_primary_container */
+  --color-primary-800: #002112;  /* on_primary_fixed */
+  --color-primary-900: #001208;
 
   /* ========================================
-     Colors — Secondary (Emerald)
+     Colors — Surface / Neutral (White family)
+     Source: Stitch surface hierarchy
      ======================================== */
-  --color-secondary-50: #ECFDF5;
-  --color-secondary-100: #D1FAE5;
-  --color-secondary-200: #A7F3D0;
-  --color-secondary-300: #6EE7B7;
-  --color-secondary-400: #34D399;
-  --color-secondary-500: #10B981;
-  --color-secondary-600: #059669;
-  --color-secondary-700: #047857;
-  --color-secondary-800: #065F46;
-  --color-secondary-900: #064E3B;
-
-  /* ========================================
-     Colors — Neutral
-     ======================================== */
-  --color-neutral-0: #FFFFFF;
-  --color-neutral-50: #F9FAFB;
-  --color-neutral-100: #F3F4F6;
-  --color-neutral-200: #E5E7EB;
-  --color-neutral-300: #D1D5DB;
-  --color-neutral-400: #9CA3AF;
-  --color-neutral-500: #6B7280;
-  --color-neutral-600: #4B5563;
-  --color-neutral-700: #374151;
-  --color-neutral-800: #1F2937;
-  --color-neutral-900: #111827;
+  --color-neutral-0:   #FFFFFF;  /* surface_container_lowest */
+  --color-neutral-50:  #F8F9FB;  /* surface / background */
+  --color-neutral-100: #F2F4F6;  /* surface_container_low */
+  --color-neutral-200: #ECEEF0;  /* surface_container */
+  --color-neutral-300: #E6E8EA;  /* surface_container_high */
+  --color-neutral-400: #E0E3E5;  /* surface_container_highest / surface_variant */
+  --color-neutral-500: #BBCABF;  /* outline_variant */
+  --color-neutral-600: #6C7A70;  /* outline */
+  --color-neutral-700: #3C4A41;  /* on_surface_variant */
+  --color-neutral-800: #191C1E;  /* on_surface / on_background */
+  --color-neutral-900: #0C1209;
 
   /* ========================================
      Colors — Semantic
      ======================================== */
-  --color-success: #10B981;
+  --color-success: #00B87A;
   --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
+  --color-error:   #BA1A1A;  /* Stitch error */
+  --color-info:    #005FAE;  /* Stitch secondary — informational only */
 
   /* ========================================
-     Colors — Background
+     Colors — Background (White + Surface)
      ======================================== */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F9FAFB;
-  --color-bg-tertiary: #F3F4F6;
+  --color-bg-primary:   #FFFFFF;  /* cards, modals */
+  --color-bg-secondary: #F8F9FB;  /* page canvas */
+  --color-bg-tertiary:  #ECEEF0;  /* subtle section backgrounds */
 
   /* ========================================
      Colors — Text
+     Source: Stitch on_surface tokens
      ======================================== */
-  --color-text-primary: #111827;
-  --color-text-secondary: #6B7280;
-  --color-text-tertiary: #9CA3AF;
-  --color-text-inverse: #FFFFFF;
+  --color-text-primary:   #191C1E;  /* on_surface */
+  --color-text-secondary: #3C4A41;  /* on_surface_variant */
+  --color-text-tertiary:  #6C7A70;  /* outline */
+  --color-text-inverse:   #FFFFFF;  /* on_primary */
 
   /* ========================================
      Typography — Font Family
@@ -71,80 +62,106 @@
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* ========================================
-     Typography — Font Size
+     Typography — Font Size (Stitch type scale)
      ======================================== */
-  --font-size-xs: 0.75rem;     /* 12px */
-  --font-size-sm: 0.875rem;    /* 14px */
-  --font-size-base: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;    /* 18px */
-  --font-size-xl: 1.25rem;     /* 20px */
-  --font-size-2xl: 1.5rem;     /* 24px */
-  --font-size-3xl: 1.875rem;   /* 30px */
-  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-xs:   0.75rem;   /* 12px — label-md */
+  --font-size-sm:   0.875rem;  /* 14px — body-md */
+  --font-size-base: 1rem;      /* 16px — body-lg */
+  --font-size-lg:   1.125rem;  /* 18px — title-md */
+  --font-size-xl:   1.25rem;   /* 20px — headline-lg-mobile */
+  --font-size-2xl:  1.5rem;    /* 24px — headline-lg */
+  --font-size-3xl:  1.875rem;  /* 30px */
+  --font-size-4xl:  2rem;      /* 32px — headline-xl */
 
   /* ========================================
      Typography — Font Weight
      ======================================== */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
   --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-bold:     700;
 
   /* ========================================
      Typography — Line Height
      ======================================== */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
+  --line-height-tight:   1.25;
+  --line-height-normal:  1.5;
   --line-height-relaxed: 1.75;
 
   /* ========================================
-     Spacing (4px base scale)
+     Spacing — 8pt base grid (Stitch: base=8px)
      ======================================== */
-  --spacing-1: 0.25rem;    /* 4px */
-  --spacing-2: 0.5rem;     /* 8px */
-  --spacing-3: 0.75rem;    /* 12px */
-  --spacing-4: 1rem;       /* 16px */
-  --spacing-5: 1.25rem;    /* 20px */
-  --spacing-6: 1.5rem;     /* 24px */
-  --spacing-8: 2rem;       /* 32px */
-  --spacing-10: 2.5rem;    /* 40px */
-  --spacing-12: 3rem;      /* 48px */
-  --spacing-16: 4rem;      /* 64px */
-  --spacing-20: 5rem;      /* 80px */
-  --spacing-24: 6rem;      /* 96px */
+  --spacing-1:  0.25rem;  /*  4px — xs */
+  --spacing-2:  0.5rem;   /*  8px — sm / base */
+  --spacing-3:  0.75rem;  /* 12px — gutter */
+  --spacing-4:  1rem;     /* 16px — md / container-margin */
+  --spacing-5:  1.25rem;  /* 20px */
+  --spacing-6:  1.5rem;   /* 24px — lg */
+  --spacing-8:  2rem;     /* 32px — xl */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
 
   /* ========================================
-     Border Radius
+     Border Radius (Stitch scale)
      ======================================== */
-  --radius-sm: 0.25rem;    /* 4px */
-  --radius-md: 0.5rem;     /* 8px */
-  --radius-lg: 0.75rem;    /* 12px */
-  --radius-xl: 1rem;       /* 16px */
-  --radius-2xl: 1.5rem;    /* 24px */
-  --radius-full: 9999px;
+  --radius-sm:   0.25rem;  /*  4px */
+  --radius-md:   0.5rem;   /*  8px — buttons / inputs */
+  --radius-lg:   0.75rem;  /* 12px */
+  --radius-xl:   1rem;     /* 16px — cards */
+  --radius-2xl:  1.5rem;   /* 24px */
+  --radius-full: 9999px;   /* avatars, chips, pills */
 
   /* ========================================
      Elevation / Shadows
      ======================================== */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px 0 rgba(25, 28, 30, 0.04);
+  --shadow-md: 0 4px 12px 0 rgba(25, 28, 30, 0.06);
+  --shadow-lg: 0 10px 24px 0 rgba(25, 28, 30, 0.08);
 
   /* ========================================
      Animation
      ======================================== */
-  --duration-fast: 150ms;
+  --duration-fast:   150ms;
   --duration-normal: 250ms;
-  --duration-slow: 350ms;
+  --duration-slow:   350ms;
   --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
-  --easing-in: cubic-bezier(0.4, 0, 1, 1);
-  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --easing-in:      cubic-bezier(0.4, 0, 1, 1);
+  --easing-out:     cubic-bezier(0, 0, 0.2, 1);
 
   /* ========================================
      Icon Sizes
      ======================================== */
-  --icon-sm: 1rem;       /* 16px */
-  --icon-md: 1.25rem;    /* 20px */
-  --icon-lg: 1.5rem;     /* 24px */
-  --icon-xl: 2rem;       /* 32px */
+  --icon-sm: 1rem;     /* 16px */
+  --icon-md: 1.25rem;  /* 20px */
+  --icon-lg: 1.5rem;   /* 24px */
+  --icon-xl: 2rem;     /* 32px */
+
+  /* ========================================
+     Focus Ring
+     ======================================== */
+  --shadow-focus: 0 0 0 3px rgba(0, 184, 122, 0.20);
+
+  /* ========================================
+     Letter Spacing
+     ======================================== */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-snug: -0.015em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.05em;
+
+  /* ========================================
+     Ambient Opacity (Backgrounds/Glows)
+     ======================================== */
+  --opacity-ambient-low: 0.5;
+  --opacity-ambient-medium: 0.6;
+
+  /* ========================================
+     Z-index
+     ======================================== */
+  --z-index-base: 0;
+  --z-index-overlay: 10;
 }

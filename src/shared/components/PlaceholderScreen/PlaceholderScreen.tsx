@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../routing/routes';
 import styles from './PlaceholderScreen.module.css';
 
 interface PlaceholderScreenProps {
@@ -6,6 +8,8 @@ interface PlaceholderScreenProps {
 }
 
 export function PlaceholderScreen({ title, description }: PlaceholderScreenProps) {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
