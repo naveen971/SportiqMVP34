@@ -1,0 +1,257 @@
+.container {
+  min-height: max(884px, 100dvh);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Decoration */
+.backgroundDecorations {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-base);
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.decorCircleTop {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  /* Using color-mix as no direct opacity token exists for 5% */
+  background-color: color-mix(in srgb, var(--color-primary-500) 5%, transparent);
+  border-radius: var(--radius-full);
+  filter: blur(48px);
+  transform: translateY(-25%);
+}
+
+.decorCircleBottom {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  /* Using color-mix as no direct opacity token exists for 5% */
+  background-color: color-mix(in srgb, var(--color-info) 5%, transparent);
+  border-radius: var(--radius-full);
+  filter: blur(48px);
+  transform: translate(33.333%, 33.333%);
+}
+
+/* Main Content */
+.mainContent {
+  position: relative;
+  z-index: var(--z-index-overlay);
+  width: 100%;
+  max-width: 28rem; /* max-w-md */
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .mainContent {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.brandArea {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--spacing-12);
+}
+
+.brandTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-500);
+}
+
+/* Verification Card */
+.card {
+  /* No matching design token for glass morphism background/border - reported to operator */
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(233, 236, 239, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  
+  border-radius: var(--radius-2xl); /* approx 2xl */
+  padding: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon with Animation */
+.iconContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: var(--spacing-6);
+}
+
+.pulseRing {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-primary-400) 10%, transparent);
+  border-radius: var(--radius-full);
+  animation: pulse-ring-anim 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.pulseCore {
+  position: absolute;
+  inset: 0.5rem; /* inset-2 */
+  background-color: color-mix(in srgb, var(--color-primary-400) 20%, transparent);
+  border-radius: var(--radius-full);
+}
+
+.icon {
+  font-size: var(--icon-xl);
+  color: var(--color-primary-500);
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes pulse-ring-anim {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  70% { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Typography */
+.title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--font-size-2xl);
+    letter-spacing: var(--letter-spacing-snug);
+  }
+}
+
+.subtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-8);
+  max-width: 24rem; /* max-w-sm */
+}
+
+.highlightEmail {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+/* Actions */
+.actionGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.primaryBtn {
+  width: 100%;
+  height: 3rem; /* h-12 */
+  background-color: var(--color-primary-400);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.primaryBtn:hover {
+  background-color: var(--color-primary-500);
+}
+
+.primaryBtn:active {
+  transform: scale(0.98);
+}
+
+.ghostBtn {
+  width: 100%;
+  height: 3rem; /* h-12 */
+  background-color: transparent;
+  color: var(--color-primary-500);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--duration-normal) var(--easing-default);
+}
+
+.ghostBtn:hover {
+  background-color: var(--color-neutral-100);
+}
+
+.ghostBtn:active {
+  transform: scale(0.98);
+}
+
+/* Contextual Return */
+.returnGroup {
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid var(--color-neutral-400); /* border-surface-variant */
+  width: 100%;
+}
+
+.returnBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--duration-normal) var(--easing-default);
+}
+
+.returnBtn:hover {
+  color: var(--color-primary-500);
+}

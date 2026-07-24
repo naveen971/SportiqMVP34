@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
-import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen } from '../modules/authentication/screens';
+import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 // Helper component to redirect authenticated users away from public auth pages
@@ -61,6 +61,22 @@ export function AppRouter() {
           element={
             <PublicRoute>
               <SignUpScreen />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={ROUTES.VERIFY_EMAIL}
+          element={
+            <PublicRoute>
+              <VerifyEmailScreen />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={ROUTES.FORGOT_PASSWORD}
+          element={
+            <PublicRoute>
+              <ForgotPasswordScreen />
             </PublicRoute>
           }
         />

@@ -162,7 +162,7 @@ export function LoginScreen() {
               />
               <span className={styles.rememberMeText}>Remember Me</span>
             </label>
-            <Link to={ROUTES.LOGIN} className={styles.forgotPassword}>Forgot Password?</Link>
+            <Link to={ROUTES.FORGOT_PASSWORD} className={styles.forgotPassword}>Forgot Password?</Link>
           </div>
 
           {/* Submit Button */}

@@ -54,9 +54,8 @@ export function SignUpScreen() {
     users.push({ ...newUser, password }); // Store password (plain text for mock login simulation)
     localStorage.setItem('sportiq_users', JSON.stringify(users));
 
-    // Authenticate and redirect to HOME
-    setUser(newUser);
-    navigate(ROUTES.HOME);
+    // Redirect to Verify Email (do not authenticate yet)
+    navigate(ROUTES.VERIFY_EMAIL, { state: { email } });
   };
 
   return (
