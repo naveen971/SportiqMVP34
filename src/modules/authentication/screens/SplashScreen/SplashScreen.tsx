@@ -13,7 +13,7 @@ export function SplashScreen() {
       if (isAuthenticated) {
         navigate(ROUTES.HOME);
       } else {
-        navigate(ROUTES.LOGIN);
+        navigate(ROUTES.WELCOME);
       }
     }, 2500);
 
