@@ -36,9 +36,9 @@
   position: absolute;
   inset: 0;
   background-color: var(--color-primary-400);
-  opacity: 0.08;
+  opacity: var(--opacity-ambient-subtle);
   border-radius: var(--radius-full);
-  filter: blur(40px);
+  filter: blur(var(--blur-lg));
   animation: fadeIn 1.2s var(--easing-out) 0.3s forwards;
 }
 

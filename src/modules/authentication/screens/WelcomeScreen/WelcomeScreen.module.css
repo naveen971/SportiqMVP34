@@ -130,7 +130,7 @@
 }
 
 .primaryBtn:hover {
-  opacity: 0.9;
+  opacity: var(--opacity-ambient-highest);
 }
 
 .primaryBtn:active {
@@ -155,7 +155,7 @@
 }
 
 .secondaryBtn:hover {
-  opacity: 0.9;
+  opacity: var(--opacity-ambient-highest);
 }
 
 .secondaryBtn:active {

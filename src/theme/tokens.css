@@ -154,10 +154,24 @@
   --letter-spacing-wider: 0.05em;
 
   /* ========================================
+     Blur & Glassmorphism
+     ======================================== */
+  --blur-sm: 12px;       /* backdrop-filter glass panels */
+  --blur-md: 16px;       /* backdrop-filter glass panels */
+  --blur-lg: 40px;       /* ambient glow effects */
+  --blur-xl: 48px;       /* ambient glow effects */
+  --blur-2xl: 120px;     /* large ambient background blurs */
+
+  /* ========================================
      Ambient Opacity (Backgrounds/Glows)
      ======================================== */
+  --opacity-ambient-subtle: 0.08;   /* smallest glow, e.g. Splash .glowEffect */
+  --opacity-ambient-faint: 0.3;     /* faint glow */
+  --opacity-ambient-mild: 0.4;      /* mild glow */
   --opacity-ambient-low: 0.5;
   --opacity-ambient-medium: 0.6;
+  --opacity-ambient-high: 0.8;      /* animation/glass */
+  --opacity-ambient-highest: 0.9;   /* overlays */
 
   /* ========================================
      Z-index

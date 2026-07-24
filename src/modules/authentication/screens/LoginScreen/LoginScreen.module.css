@@ -285,7 +285,7 @@
   height: 50%;
   background-color: var(--color-primary-50);
   opacity: var(--opacity-ambient-low);
-  filter: blur(120px);
+  filter: blur(var(--blur-2xl));
   border-radius: var(--radius-full);
   transform: translate(30%, -30%);
 }
@@ -298,7 +298,7 @@
   height: 50%;
   background-color: var(--color-primary-50);
   opacity: var(--opacity-ambient-medium);
-  filter: blur(120px);
+  filter: blur(var(--blur-2xl));
   border-radius: var(--radius-full);
   transform: translate(-30%, 30%);
 }
