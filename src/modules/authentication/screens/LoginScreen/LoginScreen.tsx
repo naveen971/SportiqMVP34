@@ -7,14 +7,14 @@ import styles from './LoginScreen.module.css';
 
 export function LoginScreen() {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -23,41 +23,12 @@ export function LoginScreen() {
       return;
     }
 
-    // Check localStorage for a registered user matching this email
-    const storedUsersJson = localStorage.getItem('sportiq_users');
-    let matchedUser = null;
-
-    if (storedUsersJson) {
-      const users = JSON.parse(storedUsersJson);
-      matchedUser = users.find((u: any) => u.email.toLowerCase() === email.toLowerCase());
-    }
-
-    if (matchedUser) {
-      // Authenticate with stored user
-      const userObj = {
-        id: matchedUser.id,
-        name: matchedUser.name,
-        email: matchedUser.email,
-        role: matchedUser.role as UserRole,
-      };
-      setUser(userObj);
-      if (rememberMe) {
-        localStorage.setItem('sportiq_current_user', JSON.stringify(userObj));
-      }
+    try {
+      await login(email, password);
+      // Let AuthProvider handle session/user syncing
       navigate(ROUTES.HOME);
-    } else {
-      // Fallback for demo: allow any credentials, defaulting to Athlete
-      const mockUser = {
-        id: 'demo-athlete-1',
-        name: 'Demo Athlete',
-        email: email,
-        role: UserRole.Athlete,
-      };
-      setUser(mockUser);
-      if (rememberMe) {
-        localStorage.setItem('sportiq_current_user', JSON.stringify(mockUser));
-      }
-      navigate(ROUTES.HOME);
+    } catch (err: any) {
+      setError(err.message || 'Login failed. Please try again.');
     }
   };
 

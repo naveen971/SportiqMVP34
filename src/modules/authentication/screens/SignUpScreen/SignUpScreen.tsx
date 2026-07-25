@@ -7,7 +7,7 @@ import styles from './SignUpScreen.module.css';
 
 export function SignUpScreen() {
   const navigate = useNavigate();
-  const { setUser } = useAuth();
+  const { setUser, signUp } = useAuth();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +15,7 @@ export function SignUpScreen() {
   const [selectedRole, setSelectedRole] = useState<UserRole>(UserRole.Athlete);
   const [error, setError] = useState('');
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
@@ -29,33 +29,13 @@ export function SignUpScreen() {
       return;
     }
 
-    // Save user info in localStorage for Login lookup
-    const newUser = {
-      id: `user-${Date.now()}`,
-      name: fullName,
-      email: email,
-      role: selectedRole,
-    };
-
-    // Load existing users
-    const existingUsersJson = localStorage.getItem('sportiq_users');
-    let users = [];
-    if (existingUsersJson) {
-      users = JSON.parse(existingUsersJson);
+    try {
+      await signUp(fullName, email, password, selectedRole);
+      // Redirect to Verify Email (do not authenticate yet)
+      navigate(ROUTES.VERIFY_EMAIL, { state: { email } });
+    } catch (err: any) {
+      setError(err.message || 'Registration failed. Please try again.');
     }
-
-    // Check if email already registered
-    if (users.some((u: any) => u.email.toLowerCase() === email.toLowerCase())) {
-      setError('Email address is already registered.');
-      return;
-    }
-
-    // Add new user
-    users.push({ ...newUser, password }); // Store password (plain text for mock login simulation)
-    localStorage.setItem('sportiq_users', JSON.stringify(users));
-
-    // Redirect to Verify Email (do not authenticate yet)
-    navigate(ROUTES.VERIFY_EMAIL, { state: { email } });
   };
 
   return (
