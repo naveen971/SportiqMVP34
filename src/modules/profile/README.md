@@ -50,7 +50,6 @@ The `public.profiles` table stores extended user information.
 - Users are restricted to SELECT, UPDATE, and INSERT their **own** row only (`auth.uid() = id`).
 - > **Note:** A policy to allow users to view/edit others' profiles (for the future Public Profile screen) is a deliberate follow-up task and is NOT yet implemented.
 
-**Schema Gaps (Awaiting Operator Decision):**
-- **Bio:** The Create Sports Profile screen allows entering a professional bio (max 500 chars), but there is currently no `bio` column in `public.profiles`.
-- **Profile Photo:** The screen allows uploading a profile photo, but there is no `avatar_url` or `profile_photo` column in `public.profiles`.
-- These inputs are fully built in the UI but are currently un-persisted pending a database migration.
+**Schema Gaps — Status:**
+- **Bio** ✅ **Resolved** — Migration `002_add_bio_avatar_to_profiles.sql` adds a `bio text` column with a `CHECK (char_length(bio) <= 500)` constraint. Bio is now persisted via `updateProfileOnboarding()` in `profileService.ts`.
+- **Avatar URL** ⏳ **Still pending** — Migration `002` adds the `avatar_url text` column to the schema, but file upload to Supabase Storage is a separate future task. The UI `Upload Image` button is present but non-functional for persistence. `avatar_url` is intentionally excluded from the current `updateProfileOnboarding()` call until a storage bucket and upload flow are implemented.

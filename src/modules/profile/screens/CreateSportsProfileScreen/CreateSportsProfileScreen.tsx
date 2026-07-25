@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../../../core/auth/AuthProvider';
-import { updateSelectedSports } from '../../services/profileService';
+import { updateProfileOnboarding } from '../../services/profileService';
 import { ROUTES } from '../../../../routing/routes';
 import styles from './CreateSportsProfileScreen.module.css';
 
@@ -68,9 +68,14 @@ export function CreateSportsProfileScreen() {
     setIsSubmitting(true);
 
     try {
-      // 1. Update the Supabase row with the selected sports
-      await updateSelectedSports(user.id, initialSports);
-      
+      // 1. Update the Supabase row with selected sports and bio.
+      // Note: avatar_url is NOT persisted here — Supabase Storage upload
+      // is a separate future task (see profileService.ts + README).
+      await updateProfileOnboarding(user.id, {
+        selectedSports: initialSports,
+        bio,
+      });
+
       // 2. Navigate to the next screen (Personal Information placeholder)
       navigate('/personal-information');
     } catch (err: any) {
