@@ -12,7 +12,7 @@
 | Module | Owner | Branch | Build Status | Screens Built / Total | Blocked On |
 |---|---|---|---|---|---|
 | Authentication | Unassigned | Not created | **Complete** | 6 / 7 *(Account Created deferred)* | — |
-| Profile | Unassigned | Not created | Not started | 1 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
+| Profile | Unassigned | Not created | In progress | 2 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
 | Social | Unassigned | Not created | Not started | 0 / 8 *(excl. assets)* | Post Detail ambiguity — operator must pick v1 or v2 before work begins; shared component interfaces |
 | Search | Unassigned | Not created | Not started | 0 / 4 | Shared component interfaces |
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
@@ -52,7 +52,7 @@ AMBIGUITY — Two Achievements Screens: "Achievements" (`b25601c5f3a14d5d8b77068
 | Own Profile | `dea731f2d6d046cba33074bea97f0dc7` | Not built | Authenticated user's full profile — editable view |
 | Public Profile | `2afba692135d42719f2f1d65ead9bfc9` | Not built | Another user's profile — read-only view |
 | Profile Preview | `96974a1bd17340dab744ce7fbbb1af6c` | 🔸 HELD — deferred from current MVP scope per operator decision 2026-07-25. Do not build until explicitly reactivated. | Lightweight card before navigating to full profile |
-| Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | Not built | Onboarding setup wizard for sports-specific details |
+| Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | ✅ Built — CreateSportsProfileScreen.tsx | Onboarding setup wizard for sports-specific details |
 | Profile Completion | `c022afa7e2084368b6bbdba3eaa078d2` | Not built | Progress indicator screen prompting profile completion |
 | Edit Profile | `539c8051c32e4e7787bc7233c2aa0730` | Not built | Form to update name, bio, and personal fields |
 | Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | Not built | Sub-screen for contact and identity details |

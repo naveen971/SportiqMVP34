@@ -19,8 +19,7 @@ export function SelectSportsScreen() {
 
   const handleContinue = () => {
     if (selectedSports.length > 0) {
-      // TODO: replace with real CreateSportsProfileScreen once built
-      navigate('/create-sports-profile');
+      navigate('/create-sports-profile', { state: { selectedSports } });
     }
   };
 

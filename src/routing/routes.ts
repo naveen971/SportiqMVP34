@@ -13,4 +13,5 @@ export const ROUTES = {
   SETTINGS: '/settings',
   SELECT_SPORTS: '/select-sports',
   CREATE_SPORTS_PROFILE: '/create-sports-profile',
+  PERSONAL_INFORMATION: '/personal-information',
 } as const;

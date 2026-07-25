@@ -7,17 +7,18 @@ This module encompasses the user's Profile flows, including the onboarding seque
 | Screen | Route | Stitch ID | Purpose |
 |---|---|---|---|
 | Select Sports | `/select-sports` | `9dcf3c98d6014b138364c73940b03698` | Multi-select grid for sports of interest during onboarding. First step in the sequence. |
+| Create Sports Profile | `/create-sports-profile` | `36a44b1ec6244d9db3556da84ddc7948` | Gathers basic professional info (name, role, bio, photo). Second step. |
 
 ## Planned Onboarding Sequence
 
 1. **Select Sports** (✅ Built)
-2. **Create Sports Profile** (⏳ Pending)
+2. **Create Sports Profile** (✅ Built)
 3. **Personal Information** (⏳ Pending)
 4. **Playing Information** (⏳ Pending)
 5. **Profile Picture Upload** (⏳ Pending)
 6. **Profile Completion** (⏳ Pending)
 
-> **Note:** The route `/create-sports-profile` currently points to a temporary `PlaceholderScreen` with a `TODO`. This will be replaced once the actual screen is built.
+> **Note:** The route `/personal-information` currently points to a temporary `PlaceholderScreen` with a `TODO`. This will be replaced once the actual screen is built.
 
 ## Integration Gaps
 
@@ -48,3 +49,8 @@ The `public.profiles` table stores extended user information.
 - Row Level Security (RLS) is enabled.
 - Users are restricted to SELECT, UPDATE, and INSERT their **own** row only (`auth.uid() = id`).
 - > **Note:** A policy to allow users to view/edit others' profiles (for the future Public Profile screen) is a deliberate follow-up task and is NOT yet implemented.
+
+**Schema Gaps (Awaiting Operator Decision):**
+- **Bio:** The Create Sports Profile screen allows entering a professional bio (max 500 chars), but there is currently no `bio` column in `public.profiles`.
+- **Profile Photo:** The screen allows uploading a profile photo, but there is no `avatar_url` or `profile_photo` column in `public.profiles`.
+- These inputs are fully built in the UI but are currently un-persisted pending a database migration.

@@ -3,7 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 // Helper component to redirect authenticated users away from public auth pages
@@ -103,7 +103,16 @@ export function AppRouter() {
           path={ROUTES.CREATE_SPORTS_PROFILE}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Create Sports Profile" description="Onboarding screen to create sports profile." />
+              <CreateSportsProfileScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.PERSONAL_INFORMATION}
+          element={
+            <ProtectedRoute>
+              {/* // TODO: replace with real PersonalInformationScreen once built */}
+              <PlaceholderScreen title="Personal Information" description="Onboarding screen for personal information." />
             </ProtectedRoute>
           }
         />
