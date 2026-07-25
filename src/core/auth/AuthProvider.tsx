@@ -16,10 +16,11 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Initial session check
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (session?.user) {
         setUser({
           id: session.user.id,
@@ -28,6 +29,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           role: session.user.user_metadata?.role as UserRole,
         });
       }
+      setIsLoading(false);
     });
 
     // Listen for auth state changes
@@ -42,6 +44,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       } else {
         setUser(null);
       }
+      setIsLoading(false);
     });
 
     return () => {
@@ -75,6 +78,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value: AuthContextValue = {
     user,
     isAuthenticated: user !== null,
+    isLoading,
     setUser,
     login,
     signUp,
