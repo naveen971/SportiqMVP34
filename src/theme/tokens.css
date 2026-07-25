@@ -161,6 +161,11 @@
   --blur-lg: 40px;       /* ambient glow effects */
   --blur-xl: 48px;       /* ambient glow effects */
   --blur-2xl: 120px;     /* large ambient background blurs */
+  
+  /* Glass Panels */
+  --color-glass-bg: rgba(255, 255, 255, 0.8);
+  --color-glass-border: rgba(233, 236, 239, 0.5);
+  --shadow-glass: 0 4px 24px rgba(0, 0, 0, 0.04);
 
   /* ========================================
      Ambient Opacity (Backgrounds/Glows)
