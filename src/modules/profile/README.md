@@ -27,3 +27,24 @@ This module encompasses the user's Profile flows, including the onboarding seque
 
 - **Profile Preview:** The Profile Preview screen (`96974a1bd17340dab744ce7fbbb1af6c`) is currently **HELD** and removed from the MVP scope per `module-registry.md`. Do not build it unless explicitly reactivated.
 - **Achievements:** There are two distinct screens in Stitch related to achievements (a standalone page and an embedded section). Ensure they are treated as separate views when implemented.
+
+## Database Schema
+
+The `public.profiles` table stores extended user information.
+
+**Schema:**
+- `id` (uuid, primary key, references `auth.users(id)` cascading delete)
+- `full_name` (text)
+- `role` (text)
+- `selected_sports` (text array, defaults to `{}`)
+- `onboarding_complete` (boolean, defaults to `false`)
+- `created_at` (timestamptz, defaults to `now()`)
+- `updated_at` (timestamptz, defaults to `now()`)
+
+**Automation:**
+- A database trigger (`handle_new_user`) automatically populates a row here on signup, pulling `full_name` and `role` from the `auth.users` raw metadata.
+
+**Security (RLS):**
+- Row Level Security (RLS) is enabled.
+- Users are restricted to SELECT, UPDATE, and INSERT their **own** row only (`auth.uid() = id`).
+- > **Note:** A policy to allow users to view/edit others' profiles (for the future Public Profile screen) is a deliberate follow-up task and is NOT yet implemented.
