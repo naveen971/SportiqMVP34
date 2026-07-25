@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SPORTS_LIST } from '../../constants';
+import { SPORTS_LIST } from '../../../../shared/constants/sports';
 import { SelectedSports } from '../../types';
 import styles from './SelectSportsScreen.module.css';
 

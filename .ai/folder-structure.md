@@ -25,6 +25,8 @@ Contains foundational configurations, API clients, environment variables, error 
 ## shared/
 Houses all reusable UI components (buttons, forms, typography), the global design theme, common hooks, and types used across multiple modules. Never place feature-specific logic here.
 
+### shared/constants/
+Home for cross-module DOMAIN reference data (static lists, enums, lookup tables used by more than one module). This is distinct from `shared/components/` (UI) and `core/config/` (app configuration). Future reference lists (e.g., regions for Personal Information, positions for Playing Information) must follow this pattern and be placed here once those screens are built.
 ## modules/
 Contains all business features. Each module (e.g., auth, athlete-dashboard, tournament-management) must be isolated. 
 - Never place module code inside `shared/`.

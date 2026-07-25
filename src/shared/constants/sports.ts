@@ -1,4 +1,8 @@
-import { Sport } from '../types';
+export interface Sport {
+  id: string;
+  name: string;
+  icon: string;
+}
 
 export const SPORTS_LIST: Sport[] = [
   { id: 'football', name: 'Football', icon: 'sports_soccer' },
