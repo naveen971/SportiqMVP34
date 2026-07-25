@@ -16,7 +16,8 @@ Reading order:
 8. stitch-workflow.md
 9. integration-checklist.md
 10. development-roadmap.md
-11. agent-rules.md
+11. module-registry.md
+12. agent-rules.md
 
 These files are the single source of truth.
 
