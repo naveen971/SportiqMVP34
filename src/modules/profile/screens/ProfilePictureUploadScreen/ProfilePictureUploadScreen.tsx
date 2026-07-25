@@ -82,51 +82,51 @@ export function ProfilePictureUploadScreen() {
   }, [previewUrl]);
 
   return (
-    <div className={`h-full bg-background text-on-background flex flex-col items-center justify-center p-4 ${styles.container}`}>
+    <div className={styles.container}>
       {/* Main Container */}
-      <main className="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(0,0,0,0.04)] border border-surface-container-highest flex flex-col overflow-hidden relative min-h-[600px]">
+      <main className={styles.mainCard}>
         {/* Header (Back) */}
-        <header className="w-full p-4 flex items-center justify-between">
+        <header className={styles.header}>
           <button
             onClick={() => navigate(-1)}
             aria-label="Go back"
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            className={styles.backButton}
           >
             <span className="material-symbols-outlined" data-icon="arrow_back" aria-hidden="true">
               arrow_back
             </span>
           </button>
           
-          <div className="flex-1 px-4">
+          <div className={styles.headerSpacer}>
             {/* Progress indicator removed per design intent for reusable screen */}
           </div>
           
           {/* Invisible spacer to balance the back button */}
-          <div className="w-10"></div>
+          <div className={styles.headerInvisibleSpacer}></div>
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 flex flex-col items-center justify-center p-container-margin pb-xl">
+        <div className={styles.contentArea}>
           {/* Titles */}
-          <div className="text-center mb-lg w-full">
-            <h1 className="font-headline-xl text-headline-xl text-on-background mb-sm">
+          <div className={styles.titleContainer}>
+            <h1 className={styles.title}>
               Add a Profile Photo
             </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant px-md">
+            <p className={styles.subtitle}>
               Help teammates and coaches recognize you. Choose a professional headshot or a clear action photo.
             </p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-4 p-3 bg-error-container text-on-error-container rounded-lg font-body-md text-center w-full max-w-xs">
+            <div className={styles.errorMessage}>
               {error}
             </div>
           )}
 
           {/* Avatar Upload Area */}
           <div 
-            className="relative mb-lg group cursor-pointer"
+            className={styles.avatarUploadArea}
             onClick={handleTriggerFilePicker}
             role="button"
             tabIndex={0}
@@ -138,25 +138,25 @@ export function ProfilePictureUploadScreen() {
             aria-label="Select profile photo"
           >
             {/* Avatar Placeholder/Preview */}
-            <div className="w-48 h-48 rounded-full bg-surface-container-highest border-4 border-surface-container-lowest shadow-md flex items-center justify-center overflow-hidden relative z-10 transition-transform group-hover:scale-[1.02]">
+            <div className={styles.avatarPlaceholder}>
               {previewUrl ? (
-                <img src={previewUrl} alt="Profile Preview" className="w-full h-full object-cover" />
+                <img src={previewUrl} alt="Profile Preview" className={styles.avatarImage} />
               ) : (
-                <span className="material-symbols-outlined text-[80px] text-tertiary-container" data-icon="person" aria-hidden="true">
+                <span className={`material-symbols-outlined ${styles.avatarIcon}`} data-icon="person" aria-hidden="true">
                   person
                 </span>
               )}
               
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-on-background/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
-                <span className="material-symbols-outlined text-on-tertiary" data-icon="add_a_photo" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">
+              <div className={styles.hoverOverlay}>
+                <span className={`material-symbols-outlined ${styles.hoverIcon}`} data-icon="add_a_photo" style={{ fontVariationSettings: "'FILL' 1" }} aria-hidden="true">
                   add_a_photo
                 </span>
               </div>
             </div>
 
             {/* Decorative Background Ring */}
-            <div className={`absolute top-1/2 left-1/2 w-56 h-56 rounded-full border-2 border-dashed border-primary-container/30 z-0 ${styles.avatarRing}`}></div>
+            <div className={styles.avatarRing}></div>
           </div>
 
           {/* Hidden File Input */}
@@ -165,7 +165,7 @@ export function ProfilePictureUploadScreen() {
             ref={fileInputRef}
             onChange={handleFileSelect}
             accept="image/jpeg, image/png, image/gif"
-            className="hidden"
+            className={styles.hiddenInput}
             aria-hidden="true"
           />
 
@@ -174,7 +174,7 @@ export function ProfilePictureUploadScreen() {
             type="button"
             onClick={handleTriggerFilePicker}
             disabled={isSubmitting}
-            className="flex items-center justify-center gap-2 bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-title-md text-title-md py-3 px-8 rounded-lg shadow-sm transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className={styles.uploadButton}
           >
             <span className="material-symbols-outlined" data-icon="upload_file" aria-hidden="true">
               upload_file
@@ -182,18 +182,18 @@ export function ProfilePictureUploadScreen() {
             {previewUrl ? 'Change Photo' : 'Upload Photo'}
           </button>
           
-          <p className="font-label-md text-label-md text-on-surface-variant mt-sm">
+          <p className={styles.helpText}>
             JPG, PNG or GIF (Max 5MB)
           </p>
         </div>
 
         {/* Footer Actions */}
-        <footer className="w-full p-container-margin border-t border-surface-container-highest bg-surface-container-lowest mt-auto flex justify-between items-center">
+        <footer className={styles.footer}>
           <button
             type="button"
             onClick={handleSkip}
             disabled={isSubmitting}
-            className="px-6 py-3 rounded-lg font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-low transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
+            className={styles.skipButton}
           >
             Skip
           </button>
@@ -202,11 +202,7 @@ export function ProfilePictureUploadScreen() {
             type="button"
             onClick={handleNext}
             disabled={!selectedFile || isSubmitting}
-            className={`px-6 py-3 rounded-lg font-title-md text-title-md flex items-center gap-2 transition-all ${
-              selectedFile && !isSubmitting
-                ? 'bg-primary text-on-primary hover:bg-primary/90 active:scale-95' 
-                : 'bg-surface-container-highest text-on-surface-variant cursor-not-allowed opacity-50'
-            }`}
+            className={`${styles.nextButton} ${selectedFile && !isSubmitting ? styles.nextButtonActive : styles.nextButtonDisabled}`}
           >
             {isSubmitting ? 'Saving...' : 'Next'}
             {!isSubmitting && (

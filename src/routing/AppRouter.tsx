@@ -6,14 +6,16 @@ import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScre
 import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
+import styles from './Routing.module.css';
+
 // Helper component to redirect authenticated users away from public auth pages
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useAuth();
   
   if (isLoading) {
     return (
-      <div className="h-full bg-background flex flex-col items-center justify-center p-4 min-h-[max(884px,100dvh)]">
-        <div className="w-8 h-8 rounded-full border-4 border-surface-container-highest border-t-primary animate-spin"></div>
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
       </div>
     );
   }
