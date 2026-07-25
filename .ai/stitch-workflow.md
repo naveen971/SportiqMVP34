@@ -77,8 +77,6 @@ Operations requiring explicit architect approval: `generate_screen_from_text`, `
 
 ### Rule 5 — Screen Inventory Reference
 
-The canonical screen inventory (44 screens as of 2026-07-25, covering all built and unbuilt screens with exact IDs, module assignments, and build status) is maintained in the session artifact:
+The canonical screen inventory (44 screens as of 2026-07-25, covering all built and unbuilt screens with exact IDs, module assignments, and build status) is maintained in the module registry:
 
-`C:\Users\admin\.gemini\antigravity-ide\brain\67960331-80ca-44aa-9a29-eb84115f7bf4\stitch_screen_inventory.md`
-
-> **Module registry:** `.ai/module-registry.md` — created 2026-07-25. Contains the full per-module screen table, shared component status, and ambiguity flags.
+**Reference:** `.ai/module-registry.md`
