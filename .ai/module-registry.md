@@ -1,4 +1,4 @@
-﻿# Module Ownership Registry
+# Module Ownership Registry
 
 **Authoritative Stitch Project ID:** `3941284064310403069` — SportIQ Mobile Design System
 **Governance rule:** See `.ai/stitch-workflow.md` → Project Governance section. Single project, no remixing, read-only shared MCP access for non-architects.
@@ -173,14 +173,14 @@ PRIMARY CROSS-MODULE BLOCKER: Button and Input prop interfaces must be frozen an
 |---|---|---|
 | Avatar | `src/shared/components/Avatar/` | Type-stub only — AvatarProps {} |
 | Badge | `src/shared/components/Badge/` | Type-stub only — BadgeProps {} |
-| Button | `src/shared/components/Button/` | Type-stub only — ButtonProps {} — FREEZE REQUIRED before parallel module work |
-| Card | `src/shared/components/Card/` | Type-stub only — CardProps {} |
+| Button | `src/shared/components/Button/` | Interface frozen — pending implementation |
+| Card | `src/shared/components/Card/` | Interface frozen — pending implementation |
 | ComingSoon | `src/shared/components/ComingSoon/` | Type-stub only — ComingSoonProps {} |
 | Dialog | `src/shared/components/Dialog/` | Type-stub only — DialogProps {} |
 | EmptyState | `src/shared/components/EmptyState/` | Type-stub only — EmptyStateProps {} |
-| Input | `src/shared/components/Input/` | Type-stub only — InputProps {} — FREEZE REQUIRED before parallel module work |
+| Input | `src/shared/components/Input/` | Interface frozen — pending implementation |
 | Loading | `src/shared/components/Loading/` | Type-stub only — LoadingProps {} |
 | Tag | `src/shared/components/Tag/` | Type-stub only — TagProps {} |
-| Typography | `src/shared/components/Typography/` | Type-stub only — TypographyProps {} |
+| Typography | `src/shared/components/Typography/` | Interface frozen — pending implementation |
 
 Note: PlaceholderScreen is the only currently implemented shared component (`src/shared/components/PlaceholderScreen/PlaceholderScreen.tsx`). It is used by all 5 orphaned post-auth placeholder routes.
