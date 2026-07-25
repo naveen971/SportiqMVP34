@@ -12,7 +12,7 @@
 | Module | Owner | Branch | Build Status | Screens Built / Total | Blocked On |
 |---|---|---|---|---|---|
 | Authentication | Unassigned | Not created | **Complete** | 6 / 7 *(Account Created deferred)* | — |
-| Profile | Unassigned | Not created | Not started | 0 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
+| Profile | Unassigned | Not created | Not started | 1 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
 | Social | Unassigned | Not created | Not started | 0 / 8 *(excl. assets)* | Post Detail ambiguity — operator must pick v1 or v2 before work begins; shared component interfaces |
 | Search | Unassigned | Not created | Not started | 0 / 4 | Shared component interfaces |
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
@@ -61,7 +61,7 @@ AMBIGUITY — Two Achievements Screens: "Achievements" (`b25601c5f3a14d5d8b77068
 | Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | Not built | Charts and performance metrics |
 | Achievements | `b25601c5f3a14d5d8b77068b1c7a5d54` | Not built | Full standalone achievements page (780x2126) |
 | Achievements Section | `4a2fe79c7eff405da3579fdbb7e545eb` | Not built | Embedded achievements panel within another page (780x3940) — likely inside Own Profile |
-| Select Sports | `9dcf3c98d6014b138364c73940b03698` | Not built | Multi-select grid for sports of interest — onboarding |
+| Select Sports | `9dcf3c98d6014b138364c73940b03698` | ✅ Built — SelectSportsScreen.tsx | Multi-select grid for sports of interest — onboarding |
 
 Profile Settings (`f53e82b64d484729a86a69d17e0619cd`) — see Settings module below; ownership split is pending operator decision.
 

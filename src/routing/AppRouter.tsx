@@ -3,6 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
+import { SelectSportsScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 // Helper component to redirect authenticated users away from public auth pages
@@ -87,6 +88,22 @@ export function AppRouter() {
           element={
             <ProtectedRoute>
               <PlaceholderScreen title="Profile" description="User profile will be implemented here." />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.SELECT_SPORTS}
+          element={
+            <ProtectedRoute>
+              <SelectSportsScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.CREATE_SPORTS_PROFILE}
+          element={
+            <ProtectedRoute>
+              <PlaceholderScreen title="Create Sports Profile" description="Onboarding screen to create sports profile." />
             </ProtectedRoute>
           }
         />

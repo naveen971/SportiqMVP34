@@ -11,4 +11,6 @@ export const ROUTES = {
   MESSAGES: '/messages',
   NOTIFICATIONS: '/notifications',
   SETTINGS: '/settings',
+  SELECT_SPORTS: '/select-sports',
+  CREATE_SPORTS_PROFILE: '/create-sports-profile',
 } as const;
