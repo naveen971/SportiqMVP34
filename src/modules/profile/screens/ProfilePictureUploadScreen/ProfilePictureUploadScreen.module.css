@@ -1,0 +1,16 @@
+.container {
+  min-height: max(884px, 100dvh);
+}
+
+.avatarRing {
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

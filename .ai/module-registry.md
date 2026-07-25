@@ -47,6 +47,11 @@ AMBIGUITY — Three Profile View Screens: Own Profile, Public Profile, and Profi
 
 AMBIGUITY — Two Achievements Screens: "Achievements" (`b25601c5f3a14d5d8b77068b1c7a5d54`, 780x2126) is a standalone full page. "Achievements Section" (`4a2fe79c7eff405da3579fdbb7e545eb`, 780x3940) is an embedded section likely rendered inside another screen (e.g., Own Profile). These are not the same and should not be conflated.
 
+RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic revealed conflicting "Step X of Y" labels across onboarding screens (Create Sports Profile showed Step 1/4; Playing Information showed Step 3/4; Profile Picture Upload showed Step 1/5 — irreconcilable without operator input). Resolution per operator decision 2026-07-25:
+- The **required wizard is 4 steps**: Create Sports Profile (1/4) → Personal Information (2/4) → Playing Information (3/4) → Profile Completion (4/4, terminal).
+- **Profile Picture Upload is optional and reusable** — inserted in the flow after Create Sports Profile, but skippable, and NOT counted in the 4-step progress indicator. It is also intended to be callable from Edit Profile / Settings (i.e., not onboarding-exclusive).
+- **Full resolved screen order**: Select Sports (pre-wizard, no step counter) → Create Sports Profile (Step 1/4) → Profile Picture Upload (optional, skippable insert) → Personal Information (Step 2/4) → Playing Information (Step 3/4) → Profile Completion (Step 4/4).
+
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
 | Own Profile | `dea731f2d6d046cba33074bea97f0dc7` | Not built | Authenticated user's full profile — editable view |
@@ -55,9 +60,9 @@ AMBIGUITY — Two Achievements Screens: "Achievements" (`b25601c5f3a14d5d8b77068
 | Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | ✅ Built — CreateSportsProfileScreen.tsx | Onboarding setup wizard for sports-specific details |
 | Profile Completion | `c022afa7e2084368b6bbdba3eaa078d2` | Not built | Progress indicator screen prompting profile completion |
 | Edit Profile | `539c8051c32e4e7787bc7233c2aa0730` | Not built | Form to update name, bio, and personal fields |
-| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | Not built | Sub-screen for contact and identity details |
-| Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | Not built | Form for position, level, and playing history |
-| Profile Picture Upload | `447f102ffc074887858038b1db75698c` | Not built | Camera/gallery picker to set or update avatar |
+| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | Not built | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight |
+| Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | Not built | Onboarding Step 3/4 — Dominant Foot, Primary Position, Years of Experience |
+| Profile Picture Upload | `447f102ffc074887858038b1db75698c` | ✅ Built — ProfilePictureUploadScreen.tsx (optional, reusable) | ⚠️ Optional/reusable — NOT counted in the 4-step progress. Inserted between Step 1 and Step 2 in onboarding; also callable from Edit Profile / Settings. |
 | Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | Not built | Charts and performance metrics |
 | Achievements | `b25601c5f3a14d5d8b77068b1c7a5d54` | Not built | Full standalone achievements page (780x2126) |
 | Achievements Section | `4a2fe79c7eff405da3579fdbb7e545eb` | Not built | Embedded achievements panel within another page (780x3940) — likely inside Own Profile |

@@ -3,7 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen, CreateSportsProfileScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 // Helper component to redirect authenticated users away from public auth pages
@@ -104,6 +104,14 @@ export function AppRouter() {
           element={
             <ProtectedRoute>
               <CreateSportsProfileScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.PROFILE_PICTURE_UPLOAD}
+          element={
+            <ProtectedRoute>
+              <ProfilePictureUploadScreen />
             </ProtectedRoute>
           }
         />

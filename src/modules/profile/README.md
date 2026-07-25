@@ -9,16 +9,21 @@ This module encompasses the user's Profile flows, including the onboarding seque
 | Select Sports | `/select-sports` | `9dcf3c98d6014b138364c73940b03698` | Multi-select grid for sports of interest during onboarding. First step in the sequence. |
 | Create Sports Profile | `/create-sports-profile` | `36a44b1ec6244d9db3556da84ddc7948` | Gathers basic professional info (name, role, bio, photo). Second step. |
 
-## Planned Onboarding Sequence
+## Onboarding Wizard Structure (Resolved 2026-07-25)
 
-1. **Select Sports** (✅ Built)
-2. **Create Sports Profile** (✅ Built)
-3. **Personal Information** (⏳ Pending)
-4. **Playing Information** (⏳ Pending)
-5. **Profile Picture Upload** (⏳ Pending)
-6. **Profile Completion** (⏳ Pending)
+The wizard is **4 required steps**, with one optional/reusable screen inserted after Step 1. Full resolved order:
+
+| Position | Screen | Status | Step Counter |
+|---|---|---|---|
+| Pre-wizard | **Select Sports** | ✅ Built | None (separate 35% bar) |
+| Required Step 1/4 | **Create Sports Profile** | ✅ Built | Step 1 of 4 |
+| Optional insert | **Profile Picture Upload** | ✅ Built | Not counted — optional & skippable; also reusable from Edit Profile / Settings |
+| Required Step 2/4 | **Personal Information** | ⏳ Pending | Step 2 of 4 |
+| Required Step 3/4 | **Playing Information** | ⏳ Pending | Step 3 of 4 |
+| Required Step 4/4 | **Profile Completion** | ⏳ Pending | Step 4 of 4 (terminal screen) |
 
 > **Note:** The route `/personal-information` currently points to a temporary `PlaceholderScreen` with a `TODO`. This will be replaced once the actual screen is built.
+
 
 ## Integration Gaps
 

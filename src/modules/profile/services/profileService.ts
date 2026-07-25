@@ -29,3 +29,46 @@ export async function updateProfileOnboarding(
     throw error;
   }
 }
+
+/**
+ * Uploads a profile picture to Supabase Storage and updates the user's profile row.
+ * Reusable function callable from onboarding or settings.
+ * 
+ * @param userId The user's ID
+ * @param file The file to upload
+ * @returns The public URL of the uploaded avatar
+ */
+export async function updateAvatarUrl(userId: string, file: File): Promise<string> {
+  const fileExt = file.name.split('.').pop();
+  const filePath = `${userId}/avatar-${Date.now()}.${fileExt}`;
+
+  // 1. Upload to Supabase Storage (PENDING BUCKET CREATION)
+  // If the 'avatars' bucket does not exist, this will throw a StorageError
+  // which is expected until the operator creates the bucket manually.
+  const { error: uploadError, data } = await supabase.storage
+    .from('avatars')
+    .upload(filePath, file, { upsert: true });
+
+  if (uploadError) {
+    throw uploadError;
+  }
+
+  // 2. Get the public URL for the newly uploaded file
+  const { data: publicUrlData } = supabase.storage
+    .from('avatars')
+    .getPublicUrl(filePath);
+
+  const avatarUrl = publicUrlData.publicUrl;
+
+  // 3. Update the profiles table with the new avatar_url
+  const { error: updateError } = await supabase
+    .from('profiles')
+    .update({ avatar_url: avatarUrl })
+    .eq('id', userId);
+
+  if (updateError) {
+    throw updateError;
+  }
+
+  return avatarUrl;
+}

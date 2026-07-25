@@ -76,8 +76,11 @@ export function CreateSportsProfileScreen() {
         bio,
       });
 
-      // 2. Navigate to the next screen (Personal Information placeholder)
-      navigate('/personal-information');
+      // 2. Navigate to Profile Picture Upload (optional insert), passing
+      // the next required step as the returnTo target so it knows where to go.
+      navigate(ROUTES.PROFILE_PICTURE_UPLOAD, {
+        state: { returnTo: ROUTES.PERSONAL_INFORMATION }
+      });
     } catch (err: any) {
       setError(err.message || 'Failed to save profile. Please try again.');
     } finally {
