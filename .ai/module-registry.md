@@ -18,6 +18,7 @@
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
 | Notifications | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
 | Settings | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
+| Role Dashboards | Unassigned | Not created | ACTIVE — MVP Demo Sprint | 0 / 4 | Mock data implementation only |
 
 ---
 
@@ -139,6 +140,19 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
 | Profile Settings | `f53e82b64d484729a86a69d17e0619cd` | Not built | Application and account settings panel — module ownership TBD |
+
+---
+
+### Role Dashboards (Modules 8-10)
+
+| Screen Name | Screen ID | Build Status | Notes |
+|---|---|---|---|
+| Athlete Dashboard | `0b0bcd5eb7df40f1a440d18b6c0e1d25` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
+| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
+| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
+| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
+
+> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content uses mock/placeholder data for the demo, real data wiring is a documented follow-up.
 
 ---
 
