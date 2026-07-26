@@ -51,7 +51,7 @@ export function SelectSportsScreen() {
             </div>
           </div>
           
-          <button className={`${styles.iconBtn} sm:hidden`} type="button" style={{ display: 'none' }}>
+          <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} type="button" style={{ display: 'none' }}>
             {/* Keeping class for visual parity with HTML, though in our CSS it's hidden properly via media query if we added it, but sticking strictly to the design. */}
             <span className="material-symbols-outlined" data-icon="more_vert">more_vert</span>
           </button>

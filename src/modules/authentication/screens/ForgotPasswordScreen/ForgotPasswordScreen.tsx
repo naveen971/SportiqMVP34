@@ -87,7 +87,7 @@ export function ForgotPasswordScreen() {
               {/* Form */}
               <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.inputGroup}>
-                  <label htmlFor="email" className="sr-only" style={{ display: 'none' }}>Email Address</label>
+                  <label htmlFor="email" className={styles.srOnly} style={{ display: 'none' }}>Email Address</label>
                   <div className={styles.inputWrapper}>
                     <div className={styles.inputIconContainer}>
                       <span className="material-symbols-outlined" style={{ fontSize: '20px', color: 'var(--color-neutral-600)' }}>

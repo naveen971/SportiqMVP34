@@ -59,6 +59,12 @@
   transform: scale(0.95);
 }
 
+@media (min-width: 640px) {
+  .hideOnMobile {
+    display: none;
+  }
+}
+
 .headerTitle {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
