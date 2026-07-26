@@ -12,7 +12,7 @@
 | Module | Owner | Branch | Build Status | Screens Built / Total | Blocked On |
 |---|---|---|---|---|---|
 | Authentication | Unassigned | Not created | **Complete** | 6 / 7 *(Account Created deferred)* | — |
-| Profile | Unassigned | Not created | In progress | 5 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
+| Profile | Unassigned | Not created | In progress | 6 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
 | Social | Unassigned | Not created | Not started | 0 / 8 *(excl. assets)* | Post Detail ambiguity — operator must pick v1 or v2 before work begins; shared component interfaces |
 | Search | Unassigned | Not created | Not started | 0 / 4 | Shared component interfaces |
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
@@ -58,10 +58,10 @@ RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic re
 | Public Profile | `2afba692135d42719f2f1d65ead9bfc9` | Not built | Another user's profile — read-only view |
 | Profile Preview | `96974a1bd17340dab744ce7fbbb1af6c` | 🔸 HELD — deferred from current MVP scope per operator decision 2026-07-25. Do not build until explicitly reactivated. | Lightweight card before navigating to full profile |
 | Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | ✅ Built — CreateSportsProfileScreen.tsx | Onboarding setup wizard for sports-specific details |
-| Profile Completion | `c022afa7e2084368b6bbdba3eaa078d2` | Not built | Progress indicator screen prompting profile completion |
+| Profile Completion | `c022afa7e2084368b6bbdba3eaa078d2` | ✅ Built — ProfileCompletionScreen.tsx | Terminal onboarding screen (Step 4/4). Calls completeOnboarding() on mount — consolidates all sessionStorage-stopgapped fields + sets onboarding_complete = true in a single Supabase UPDATE. PREREQUISITE: migration 005_add_personal_and_playing_info.sql must be applied manually. |
 | Edit Profile | `539c8051c32e4e7787bc7233c2aa0730` | Not built | Form to update name, bio, and personal fields |
-| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | ✅ Built — PersonalInformationScreen.tsx | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight. **SCHEMA GAP:** Location, Age, Height, Weight are temporarily saved to sessionStorage pending schema migration. |
-| Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | ✅ Built — PlayingInformationScreen.tsx | Onboarding Step 3/4 — Dominant Foot, Primary Position, Years of Experience. **SCHEMA GAP:** Dominant Foot, Primary Position, Years of Experience are temporarily saved to sessionStorage pending schema migration. |
+| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | ✅ Built — PersonalInformationScreen.tsx | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight. **SCHEMA GAP RESOLVED** by migration 005. Location/Age/Height/Weight now persisted via completeOnboarding() in ProfileCompletionScreen. |
+| Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | ✅ Built — PlayingInformationScreen.tsx | Onboarding Step 3/4 — Dominant Foot, Primary Position, Years of Experience. **SCHEMA GAP RESOLVED** by migration 005. Fields now persisted via completeOnboarding() in ProfileCompletionScreen. |
 | Profile Picture Upload | `447f102ffc074887858038b1db75698c` | ✅ Built — ProfilePictureUploadScreen.tsx (optional, reusable) | ⚠️ Optional/reusable — NOT counted in the 4-step progress. Inserted between Step 1 and Step 2 in onboarding; also callable from Edit Profile / Settings. |
 | Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | Not built | Charts and performance metrics |
 | Achievements | `b25601c5f3a14d5d8b77068b1c7a5d54` | Not built | Full standalone achievements page (780x2126) |
@@ -69,6 +69,8 @@ RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic re
 | Select Sports | `9dcf3c98d6014b138364c73940b03698` | ✅ Built — SelectSportsScreen.tsx | Multi-select grid for sports of interest — onboarding |
 
 Profile Settings (`f53e82b64d484729a86a69d17e0619cd`) — see Settings module below; ownership split is pending operator decision.
+
+⚠️ OPEN PRODUCT DECISION — onboarding_complete flag: The `onboarding_complete` boolean is now set to `true` by `ProfileCompletionScreen` on successful save. However, Login/SignUp do NOT yet read this flag to auto-redirect new users into the onboarding wizard (Select Sports → … → Profile Completion) on first login. Wiring that routing decision is explicitly deferred — pending operator decision on how to handle users who partially completed onboarding, users who skip steps, and whether to re-enter onboarding on subsequent logins if the flag is false.
 
 ---
 

@@ -3,3 +3,4 @@ export { CreateSportsProfileScreen } from './CreateSportsProfileScreen/CreateSpo
 export { ProfilePictureUploadScreen } from './ProfilePictureUploadScreen/ProfilePictureUploadScreen';
 export { PersonalInformationScreen } from './PersonalInformationScreen/PersonalInformationScreen';
 export { PlayingInformationScreen } from './PlayingInformationScreen/PlayingInformationScreen';
+export { ProfileCompletionScreen } from './ProfileCompletionScreen/ProfileCompletionScreen';

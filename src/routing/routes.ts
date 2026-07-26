@@ -17,4 +17,5 @@ export const ROUTES = {
   PERSONAL_INFORMATION: '/personal-information',
   PLAYING_INFORMATION: '/playing-information',
   PROFILE_COMPLETION: '/profile-completion',
+  OWN_PROFILE: '/profile/me',
 } as const;

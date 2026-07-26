@@ -3,7 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 import styles from './Routing.module.css';
@@ -146,8 +146,16 @@ export function AppRouter() {
           path={ROUTES.PROFILE_COMPLETION}
           element={
             <ProtectedRoute>
-              {/* // TODO: replace with real ProfileCompletionScreen once built */}
-              <PlaceholderScreen title="Profile Completion" description="Final onboarding progress screen." />
+              <ProfileCompletionScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.OWN_PROFILE}
+          element={
+            <ProtectedRoute>
+              {/* // TODO: replace with real OwnProfileScreen once built */}
+              <PlaceholderScreen title="My Profile" description="Own profile view — the next logical build target after the core onboarding wizard." />
             </ProtectedRoute>
           }
         />

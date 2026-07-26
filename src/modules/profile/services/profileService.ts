@@ -109,3 +109,64 @@ export async function updateAvatarUrl(userId: string, file: File): Promise<strin
 
   return avatarUrl;
 }
+
+/**
+ * Terminal onboarding step: reads all sessionStorage-stopgapped data from
+ * Personal Information and Playing Information screens, merges it into a single
+ * Supabase UPDATE, and sets onboarding_complete = true.
+ *
+ * Called on mount by ProfileCompletionScreen. Clears both sessionStorage keys
+ * on success. Throws on failure so the UI can show an error instead of fake success.
+ *
+ * PREREQUISITE: Migration 005_add_personal_and_playing_info.sql must be applied
+ * in Supabase before this function can succeed.
+ */
+export async function completeOnboarding(userId: string): Promise<void> {
+  // Read Personal Information stopgap (key verified against PersonalInformationScreen.tsx L13)
+  let personalInfo: Record<string, string> = {};
+  try {
+    const raw = sessionStorage.getItem('sportiq_onboarding_personal_info');
+    if (raw) personalInfo = JSON.parse(raw);
+  } catch {
+    // Missing or corrupt — treat all personal fields as absent (write null)
+  }
+
+  // Read Playing Information stopgap (key verified against PlayingInformationScreen.tsx L13)
+  let playingInfo: Record<string, string> = {};
+  try {
+    const raw = sessionStorage.getItem('sportiq_onboarding_playing_info');
+    if (raw) playingInfo = JSON.parse(raw);
+  } catch {
+    // Missing or corrupt — treat all playing fields as absent (write null)
+  }
+
+  // Parse numeric fields safely — null if absent/invalid
+  const age = personalInfo.age ? parseInt(personalInfo.age, 10) : null;
+  const height_cm = personalInfo.height ? parseFloat(personalInfo.height) : null;
+  const weight_kg = personalInfo.weight ? parseFloat(personalInfo.weight) : null;
+  const years_of_experience = playingInfo.experience ? parseInt(playingInfo.experience, 10) : null;
+
+  // Single consolidated update — all fields + onboarding_complete in one call
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      location: personalInfo.location || null,
+      age: isNaN(age as number) ? null : age,
+      height_cm: isNaN(height_cm as number) ? null : height_cm,
+      weight_kg: isNaN(weight_kg as number) ? null : weight_kg,
+      dominant_foot: playingInfo.dominantFoot ? playingInfo.dominantFoot.toLowerCase() : null,
+      primary_position: playingInfo.position || null,
+      years_of_experience: isNaN(years_of_experience as number) ? null : years_of_experience,
+      onboarding_complete: true,
+    })
+    .eq('id', userId);
+
+  if (error) {
+    throw error;
+  }
+
+  // Clear both stopgap keys on success only
+  sessionStorage.removeItem('sportiq_onboarding_personal_info');
+  sessionStorage.removeItem('sportiq_onboarding_playing_info');
+}
+

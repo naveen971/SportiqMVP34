@@ -11,6 +11,7 @@ This module encompasses the user's Profile flows, including the onboarding seque
 | Profile Picture Upload | `/profile-picture-upload` | `447f102ffc074887858038b1db75698c` | Optional insert for photo upload. |
 | Personal Information | `/personal-information` | `ab64f6d07cdd4308b9e9d5f0524946a4` | Gathers location and physical metrics. Second step. |
 | Playing Information | `/playing-information` | `c50b8ebdd26e49e088f221712c631fc6` | Gathers dominant foot, primary position, and years of experience. Third step. |
+| Profile Completion | `/profile-completion` | `c022afa7e2084368b6bbdba3eaa078d2` | Terminal screen — consolidates all onboarding data + sets onboarding_complete. Fourth step. |
 
 ## Onboarding Wizard Structure (Resolved 2026-07-25)
 
@@ -23,9 +24,9 @@ The wizard is **4 required steps**, with one optional/reusable screen inserted a
 | Optional insert | **Profile Picture Upload** | ✅ Built | Not counted — optional & skippable; also reusable from Edit Profile / Settings |
 | Required Step 2/4 | **Personal Information** | ✅ Built | Step 2 of 4 |
 | Required Step 3/4 | **Playing Information** | ✅ Built | Step 3 of 4 |
-| Required Step 4/4 | **Profile Completion** | ⏳ Pending | Step 4 of 4 (terminal screen) |
+| Required Step 4/4 | **Profile Completion** | ✅ Built | Step 4 of 4 (terminal screen) |
 
-> **Note:** The route `/personal-information` currently points to a temporary `PlaceholderScreen` with a `TODO`. This will be replaced once the actual screen is built.
+> **✅ Core 4-step onboarding wizard is now fully built end-to-end.** All four required steps (Create Sports Profile, Personal Information, Playing Information, Profile Completion) plus the optional Profile Picture Upload screen are implemented.
 
 
 ## Integration Gaps
@@ -61,5 +62,6 @@ The `public.profiles` table stores extended user information.
 **Schema Gaps — Status:**
 - **Bio** ✅ **Resolved** — Migration `002_add_bio_avatar_to_profiles.sql` adds a `bio text` column with a `CHECK (char_length(bio) <= 500)` constraint. Bio is now persisted via `updateProfileOnboarding()` in `profileService.ts`.
 - **Avatar URL** ⏳ **Still pending** — Migration `002` adds the `avatar_url text` column to the schema, but file upload to Supabase Storage is a separate future task. The UI `Upload Image` button is present but non-functional for persistence. `avatar_url` is intentionally excluded from the current `updateProfileOnboarding()` call until a storage bucket and upload flow are implemented.
-- **Physical Metrics & Location** ⏳ **Still pending** — `Location`, `Age`, `Height`, and `Weight` from the Personal Information screen currently lack columns in the schema. As a **stopgap**, these are saved temporarily to `sessionStorage` under `sportiq_onboarding_personal_info` to prevent data loss. `updatePersonalInformation()` only persists `full_name` to the DB and logs a schema gap warning for the rest. A shared constant `REGION_LIST` is now in `src/shared/constants/regions.ts` for location dropdowns.
-- **Playing Information** ⏳ **Still pending** — `Dominant Foot`, `Primary Position`, and `Years of Experience` from the Playing Information screen currently lack columns in the schema. As a **stopgap**, these are saved temporarily to `sessionStorage` under `sportiq_onboarding_playing_info` to prevent data loss. A consolidated schema migration for all unpersisted onboarding fields will be created after the final onboarding step is built.
+- **Physical Metrics & Location** ✅ **Resolved** — Migration `005_add_personal_and_playing_info.sql` adds `location`, `age`, `height_cm`, `weight_kg` columns. Now persisted via `completeOnboarding()` in `profileService.ts` (called by `ProfileCompletionScreen` on mount). **APPLY MANUALLY before this flow works in production.**
+- **Playing Information** ✅ **Resolved** — Migration `005_add_personal_and_playing_info.sql` adds `dominant_foot`, `primary_position`, `years_of_experience` columns. Now persisted via `completeOnboarding()`. **APPLY MANUALLY.**
+- **ROUTES.OWN_PROFILE** is a new temporary placeholder at `/profile/me` — wired in `AppRouter.tsx` to a `PlaceholderScreen` pending the real `OwnProfileScreen` build (the next logical screen after the wizard).
