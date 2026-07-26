@@ -6,15 +6,20 @@ import styles from './SelectSportsScreen.module.css';
 
 export function SelectSportsScreen() {
   const navigate = useNavigate();
-  const [selectedSports, setSelectedSports] = useState<SelectedSports>([]);
+  const [selectedSports, setSelectedSports] = useState<SelectedSports>(() => {
+    const saved = sessionStorage.getItem('sportiq_onboarding_selected_sports');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleToggleSport = (sportId: string) => {
-    setSelectedSports(prev => 
-      prev.includes(sportId) 
+    setSelectedSports(prev => {
+      const next = prev.includes(sportId) 
         ? prev.filter(id => id !== sportId)
-        : [...prev, sportId]
-    );
+        : [...prev, sportId];
+      sessionStorage.setItem('sportiq_onboarding_selected_sports', JSON.stringify(next));
+      return next;
+    });
   };
 
   const handleContinue = () => {

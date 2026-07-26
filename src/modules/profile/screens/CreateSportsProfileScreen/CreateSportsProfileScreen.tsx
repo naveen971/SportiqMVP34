@@ -16,12 +16,29 @@ export function CreateSportsProfileScreen() {
   
   // Extract passed state
   const state = location.state as LocationState | null;
-  const initialSports = state?.selectedSports || [];
+  const initialSports = state?.selectedSports || (() => {
+    const saved = sessionStorage.getItem('sportiq_onboarding_selected_sports');
+    return saved ? JSON.parse(saved) : [];
+  })();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [primaryRole, setPrimaryRole] = useState(user?.role || '');
   const [bio, setBio] = useState('');
+  
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAvatarPreview(URL.createObjectURL(file));
+    }
+  };
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -76,6 +93,8 @@ export function CreateSportsProfileScreen() {
         bio,
       });
 
+      sessionStorage.removeItem('sportiq_onboarding_selected_sports');
+
       // 2. Navigate to Profile Picture Upload (optional insert), passing
       // the next required step as the returnTo target so it knows where to go.
       navigate(ROUTES.PROFILE_PICTURE_UPLOAD, {
@@ -129,14 +148,25 @@ export function CreateSportsProfileScreen() {
             <div className={styles.avatarSection}>
               <label className={styles.avatarLabel}>Profile Photo</label>
               <div className={styles.avatarContent}>
-                <div className={styles.avatarPlaceholder}>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  ref={fileInputRef} 
+                  onChange={handleFileChange} 
+                  style={{ display: 'none' }}
+                />
+                <div className={styles.avatarPlaceholder} onClick={handleAvatarClick}>
                   <div className={styles.avatarCircle}>
-                    <span className={`material-symbols-outlined ${styles.avatarIcon}`}>add_a_photo</span>
+                    {avatarPreview ? (
+                      <img src={avatarPreview} alt="Avatar preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : (
+                      <span className={`material-symbols-outlined ${styles.avatarIcon}`}>add_a_photo</span>
+                    )}
                   </div>
                 </div>
                 <div className={styles.avatarInfo}>
                   <span className={styles.avatarHint}>High quality, professional headshot recommended.</span>
-                  <button className={styles.uploadBtn} type="button">Upload Image</button>
+                  <button className={styles.uploadBtn} type="button" onClick={handleAvatarClick}>Upload Image</button>
                 </div>
               </div>
             </div>
