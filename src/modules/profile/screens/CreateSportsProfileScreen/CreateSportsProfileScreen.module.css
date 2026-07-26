@@ -287,7 +287,7 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: var(--xs);
+  gap: var(--spacing-1);
 }
 
 .inputLabel {
@@ -328,7 +328,7 @@
 }
 
 .inputField::placeholder, .textareaField::placeholder {
-  color: var(--color-neutral-500);
+  color: color-mix(in srgb, var(--color-primary-600) 60%, transparent);
 }
 
 .inputField, .selectField {
@@ -377,7 +377,7 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-normal);
-  color: var(--color-primary-500);
+  color: var(--color-text-secondary);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -572,7 +572,7 @@
 }
 
 .errorAlert {
-  background-color: color-mix(in srgb, var(--color-error) 40%, transparent);
+  background-color: color-mix(in srgb, var(--color-error) 12%, transparent);
   border-left: 4px solid var(--color-error);
   padding: 1rem;
   margin-bottom: 1rem;
