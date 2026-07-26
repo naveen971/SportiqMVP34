@@ -1,0 +1,217 @@
+.container {
+  padding: var(--spacing-4);
+  background-color: var(--color-neutral-50);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.greeting {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.description {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.eventItem {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.eventTime {
+  color: var(--color-primary-500);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.eventTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.eventLocation {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.eventFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-2);
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--color-neutral-400);
+}
+
+.eventAttendees {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+}
+
+.manageButton {
+  background-color: var(--color-neutral-300);
+  color: var(--color-neutral-900);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-1) var(--spacing-4);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+.tournamentList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.tournamentItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.tournamentIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tournamentContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tournamentTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.tournamentDetails {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.tournamentStatus {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-700);
+}
+
+.statusLive {
+  color: var(--color-error);
+}
+
+.tournamentDesc {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.activityItem {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.activityHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-1);
+}
+
+.activityTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.activityTime {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+}
+
+.activityDesc {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.safeBottom {
+  height: 80px;
+}

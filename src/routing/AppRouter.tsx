@@ -5,6 +5,13 @@ import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
 import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
+import { UserRole } from '../core/auth/types';
+import { 
+  AthleteDashboardScreen, 
+  CoachDashboardScreen, 
+  OrganiserDashboardScreen, 
+  GovernmentDashboardScreen 
+} from '../modules/dashboard/screens';
 
 import styles from './Routing.module.css';
 
@@ -29,13 +36,13 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Redirect Root to Splash if not authenticated, otherwise Home is loaded */}
+        {/* Redirect Root to Splash if not authenticated, otherwise Role-Aware Dashboard is loaded */}
         <Route
           path="/"
           element={
             isAuthenticated ? (
               <ProtectedRoute>
-                <PlaceholderScreen title="Home" description="Main feed will be implemented here." />
+                <DashboardRouter />
               </ProtectedRoute>
             ) : (
               <Navigate to={ROUTES.SPLASH} replace />
@@ -202,3 +209,20 @@ export function AppRouter() {
   );
 }
 
+// Role-aware dashboard routing
+function DashboardRouter() {
+  const { user } = useAuth();
+  
+  switch (user?.role) {
+    case UserRole.Athlete:
+      return <AthleteDashboardScreen />;
+    case UserRole.Coach:
+      return <CoachDashboardScreen />;
+    case UserRole.Organiser:
+      return <OrganiserDashboardScreen />;
+    case UserRole.Government:
+      return <GovernmentDashboardScreen />;
+    default:
+      return <PlaceholderScreen title="Dashboard - Role Unknown" description="The user role is unrecognized or unset." />;
+  }
+}
