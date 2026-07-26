@@ -3,7 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 
 import styles from './Routing.module.css';
@@ -130,8 +130,16 @@ export function AppRouter() {
           path={ROUTES.PERSONAL_INFORMATION}
           element={
             <ProtectedRoute>
-              {/* // TODO: replace with real PersonalInformationScreen once built */}
-              <PlaceholderScreen title="Personal Information" description="Onboarding screen for personal information." />
+              <PersonalInformationScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.PLAYING_INFORMATION}
+          element={
+            <ProtectedRoute>
+              {/* // TODO: replace with real PlayingInformationScreen once built */}
+              <PlaceholderScreen title="Playing Information" description="Onboarding screen for playing information." />
             </ProtectedRoute>
           }
         />

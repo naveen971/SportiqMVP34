@@ -12,7 +12,7 @@
 | Module | Owner | Branch | Build Status | Screens Built / Total | Blocked On |
 |---|---|---|---|---|---|
 | Authentication | Unassigned | Not created | **Complete** | 6 / 7 *(Account Created deferred)* | — |
-| Profile | Unassigned | Not created | In progress | 2 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
+| Profile | Unassigned | Not created | In progress | 4 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
 | Social | Unassigned | Not created | Not started | 0 / 8 *(excl. assets)* | Post Detail ambiguity — operator must pick v1 or v2 before work begins; shared component interfaces |
 | Search | Unassigned | Not created | Not started | 0 / 4 | Shared component interfaces |
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
@@ -60,7 +60,7 @@ RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic re
 | Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | ✅ Built — CreateSportsProfileScreen.tsx | Onboarding setup wizard for sports-specific details |
 | Profile Completion | `c022afa7e2084368b6bbdba3eaa078d2` | Not built | Progress indicator screen prompting profile completion |
 | Edit Profile | `539c8051c32e4e7787bc7233c2aa0730` | Not built | Form to update name, bio, and personal fields |
-| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | Not built | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight |
+| Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | ✅ Built — PersonalInformationScreen.tsx | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight. **SCHEMA GAP:** Location, Age, Height, Weight are temporarily saved to sessionStorage pending schema migration. |
 | Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | Not built | Onboarding Step 3/4 — Dominant Foot, Primary Position, Years of Experience |
 | Profile Picture Upload | `447f102ffc074887858038b1db75698c` | ✅ Built — ProfilePictureUploadScreen.tsx (optional, reusable) | ⚠️ Optional/reusable — NOT counted in the 4-step progress. Inserted between Step 1 and Step 2 in onboarding; also callable from Edit Profile / Settings. |
 | Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | Not built | Charts and performance metrics |

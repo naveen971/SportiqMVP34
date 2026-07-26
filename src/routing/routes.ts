@@ -15,4 +15,5 @@ export const ROUTES = {
   CREATE_SPORTS_PROFILE: '/create-sports-profile',
   PROFILE_PICTURE_UPLOAD: '/profile-picture-upload',
   PERSONAL_INFORMATION: '/personal-information',
+  PLAYING_INFORMATION: '/playing-information',
 } as const;

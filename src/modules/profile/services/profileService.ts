@@ -30,6 +30,43 @@ export async function updateProfileOnboarding(
   }
 }
 
+export interface PersonalInformationPayload {
+  fullName: string;
+  location?: string;
+  age?: string;
+  height?: string;
+  weight?: string;
+}
+
+/**
+ * Writes personal information data (Full Name) to the user's public.profiles row.
+ * NOTE: Location, Age, Height, and Weight currently lack schema columns.
+ * They are passed here but we explicitly log a warning.
+ */
+export async function updatePersonalInformation(
+  userId: string,
+  payload: PersonalInformationPayload
+): Promise<void> {
+  const { error } = await supabase
+    .from('profiles')
+    .update({
+      full_name: payload.fullName,
+    })
+    .eq('id', userId);
+
+  if (error) {
+    throw error;
+  }
+
+  // Stopgap schema warning for unpersisted fields
+  if (payload.location || payload.age || payload.height || payload.weight) {
+    console.warn(
+      'SCHEMA GAP: Location, Age, Height, and Weight cannot be persisted to Supabase yet. ' +
+      'Ensure they are handled client-side (e.g. sessionStorage) pending a database migration.'
+    );
+  }
+}
+
 /**
  * Uploads a profile picture to Supabase Storage and updates the user's profile row.
  * Reusable function callable from onboarding or settings.

@@ -8,6 +8,8 @@ This module encompasses the user's Profile flows, including the onboarding seque
 |---|---|---|---|
 | Select Sports | `/select-sports` | `9dcf3c98d6014b138364c73940b03698` | Multi-select grid for sports of interest during onboarding. First step in the sequence. |
 | Create Sports Profile | `/create-sports-profile` | `36a44b1ec6244d9db3556da84ddc7948` | Gathers basic professional info (name, role, bio, photo). Second step. |
+| Profile Picture Upload | `/profile-picture-upload` | `447f102ffc074887858038b1db75698c` | Optional insert for photo upload. |
+| Personal Information | `/personal-information` | `ab64f6d07cdd4308b9e9d5f0524946a4` | Gathers location and physical metrics. Third step. |
 
 ## Onboarding Wizard Structure (Resolved 2026-07-25)
 
@@ -18,7 +20,7 @@ The wizard is **4 required steps**, with one optional/reusable screen inserted a
 | Pre-wizard | **Select Sports** | ✅ Built | None (separate 35% bar) |
 | Required Step 1/4 | **Create Sports Profile** | ✅ Built | Step 1 of 4 |
 | Optional insert | **Profile Picture Upload** | ✅ Built | Not counted — optional & skippable; also reusable from Edit Profile / Settings |
-| Required Step 2/4 | **Personal Information** | ⏳ Pending | Step 2 of 4 |
+| Required Step 2/4 | **Personal Information** | ✅ Built | Step 2 of 4 |
 | Required Step 3/4 | **Playing Information** | ⏳ Pending | Step 3 of 4 |
 | Required Step 4/4 | **Profile Completion** | ⏳ Pending | Step 4 of 4 (terminal screen) |
 
@@ -58,3 +60,4 @@ The `public.profiles` table stores extended user information.
 **Schema Gaps — Status:**
 - **Bio** ✅ **Resolved** — Migration `002_add_bio_avatar_to_profiles.sql` adds a `bio text` column with a `CHECK (char_length(bio) <= 500)` constraint. Bio is now persisted via `updateProfileOnboarding()` in `profileService.ts`.
 - **Avatar URL** ⏳ **Still pending** — Migration `002` adds the `avatar_url text` column to the schema, but file upload to Supabase Storage is a separate future task. The UI `Upload Image` button is present but non-functional for persistence. `avatar_url` is intentionally excluded from the current `updateProfileOnboarding()` call until a storage bucket and upload flow are implemented.
+- **Physical Metrics & Location** ⏳ **Still pending** — `Location`, `Age`, `Height`, and `Weight` from the Personal Information screen currently lack columns in the schema. As a **stopgap**, these are saved temporarily to `sessionStorage` under `sportiq_onboarding_personal_info` to prevent data loss. `updatePersonalInformation()` only persists `full_name` to the DB and logs a schema gap warning for the rest. A shared constant `REGION_LIST` is now in `src/shared/constants/regions.ts` for location dropdowns.
