@@ -1,0 +1,180 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../core/auth/AuthProvider';
+import { ROUTES } from '../../../../routing/routes';
+import styles from './PlayingInformationScreen.module.css';
+
+export function PlayingInformationScreen() {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Initialize from sessionStorage stopgap if it exists
+  const getInitialState = () => {
+    const saved = sessionStorage.getItem('sportiq_onboarding_playing_info');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return {};
+      }
+    }
+    return {};
+  };
+
+  const initialState = getInitialState();
+
+  const [dominantFoot, setDominantFoot] = useState(initialState.dominantFoot || '');
+  const [position, setPosition] = useState(initialState.position || '');
+  const [experience, setExperience] = useState(initialState.experience || '');
+
+  // Protect route just in case
+  useEffect(() => {
+    if (!user) {
+      navigate(ROUTES.LOGIN);
+    }
+  }, [user, navigate]);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  const saveStopgapToSession = () => {
+    sessionStorage.setItem('sportiq_onboarding_playing_info', JSON.stringify({
+      dominantFoot,
+      position,
+      experience
+    }));
+  };
+
+  const handleNextStep = () => {
+    // Note: Schema gap for these fields. We save locally and move forward.
+    saveStopgapToSession();
+    navigate(ROUTES.PROFILE_COMPLETION);
+  };
+
+  return (
+    <div className={styles.container}>
+      {/* Header */}
+      <header className={styles.header}>
+        <button 
+          className={styles.backBtn} 
+          onClick={handleBack} 
+          aria-label="Go back"
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div className={styles.headerTitleWrapper}>
+          <h1 className={styles.headerTitle}>Profile Setup</h1>
+        </div>
+      </header>
+
+      {/* Progress Bar */}
+      <div className={styles.progressSection}>
+        <div className={styles.progressLabels}>
+          <span className={styles.stepLabel}>Step 3 of 4</span>
+          <span className={styles.percentLabel}>65%</span>
+        </div>
+        <div className={styles.progressContainer}>
+          <div className={styles.progressFill} style={{ width: '65%' }}></div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className={styles.main}>
+        <div className={styles.contentWrapper}>
+          <div className={styles.titleArea}>
+            <h2 className={styles.title}>Playing Information</h2>
+            <p className={styles.subtitle}>Help coaches and scouts understand your on-field profile.</p>
+          </div>
+
+          {/* Form */}
+          <form className={styles.form} onSubmit={(e) => { e.preventDefault(); handleNextStep(); }}>
+            
+            {/* Dominant Foot (Chips) */}
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel}>Dominant Foot</label>
+              <div className={styles.chipGroup}>
+                <button
+                  type="button"
+                  className={`${styles.chip} ${dominantFoot === 'Right' ? styles.chipActive : styles.chipInactive}`}
+                  onClick={() => setDominantFoot('Right')}
+                >
+                  Right
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.chip} ${dominantFoot === 'Left' ? styles.chipActive : styles.chipInactive}`}
+                  onClick={() => setDominantFoot('Left')}
+                >
+                  Left
+                </button>
+                <button
+                  type="button"
+                  className={`${styles.chip} ${dominantFoot === 'Both' ? styles.chipActive : styles.chipInactive}`}
+                  onClick={() => setDominantFoot('Both')}
+                >
+                  Both
+                </button>
+              </div>
+            </div>
+
+            {/* Primary Position (Dropdown) */}
+            {/* Note: Options are soccer-specific as per the Stitch design. In the future, this should be dynamically mapped per sport. */}
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="position">Primary Position</label>
+              <div className={styles.selectWrapper}>
+                <select
+                  id="position"
+                  className={styles.selectField}
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>Select position</option>
+                  <option value="forward">Forward / Striker</option>
+                  <option value="midfielder">Midfielder</option>
+                  <option value="defender">Defender</option>
+                  <option value="goalkeeper">Goalkeeper</option>
+                </select>
+                <div className={styles.selectIcon}>
+                  <span className="material-symbols-outlined">expand_more</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Years of Experience (Input) */}
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel} htmlFor="experience">Years of Experience</label>
+              <input
+                id="experience"
+                type="number"
+                min="0"
+                className={styles.inputField}
+                placeholder="e.g. 5"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+                required
+              />
+            </div>
+
+          </form>
+        </div>
+      </main>
+
+      {/* Bottom Action Area */}
+      <div className={styles.bottomArea}>
+        <div className={styles.bottomContent}>
+          <button 
+            type="button" 
+            className={styles.nextBtn}
+            onClick={handleNextStep}
+            disabled={!position || !dominantFoot || experience === ''}
+          >
+            Next Step
+            <span className="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
