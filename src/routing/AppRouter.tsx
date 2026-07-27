@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
+import { OnboardingGate } from './OnboardingGate';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
 import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen } from '../modules/profile/screens';
@@ -49,9 +50,11 @@ export function AppRouter() {
           element={
             isAuthenticated ? (
               <ProtectedRoute>
-                <AppLayout>
-                  <DashboardRouter />
-                </AppLayout>
+                <OnboardingGate>
+                  <AppLayout>
+                    <DashboardRouter />
+                  </AppLayout>
+                </OnboardingGate>
               </ProtectedRoute>
             ) : (
               <Navigate to={ROUTES.SPLASH} replace />

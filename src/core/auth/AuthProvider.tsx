@@ -14,16 +14,21 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+interface ProfileData {
+  role: UserRole;
+  onboardingComplete: boolean | null;
+}
+
 /**
- * Resolves the authoritative role for a given user ID.
+ * Resolves the authoritative role and onboarding status for a given user ID.
  * Queries public.profiles first (single source of truth after signup).
  * Falls back to user_metadata only if the profile row does not yet exist
  * (edge case: signup DB trigger hasn't fired yet).
  */
-async function resolveRole(userId: string, metadataRole: UserRole | undefined): Promise<UserRole> {
+async function resolveProfile(userId: string, metadataRole: UserRole | undefined): Promise<ProfileData> {
   const { data, error } = await supabase
     .from('profiles')
-    .select('role')
+    .select('role, onboarding_complete')
     .eq('id', userId)
     .single();
 
@@ -31,21 +36,25 @@ async function resolveRole(userId: string, metadataRole: UserRole | undefined): 
     // Profile row not yet created (race condition) — fall back to JWT metadata.
     // This path is reachable briefly after signup before the DB trigger completes.
     console.warn('[AuthProvider] profiles.role unavailable, falling back to user_metadata.role:', error?.message);
-    return metadataRole as UserRole;
+    return { role: metadataRole as UserRole, onboardingComplete: null };
   }
 
-  return data.role as UserRole;
+  return {
+    role: data.role as UserRole,
+    onboardingComplete: data.onboarding_complete
+  };
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [onboardingComplete, setOnboardingComplete] = useState<boolean | null>(null);
 
   useEffect(() => {
     // Initial session check
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
-        const role = await resolveRole(
+        const profile = await resolveProfile(
           session.user.id,
           session.user.user_metadata?.role as UserRole,
         );
@@ -53,8 +62,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
           id: session.user.id,
           name: session.user.user_metadata?.full_name || '',
           email: session.user.email || '',
-          role,
+          role: profile.role,
         });
+        setOnboardingComplete(profile.onboardingComplete);
       }
       setIsLoading(false);
     });
@@ -62,7 +72,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
-        const role = await resolveRole(
+        const profile = await resolveProfile(
           session.user.id,
           session.user.user_metadata?.role as UserRole,
         );
@@ -70,10 +80,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
           id: session.user.id,
           name: session.user.user_metadata?.full_name || '',
           email: session.user.email || '',
-          role,
+          role: profile.role,
         });
+        setOnboardingComplete(profile.onboardingComplete);
       } else {
         setUser(null);
+        setOnboardingComplete(null);
       }
       setIsLoading(false);
     });
@@ -110,6 +122,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     user,
     isAuthenticated: user !== null,
     isLoading,
+    onboardingComplete,
     setUser,
     login,
     signUp,
