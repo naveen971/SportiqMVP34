@@ -14,6 +14,11 @@ import {
   CoachAthleteSearchScreen
 } from '../modules/dashboard/screens';
 
+import {
+  EventsListScreen,
+  CreateEventScreen
+} from '../modules/events/screens';
+
 import styles from './Routing.module.css';
 
 // Helper component to redirect authenticated users away from public auth pages
@@ -204,7 +209,11 @@ export function AppRouter() {
         <Route path={ROUTES.ASSIGN_TRAINING} element={<ProtectedRoute><PlaceholderScreen title="Assign Training" description="// TODO: replace with real Assign Training screen" /></ProtectedRoute>} />
         <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><CoachAthleteSearchScreen /></ProtectedRoute>} />
         <Route path={ROUTES.ANNOUNCEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Announcements" description="// TODO: replace with real Announcements screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><PlaceholderScreen title="Create Event" description="// TODO: replace with real Create Event screen" /></ProtectedRoute>} />
+        
+        {/* Events Module */}
+        <Route path={ROUTES.EVENTS} element={<ProtectedRoute><EventsListScreen /></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><CreateEventScreen /></ProtectedRoute>} />
+        
         <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Create Tournament" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />
         <Route path={ROUTES.APPROVALS} element={<ProtectedRoute><PlaceholderScreen title="Approvals" description="// TODO: replace with real Approvals screen" /></ProtectedRoute>} />
         <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><PlaceholderScreen title="Team Management" description="// TODO: replace with real Team Management screen" /></ProtectedRoute>} />
