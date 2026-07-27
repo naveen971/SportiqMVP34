@@ -1,7 +1,7 @@
 export { AuthProvider, useAuth, UserRole } from './auth';
 export type { User, AuthState } from './auth';
 export { NavigationProvider, useNavigation } from './navigation';
-export type { NavigationItem, NavigationConfig } from './navigation';
+export type { NavItem, NavigationConfig } from './navigation';
 export { ThemeProvider } from './theme';
 export { config } from './config';
 export { apiClient } from './network';
