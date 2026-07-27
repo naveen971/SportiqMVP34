@@ -5,6 +5,7 @@ import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
 import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
+import { AppLayout } from '../shared/layouts/AppLayout';
 import { UserRole } from '../core/auth/types';
 import { 
   AthleteDashboardScreen, 
@@ -48,7 +49,9 @@ export function AppRouter() {
           element={
             isAuthenticated ? (
               <ProtectedRoute>
-                <DashboardRouter />
+                <AppLayout>
+                  <DashboardRouter />
+                </AppLayout>
               </ProtectedRoute>
             ) : (
               <Navigate to={ROUTES.SPLASH} replace />
@@ -111,7 +114,9 @@ export function AppRouter() {
           path={ROUTES.PROFILE}
           element={
             <ProtectedRoute>
-              <OwnProfileScreen />
+              <AppLayout>
+                <OwnProfileScreen />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
@@ -119,7 +124,9 @@ export function AppRouter() {
           path={ROUTES.EDIT_PROFILE}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Edit Profile" description="Edit profile will be implemented here." />
+              <AppLayout>
+                <PlaceholderScreen title="Edit Profile" description="Edit profile will be implemented here." />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
@@ -175,7 +182,9 @@ export function AppRouter() {
           path={ROUTES.SEARCH}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Search" description="Search will be implemented here." />
+              <AppLayout>
+                <PlaceholderScreen title="Search" description="Search will be implemented here." />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
@@ -183,7 +192,9 @@ export function AppRouter() {
           path={ROUTES.MESSAGES}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Messages" description="Messaging will be implemented here." />
+              <AppLayout>
+                <PlaceholderScreen title="Messages" description="Messaging will be implemented here." />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
@@ -191,7 +202,9 @@ export function AppRouter() {
           path={ROUTES.NOTIFICATIONS}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Notifications" description="Notifications will be implemented here." />
+              <AppLayout>
+                <PlaceholderScreen title="Notifications" description="Notifications will be implemented here." />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
@@ -199,19 +212,21 @@ export function AppRouter() {
           path={ROUTES.SETTINGS}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Settings" description="Settings will be implemented here." />
+              <AppLayout>
+                <PlaceholderScreen title="Settings" description="Settings will be implemented here." />
+              </AppLayout>
             </ProtectedRoute>
           }
         />
 
         {/* Quick Actions Temporary Placeholders */}
         <Route path={ROUTES.ASSIGN_TRAINING} element={<ProtectedRoute><PlaceholderScreen title="Assign Training" description="// TODO: replace with real Assign Training screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><CoachAthleteSearchScreen /></ProtectedRoute>} />
+        <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><AppLayout><CoachAthleteSearchScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ANNOUNCEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Announcements" description="// TODO: replace with real Announcements screen" /></ProtectedRoute>} />
         
         {/* Events Module */}
-        <Route path={ROUTES.EVENTS} element={<ProtectedRoute><EventsListScreen /></ProtectedRoute>} />
-        <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><CreateEventScreen /></ProtectedRoute>} />
+        <Route path={ROUTES.EVENTS} element={<ProtectedRoute><AppLayout><EventsListScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><AppLayout><CreateEventScreen /></AppLayout></ProtectedRoute>} />
         
         <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Create Tournament" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />
         <Route path={ROUTES.APPROVALS} element={<ProtectedRoute><PlaceholderScreen title="Approvals" description="// TODO: replace with real Approvals screen" /></ProtectedRoute>} />
@@ -219,8 +234,13 @@ export function AppRouter() {
         <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Athlete Directory" description="// TODO: replace with real Athlete Directory screen" /></ProtectedRoute>} />
         <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Organization Directory" description="// TODO: replace with real Organization Directory screen" /></ProtectedRoute>} />
         <Route path={ROUTES.REPORTS} element={<ProtectedRoute><PlaceholderScreen title="Reports" description="// TODO: replace with real Reports screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><PlaceholderScreen title="Leaderboards" description="// TODO: replace with real Leaderboards screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Leaderboards" description="// TODO: replace with real Leaderboards screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></AppLayout></ProtectedRoute>} />
+        
+        <Route path={ROUTES.SCHEDULE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Schedule" description="// TODO: replace with real Schedule screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.TOURNAMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Tournaments" description="// TODO: replace with real Tournaments screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ANALYTICS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Analytics" description="// TODO: replace with real Analytics screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Create" description="// TODO: replace with real Create screen" /></AppLayout></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route

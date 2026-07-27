@@ -125,8 +125,6 @@ export function OrganiserDashboardScreen() {
           ))}
         </div>
       </section>
-
-      <div className={styles.safeBottom}></div>
     </div>
   );
 }

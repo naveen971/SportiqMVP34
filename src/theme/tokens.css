@@ -179,6 +179,12 @@
   --opacity-ambient-highest: 0.9;   /* overlays */
 
   /* ========================================
+     Navigation
+     ======================================== */
+  --nav-height:        3.5rem;  /* 56px — bottom navigation bar height */
+  --border-width-thin: 1px;     /* structural border width */
+
+  /* ========================================
      Z-index
      ======================================== */
   --z-index-base: 0;

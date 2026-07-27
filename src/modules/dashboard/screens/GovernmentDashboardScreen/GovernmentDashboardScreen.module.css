@@ -179,10 +179,6 @@
 .activityDesc {
   color: var(--color-neutral-700);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  margin: 0;
-}
-
-.safeBottom {
-  height: 80px;
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-700);
 }

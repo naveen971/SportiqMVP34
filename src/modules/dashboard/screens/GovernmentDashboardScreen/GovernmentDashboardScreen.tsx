@@ -109,8 +109,6 @@ export function GovernmentDashboardScreen() {
           ))}
         </div>
       </section>
-
-      <div className={styles.safeBottom}></div>
     </div>
   );
 }

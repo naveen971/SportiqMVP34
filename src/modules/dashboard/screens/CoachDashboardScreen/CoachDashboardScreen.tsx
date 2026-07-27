@@ -133,8 +133,6 @@ export function CoachDashboardScreen() {
           ))}
         </div>
       </section>
-
-      <div className={styles.safeBottom}></div>
     </div>
   );
 }

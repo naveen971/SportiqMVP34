@@ -178,7 +178,6 @@ export function OwnProfileScreen() {
         </section>
         
       </div>
-      <div className={styles.safeBottom}></div>
     </div>
   );
 }

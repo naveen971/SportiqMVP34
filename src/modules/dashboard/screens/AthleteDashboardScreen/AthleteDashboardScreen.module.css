@@ -186,9 +186,5 @@
 .achievementDate {
   color: var(--color-neutral-700);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-}
-
-.safeBottom {
-  height: 80px;
+  font-weight: var(--font-weight-medium);
 }

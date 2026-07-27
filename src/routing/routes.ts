@@ -33,4 +33,8 @@ export const ROUTES = {
   REPORTS: '/reports',
   LEADERBOARDS: '/leaderboards',
   ACHIEVEMENTS: '/achievements',
+  SCHEDULE: '/schedule',
+  TOURNAMENTS: '/tournaments',
+  ANALYTICS: '/analytics',
+  CREATE: '/create',
 } as const;

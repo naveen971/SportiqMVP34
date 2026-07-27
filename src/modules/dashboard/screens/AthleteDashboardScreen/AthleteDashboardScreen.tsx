@@ -77,8 +77,6 @@ export function AthleteDashboardScreen() {
           ))}
         </div>
       </section>
-
-      <div className={styles.safeBottom}></div>
     </div>
   );
 }

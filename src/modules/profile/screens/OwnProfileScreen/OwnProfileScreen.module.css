@@ -266,11 +266,5 @@
 .emptyStateText {
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  margin: 0;
-  text-align: center;
-}
-
-.safeBottom {
-  height: calc(80px + env(safe-area-inset-bottom));
+  color: var(--color-error);
 }
