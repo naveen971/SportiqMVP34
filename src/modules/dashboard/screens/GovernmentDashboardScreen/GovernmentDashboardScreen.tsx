@@ -5,9 +5,24 @@ import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
 import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
 import { ROUTES } from '../../../../routing/routes';
+import { useState, useEffect } from 'react';
+import { getGovernmentAnalytics, DashboardAnalytics } from '../../services/analyticsService';
 
 export function GovernmentDashboardScreen() {
   const navigate = useNavigate();
+  const [analytics, setAnalytics] = useState<DashboardAnalytics | null>(null);
+
+  useEffect(() => {
+    getGovernmentAnalytics().then(setAnalytics).catch(console.error);
+  }, []);
+
+  const stats = [
+    { id: '1', label: 'Total Registered Athletes', value: analytics ? analytics.totalAthletes.toString() : '-', iconName: 'groups' },
+    { id: '2', label: 'Verified Coaches', value: analytics ? analytics.totalCoaches.toString() : '-', iconName: 'sports' },
+    { id: '3', label: 'Organizations', value: analytics ? analytics.totalOrganisers.toString() : '-', iconName: 'corporate_fare' },
+    { id: '4', label: 'Active Events', value: analytics ? analytics.totalEvents.toString() : '-', iconName: 'event' }
+  ];
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -17,8 +32,8 @@ export function GovernmentDashboardScreen() {
 
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
-          {GOVERNMENT_MOCK_DATA.stats.map(stat => (
-            <DashboardStatCard key={stat.id} data={stat} />
+          {stats.map(stat => (
+            <DashboardStatCard key={stat.id} data={stat as any} />
           ))}
         </div>
       </section>
@@ -34,27 +49,25 @@ export function GovernmentDashboardScreen() {
       </section>
 
       <section className={styles.section}>
-        <DashboardSectionHeader title="Registration Trend" actionText="View Full" />
+        <DashboardSectionHeader title="Athletes by District" actionText="View Full" />
         <div className={styles.chartCard}>
-          {/* Static CSS-based Bar Chart for Registration Trend */}
           <div className={styles.chartContainer}>
             <div className={styles.chartBars}>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '30%' }}></div>
-                <span className={styles.chartXLabel}>Q1</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '50%' }}></div>
-                <span className={styles.chartXLabel}>Q2</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '70%' }}></div>
-                <span className={styles.chartXLabel}>Q3</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '95%' }}></div>
-                <span className={styles.chartXLabel}>Q4</span>
-              </div>
+              {analytics?.athletesByDistrict.slice(0, 4).map((district, idx) => {
+                const maxCount = Math.max(...analytics.athletesByDistrict.map(d => d.count), 1);
+                const heightPercent = Math.max((district.count / maxCount) * 100, 10);
+                return (
+                  <div key={idx} className={styles.chartBarCol}>
+                    <div className={styles.chartBar} style={{ height: `${heightPercent}%` }}></div>
+                    <span className={styles.chartXLabel}>{district.name}</span>
+                  </div>
+                );
+              })}
+              {(!analytics || analytics.athletesByDistrict.length === 0) && (
+                <div style={{ alignSelf: 'center', color: 'var(--color-neutral-500)', fontSize: '14px', width: '100%', textAlign: 'center' }}>
+                  No district data available
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -63,8 +76,8 @@ export function GovernmentDashboardScreen() {
       <section className={styles.section}>
         <DashboardSectionHeader title="Top Sports" actionText="View All" />
         <div className={styles.sportsList}>
-          {GOVERNMENT_MOCK_DATA.topSports.map((sport, index) => (
-            <div key={sport.id} className={styles.sportItem}>
+          {analytics?.athletesBySport.map((sport, index) => (
+            <div key={sport.name} className={styles.sportItem}>
               <div className={styles.sportRank}>{index + 1}</div>
               <div className={styles.sportContent}>
                 <span className={styles.sportName}>{sport.name}</span>
@@ -72,6 +85,11 @@ export function GovernmentDashboardScreen() {
               </div>
             </div>
           ))}
+          {(!analytics || analytics.athletesBySport.length === 0) && (
+            <div style={{ padding: 'var(--spacing-4)', color: 'var(--color-neutral-500)', textAlign: 'center', fontSize: '14px' }}>
+              No sports data available
+            </div>
+          )}
         </div>
       </section>
 
