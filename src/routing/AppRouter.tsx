@@ -5,7 +5,7 @@ import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
 import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
-import { AppLayout } from '../shared/layouts/AppLayout';
+import { AppLayout } from '@shared/layouts/AppLayout';
 import { UserRole } from '../core/auth/types';
 import { 
   AthleteDashboardScreen, 
