@@ -150,7 +150,7 @@ export function ProfileCompletionScreen() {
           <button
             type="button"
             className={styles.primaryBtn}
-            onClick={() => navigate(ROUTES.OWN_PROFILE)}
+            onClick={() => navigate(ROUTES.PROFILE)}
           >
             Preview Profile
             <span className="material-symbols-outlined">arrow_forward</span>

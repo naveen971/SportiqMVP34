@@ -170,3 +170,35 @@ export async function completeOnboarding(userId: string): Promise<void> {
   sessionStorage.removeItem('sportiq_onboarding_playing_info');
 }
 
+export interface ProfileData {
+  id: string;
+  full_name: string;
+  role: string;
+  bio: string | null;
+  location: string | null;
+  selected_sports: string[] | null;
+  height_cm: number | null;
+  weight_kg: number | null;
+  dominant_foot: string | null;
+  primary_position: string | null;
+  years_of_experience: number | null;
+  onboarding_complete: boolean;
+  avatar_url: string | null;
+}
+
+export async function getOwnProfile(userId: string): Promise<ProfileData | null> {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') {
+      return null;
+    }
+    throw error;
+  }
+
+  return data as ProfileData;
+}

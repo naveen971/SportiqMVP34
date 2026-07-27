@@ -12,7 +12,7 @@
 | Module | Owner | Branch | Build Status | Screens Built / Total | Blocked On |
 |---|---|---|---|---|---|
 | Authentication | Unassigned | Not created | **Complete** | 6 / 7 *(Account Created deferred)* | — |
-| Profile | Unassigned | Not created | In progress | 6 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
+| Profile | Unassigned | Not created | In progress | 7 / 13 (12 active, 1 held) | Shared component interfaces (Button, Input) must be frozen first |
 | Social | Unassigned | Not created | Not started | 0 / 8 *(excl. assets)* | Post Detail ambiguity — operator must pick v1 or v2 before work begins; shared component interfaces |
 | Search | Unassigned | Not created | Not started | 0 / 4 | Shared component interfaces |
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
@@ -55,7 +55,7 @@ RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic re
 
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
-| Own Profile | `dea731f2d6d046cba33074bea97f0dc7` | Not built | Authenticated user's full profile — editable view |
+| Own Profile | `dea731f2d6d046cba33074bea97f0dc7` | ✅ Built — OwnProfileScreen.tsx | Authenticated user's full profile — editable view. Replaced ROUTES.OWN_PROFILE with ROUTES.PROFILE |
 | Public Profile | `2afba692135d42719f2f1d65ead9bfc9` | Not built | Another user's profile — read-only view |
 | Profile Preview | `96974a1bd17340dab744ce7fbbb1af6c` | 🔸 HELD — deferred from current MVP scope per operator decision 2026-07-25. Do not build until explicitly reactivated. | Lightweight card before navigating to full profile |
 | Create Sports Profile | `36a44b1ec6244d9db3556da84ddc7948` | ✅ Built — CreateSportsProfileScreen.tsx | Onboarding setup wizard for sports-specific details |

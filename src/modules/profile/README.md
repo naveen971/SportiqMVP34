@@ -11,7 +11,9 @@ This module encompasses the user's Profile flows, including the onboarding seque
 | Profile Picture Upload | `/profile-picture-upload` | `447f102ffc074887858038b1db75698c` | Optional insert for photo upload. |
 | Personal Information | `/personal-information` | `ab64f6d07cdd4308b9e9d5f0524946a4` | Gathers location and physical metrics. Second step. |
 | Playing Information | `/playing-information` | `c50b8ebdd26e49e088f221712c631fc6` | Gathers dominant foot, primary position, and years of experience. Third step. |
+| Playing Information | `/playing-information` | `c50b8ebdd26e49e088f221712c631fc6` | Gathers dominant foot, primary position, and years of experience. Third step. |
 | Profile Completion | `/profile-completion` | `c022afa7e2084368b6bbdba3eaa078d2` | Terminal screen — consolidates all onboarding data + sets onboarding_complete. Fourth step. |
+| Own Profile | `/profile` | `dea731f2d6d046cba33074bea97f0dc7` | Authenticated user's profile view. Closes the onboarding loop and displays real user data. |
 
 ## Onboarding Wizard Structure (Resolved 2026-07-25)
 
@@ -64,4 +66,5 @@ The `public.profiles` table stores extended user information.
 - **Avatar URL** ⏳ **Still pending** — Migration `002` adds the `avatar_url text` column to the schema, but file upload to Supabase Storage is a separate future task. The UI `Upload Image` button is present but non-functional for persistence. `avatar_url` is intentionally excluded from the current `updateProfileOnboarding()` call until a storage bucket and upload flow are implemented.
 - **Physical Metrics & Location** ✅ **Resolved** — Migration `005_add_personal_and_playing_info.sql` adds `location`, `age`, `height_cm`, `weight_kg` columns. Now persisted via `completeOnboarding()` in `profileService.ts` (called by `ProfileCompletionScreen` on mount). **APPLY MANUALLY before this flow works in production.**
 - **Playing Information** ✅ **Resolved** — Migration `005_add_personal_and_playing_info.sql` adds `dominant_foot`, `primary_position`, `years_of_experience` columns. Now persisted via `completeOnboarding()`. **APPLY MANUALLY.**
-- **ROUTES.OWN_PROFILE** is a new temporary placeholder at `/profile/me` — wired in `AppRouter.tsx` to a `PlaceholderScreen` pending the real `OwnProfileScreen` build (the next logical screen after the wizard).
+- **ROUTES.PROFILE** now points to the real `OwnProfileScreen`. `ROUTES.OWN_PROFILE` was removed. `ROUTES.EDIT_PROFILE` was added as a placeholder pending the real Edit Profile screen.
+- **Empty States**: The Stitch design for Own Profile references mock stats ("Impact Score", "Top Speed") and achievements/matches. Since there is currently no backend support for these features outside of dashboard mock data, `OwnProfileScreen` renders structured empty states for these sections rather than inventing fake data.

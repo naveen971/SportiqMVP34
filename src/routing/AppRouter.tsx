@@ -3,7 +3,7 @@ import { ROUTES } from './routes';
 import { ProtectedRoute } from './ProtectedRoute';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '../shared/components/PlaceholderScreen';
 import { UserRole } from '../core/auth/types';
 import { 
@@ -111,7 +111,15 @@ export function AppRouter() {
           path={ROUTES.PROFILE}
           element={
             <ProtectedRoute>
-              <PlaceholderScreen title="Profile" description="User profile will be implemented here." />
+              <OwnProfileScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.EDIT_PROFILE}
+          element={
+            <ProtectedRoute>
+              <PlaceholderScreen title="Edit Profile" description="Edit profile will be implemented here." />
             </ProtectedRoute>
           }
         />
@@ -160,15 +168,6 @@ export function AppRouter() {
           element={
             <ProtectedRoute>
               <ProfileCompletionScreen />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={ROUTES.OWN_PROFILE}
-          element={
-            <ProtectedRoute>
-              {/* // TODO: replace with real OwnProfileScreen once built */}
-              <PlaceholderScreen title="My Profile" description="Own profile view — the next logical build target after the core onboarding wizard." />
             </ProtectedRoute>
           }
         />

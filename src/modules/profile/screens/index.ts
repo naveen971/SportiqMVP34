@@ -1,6 +1,7 @@
-export { SelectSportsScreen } from './SelectSportsScreen/SelectSportsScreen';
-export { CreateSportsProfileScreen } from './CreateSportsProfileScreen/CreateSportsProfileScreen';
-export { ProfilePictureUploadScreen } from './ProfilePictureUploadScreen/ProfilePictureUploadScreen';
-export { PersonalInformationScreen } from './PersonalInformationScreen/PersonalInformationScreen';
-export { PlayingInformationScreen } from './PlayingInformationScreen/PlayingInformationScreen';
-export { ProfileCompletionScreen } from './ProfileCompletionScreen/ProfileCompletionScreen';
+export * from './SelectSportsScreen/SelectSportsScreen';
+export * from './CreateSportsProfileScreen/CreateSportsProfileScreen';
+export * from './ProfilePictureUploadScreen/ProfilePictureUploadScreen';
+export * from './PersonalInformationScreen/PersonalInformationScreen';
+export * from './PlayingInformationScreen/PlayingInformationScreen';
+export * from './ProfileCompletionScreen/ProfileCompletionScreen';
+export * from './OwnProfileScreen/OwnProfileScreen';
