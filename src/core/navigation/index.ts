@@ -1,2 +1,2 @@
 export { NavigationProvider, useNavigation } from './NavigationProvider';
-export type { NavigationItem, NavigationConfig } from './types';
+export type { NavItem, NavigationConfig } from './types';
