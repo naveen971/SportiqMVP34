@@ -2,8 +2,11 @@ import styles from './AthleteDashboardScreen.module.css';
 import { ATHLETE_MOCK_DATA } from '../../constants/mockData';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../../routing/routes';
 
 export function AthleteDashboardScreen() {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -59,7 +62,7 @@ export function AthleteDashboardScreen() {
       </section>
 
       <section className={styles.section}>
-        <DashboardSectionHeader title="Recent Achievements" actionText="View All" />
+        <DashboardSectionHeader title="Recent Achievements" actionText="View All" onActionClick={() => navigate(ROUTES.ACHIEVEMENTS)} />
         <div className={styles.achievementsList}>
           {ATHLETE_MOCK_DATA.achievements.map(ach => (
             <div key={ach.id} className={styles.achievementItem}>

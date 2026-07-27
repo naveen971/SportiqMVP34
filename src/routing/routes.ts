@@ -32,4 +32,5 @@ export const ROUTES = {
   ORGANIZATION_DIRECTORY: '/organizations',
   REPORTS: '/reports',
   LEADERBOARDS: '/leaderboards',
+  ACHIEVEMENTS: '/achievements',
 } as const;

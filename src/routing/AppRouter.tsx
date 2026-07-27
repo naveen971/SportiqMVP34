@@ -220,6 +220,7 @@ export function AppRouter() {
         <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Organization Directory" description="// TODO: replace with real Organization Directory screen" /></ProtectedRoute>} />
         <Route path={ROUTES.REPORTS} element={<ProtectedRoute><PlaceholderScreen title="Reports" description="// TODO: replace with real Reports screen" /></ProtectedRoute>} />
         <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><PlaceholderScreen title="Leaderboards" description="// TODO: replace with real Leaderboards screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route
