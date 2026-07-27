@@ -1,13 +1,37 @@
 import styles from './OrganiserDashboardScreen.module.css';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ORGANISER_MOCK_DATA } from '../../constants/mockData';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
 import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
 import { ROUTES } from '../../../../routing/routes';
+import { getUpcomingEvents, DashboardEvent } from '../../services/organiserService';
 
 export function OrganiserDashboardScreen() {
   const navigate = useNavigate();
+  const [upcomingEvents, setUpcomingEvents] = useState<DashboardEvent[]>([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
+
+  useEffect(() => {
+    getUpcomingEvents()
+      .then(setUpcomingEvents)
+      .catch((err) => {
+        console.error('Failed to load upcoming events:', err);
+        setUpcomingEvents([]);
+      })
+      .finally(() => {
+        setLoadingEvents(false);
+      });
+  }, []);
+
+  const formatEventTime = (isoString: string) => {
+    const date = new Date(isoString);
+    const datePart = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const timePart = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    return `${datePart} • ${timePart}`;
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -39,20 +63,26 @@ export function OrganiserDashboardScreen() {
       <section className={styles.section}>
         <DashboardSectionHeader title="Upcoming Events" actionText="View All" />
         <div className={styles.eventList}>
-          {ORGANISER_MOCK_DATA.upcomingEvents.map(event => (
-            <div key={event.id} className={styles.eventItem}>
-              <div className={styles.eventTime}>{event.timestamp}</div>
-              <h3 className={styles.eventTitle}>{event.title}</h3>
-              <div className={styles.eventLocation}>
-                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>location_on</span>
-                <span>{event.location}</span>
+          {loadingEvents ? (
+            <div className={styles.emptyMessage}>Loading upcoming events...</div>
+          ) : upcomingEvents.length === 0 ? (
+            <div className={styles.emptyMessage}>No upcoming events</div>
+          ) : (
+            upcomingEvents.map(event => (
+              <div key={event.id} className={styles.eventItem}>
+                <div className={styles.eventTime}>{formatEventTime(event.event_date)}</div>
+                <h3 className={styles.eventTitle}>{event.title}</h3>
+                <div className={styles.eventLocation}>
+                  <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>location_on</span>
+                  <span>{event.location}</span>
+                </div>
+                <div className={styles.eventFooter}>
+                  <span className={styles.eventAttendees}>{event.sport}</span>
+                  <button className={styles.manageButton}>Manage</button>
+                </div>
               </div>
-              <div className={styles.eventFooter}>
-                <span className={styles.eventAttendees}>{event.attendees} Registered</span>
-                <button className={styles.manageButton}>Manage</button>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </section>
 

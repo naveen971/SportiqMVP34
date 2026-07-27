@@ -66,6 +66,14 @@
   gap: var(--spacing-4);
 }
 
+.emptyMessage {
+  padding: var(--spacing-4);
+  color: var(--color-neutral-600);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
 .eventItem {
   background-color: var(--color-neutral-0);
   border: 1px solid var(--color-neutral-400);
