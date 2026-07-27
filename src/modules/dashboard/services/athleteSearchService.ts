@@ -42,3 +42,18 @@ export async function searchAthletes(filters: SearchFilters): Promise<AthleteSea
 
   return data as AthleteSearchResult[];
 }
+
+export async function getTotalAthletesCount(): Promise<number> {
+  const { count, error } = await supabase
+    .from('profiles')
+    .select('*', { count: 'exact', head: true })
+    .eq('role', 'athlete')
+    .eq('onboarding_complete', true);
+
+  if (error) {
+    console.error('Error fetching total athletes count:', error);
+    throw error;
+  }
+
+  return count || 0;
+}

@@ -1,13 +1,25 @@
 import styles from './CoachDashboardScreen.module.css';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { COACH_MOCK_DATA } from '../../constants/mockData';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
 import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
 import { ROUTES } from '../../../../routing/routes';
+import { getTotalAthletesCount } from '../../services/athleteSearchService';
 
 export function CoachDashboardScreen() {
   const navigate = useNavigate();
+  const [totalAthletes, setTotalAthletes] = useState<number | null>(null);
+
+  useEffect(() => {
+    getTotalAthletesCount()
+      .then(setTotalAthletes)
+      .catch((error) => {
+        // error already logged in service, fallback is null (dash)
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -18,9 +30,20 @@ export function CoachDashboardScreen() {
 
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
-          {COACH_MOCK_DATA.stats.map(stat => (
-            <DashboardStatCard key={stat.id} data={stat} />
-          ))}
+          {COACH_MOCK_DATA.stats.map(stat => {
+            if (stat.id === '1') {
+              return (
+                <DashboardStatCard 
+                  key={stat.id} 
+                  data={{
+                    ...stat,
+                    value: totalAthletes !== null ? totalAthletes : '-'
+                  }} 
+                />
+              );
+            }
+            return <DashboardStatCard key={stat.id} data={stat} />;
+          })}
         </div>
       </section>
 
