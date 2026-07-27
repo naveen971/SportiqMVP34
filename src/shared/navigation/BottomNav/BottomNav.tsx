@@ -1,9 +1,9 @@
 /*
  * BottomNavBar
- * NOTE: No Stitch screen exists for this component. Built without a Stitch
- * trace per the documented exception precedent established by CreateEventScreen.
- * Reason: the bottom navigation bar is a structural shell component with no
- * equivalent in the SportIQ Stitch project (ID 3941284064310403069).
+ * NOTE: The bottom navigation bar styling and structural configuration (icons, spacing,
+ * active states, floating action button) are sourced from the live Stitch workspace
+ * (Project ID 3941284064310403069), specifically matching the mobile UI pattern found
+ * in the "Navigation & Menus" screen.
  */
 
 import { useAuth } from '@core/auth/AuthProvider';
@@ -27,22 +27,27 @@ export function BottomNavBar() {
     return location.pathname === itemPath;
   }
 
+  const tabs = items.filter((item) => !item.isFab);
+  const fab = items.find((item) => item.isFab);
+
   return (
-    <nav className={styles.nav} aria-label="Bottom navigation">
-      <div className={styles.navItems}>
-        {items.map((item) =>
-          item.isFab ? (
-            <button
-              key={item.label}
-              className={styles.navFab}
-              onClick={() => navigate(item.path)}
-              aria-label={item.label}
-            >
-              <span className={`material-symbols-outlined ${styles.navFabIcon}`}>
-                {item.iconName}
-              </span>
-            </button>
-          ) : (
+    <>
+      {fab && (
+        <div className={styles.navFabContainer}>
+          <button
+            className={styles.navFab}
+            onClick={() => navigate(fab.path)}
+            aria-label={fab.label}
+          >
+            <span className={`material-symbols-outlined ${styles.navFabIcon}`}>
+              {fab.iconName}
+            </span>
+          </button>
+        </div>
+      )}
+      <nav className={styles.nav} aria-label="Bottom navigation">
+        <div className={styles.navItems}>
+          {tabs.map((item) => (
             <button
               key={item.label}
               className={`${styles.navTab} ${isActive(item.path) ? styles.navTabActive : ''}`}
@@ -55,9 +60,9 @@ export function BottomNavBar() {
               </span>
               <span className={styles.navLabel}>{item.label}</span>
             </button>
-          )
-        )}
-      </div>
-    </nav>
+          ))}
+        </div>
+      </nav>
+    </>
   );
 }
