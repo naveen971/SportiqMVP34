@@ -149,11 +149,25 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
 | Athlete Dashboard | `0b0bcd5eb7df40f1a440d18b6c0e1d25` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
-| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
-| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
-| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
+| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock data + real Quick Actions routing (`MY_ATHLETES` renders real Coach District Search) |
+| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock data + real Quick Actions routing (`CREATE_EVENT` renders real `CreateEventScreen`) |
+| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Partially real: stats, Top Sports, and district chart are REAL Supabase aggregate queries. Only Recent Activity remains mock. |
 
 > **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content uses mock/placeholder data for the demo, real data wiring is a documented follow-up.
+
+---
+
+### Events
+
+Route: `/events` and `/events/create` (registered, Protected). This module is fully functional and uses real Supabase queries via `eventService`.
+
+⚠️ **LAW TWO EXCEPTION**: This module was built WITHOUT a Stitch trace (operator-authorized 2026-07-26/27) due to unresolved duplicate-name ambiguity in the Events module's Stitch screens.
+**MIGRATION STATUS**: Relies on `006_create_events_table.sql`.
+
+| Screen Name | Screen ID | Build Status | Notes |
+|---|---|---|---|
+| Events List | N/A | ✅ Built — EventsListScreen.tsx | Displays real events from Supabase. No Stitch trace (Law Two Exception). |
+| Create Event | N/A | ✅ Built — CreateEventScreen.tsx | Real form inserting into Supabase. Promoted from placeholder. No Stitch trace (Law Two Exception). |
 
 ---
 
