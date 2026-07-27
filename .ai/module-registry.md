@@ -104,7 +104,8 @@ Route: `/search` (registered, Protected, currently renders `PlaceholderScreen`).
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
 | Search Home | `c7a5817367f64ef3ba36193b3530f780` | Not built | Default search landing with suggestions/categories |
-| Athlete Search | `f5ce6050839b419c8792ef94d655b4ba` | Not built | Search specifically for athlete profiles |
+| Athlete Search (Generic) | `f5ce6050839b419c8792ef94d655b4ba` | Not built | Generic athlete search |
+| Athlete Search (Coach View) | `4870121b7dc646bab512912d0bf9dff5` | ✅ Built — CoachAthleteSearchScreen.tsx | **ACTIVE — MVP Demo Sprint.** Activated early for coach dashboard; rest of Search module remains deferred. |
 | Search Filters | `1b55904d583948998d4da9b580cd64bc` | Not built | Filter panel to refine search results |
 | Empty Search | `bd16514846f54da8aef23cf32a49c779` | Not built | Empty state when search returns no results |
 

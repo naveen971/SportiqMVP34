@@ -10,7 +10,8 @@ import {
   AthleteDashboardScreen, 
   CoachDashboardScreen, 
   OrganiserDashboardScreen, 
-  GovernmentDashboardScreen 
+  GovernmentDashboardScreen,
+  CoachAthleteSearchScreen
 } from '../modules/dashboard/screens';
 
 import styles from './Routing.module.css';
@@ -201,7 +202,7 @@ export function AppRouter() {
 
         {/* Quick Actions Temporary Placeholders */}
         <Route path={ROUTES.ASSIGN_TRAINING} element={<ProtectedRoute><PlaceholderScreen title="Assign Training" description="// TODO: replace with real Assign Training screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><PlaceholderScreen title="My Athletes" description="// TODO: replace with real My Athletes screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><CoachAthleteSearchScreen /></ProtectedRoute>} />
         <Route path={ROUTES.ANNOUNCEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Announcements" description="// TODO: replace with real Announcements screen" /></ProtectedRoute>} />
         <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><PlaceholderScreen title="Create Event" description="// TODO: replace with real Create Event screen" /></ProtectedRoute>} />
         <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Create Tournament" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />

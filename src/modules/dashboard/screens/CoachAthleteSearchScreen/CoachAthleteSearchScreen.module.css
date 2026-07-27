@@ -1,0 +1,211 @@
+.container {
+  flex-grow: 1;
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.headerArea {
+  margin-bottom: var(--spacing-6);
+}
+
+.pageTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-900);
+  margin: 0 0 var(--spacing-2) 0;
+}
+
+.pageSubtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-600);
+  margin: 0;
+}
+
+.searchSection {
+  width: 100%;
+  margin-bottom: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.searchBar {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-neutral-400);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
+  .searchBar {
+    flex-direction: row;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-600);
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-3) 40px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-neutral-400);
+  background-color: var(--color-neutral-0);
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  transition: all var(--duration-fast) var(--easing-default);
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+}
+
+.filterButton {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) var(--easing-default);
+}
+
+.filterButton:hover {
+  background-color: var(--color-primary-200);
+}
+
+.filtersGrid {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.dropdownWrapper {
+  position: relative;
+  min-width: 160px;
+}
+
+.dropdown {
+  width: 100%;
+  appearance: none;
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-2) 32px var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-lg);
+  outline: none;
+}
+
+.dropdown:focus {
+  border-color: var(--color-primary-500);
+}
+
+.dropdown:disabled {
+  background-color: var(--color-neutral-50);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+}
+
+.dropdownIcon {
+  position: absolute;
+  right: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-600);
+  pointer-events: none;
+  font-size: 18px;
+}
+
+.resultsSection {
+  width: 100%;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.resultsCount {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-600);
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .resultsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .resultsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-12);
+  background-color: var(--color-neutral-0);
+  border: 1px dashed var(--color-neutral-400);
+  border-radius: var(--radius-xl);
+  gap: var(--spacing-4);
+}
+
+.emptyStateText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-600);
+  text-align: center;
+  margin: 0;
+}
