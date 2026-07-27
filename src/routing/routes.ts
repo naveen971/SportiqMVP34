@@ -18,4 +18,17 @@ export const ROUTES = {
   PLAYING_INFORMATION: '/playing-information',
   PROFILE_COMPLETION: '/profile-completion',
   OWN_PROFILE: '/profile/me',
+  
+  // Quick Actions (Temporary Placeholders)
+  ASSIGN_TRAINING: '/assign-training',
+  MY_ATHLETES: '/my-athletes',
+  ANNOUNCEMENTS: '/announcements',
+  CREATE_EVENT: '/events/create',
+  CREATE_TOURNAMENT: '/tournaments/create',
+  APPROVALS: '/approvals',
+  TEAM_MANAGEMENT: '/team-management',
+  ATHLETE_DIRECTORY: '/athletes',
+  ORGANIZATION_DIRECTORY: '/organizations',
+  REPORTS: '/reports',
+  LEADERBOARDS: '/leaderboards',
 } as const;

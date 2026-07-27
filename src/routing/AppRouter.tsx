@@ -199,6 +199,19 @@ export function AppRouter() {
           }
         />
 
+        {/* Quick Actions Temporary Placeholders */}
+        <Route path={ROUTES.ASSIGN_TRAINING} element={<ProtectedRoute><PlaceholderScreen title="Assign Training" description="// TODO: replace with real Assign Training screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.MY_ATHLETES} element={<ProtectedRoute><PlaceholderScreen title="My Athletes" description="// TODO: replace with real My Athletes screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.ANNOUNCEMENTS} element={<ProtectedRoute><PlaceholderScreen title="Announcements" description="// TODO: replace with real Announcements screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><PlaceholderScreen title="Create Event" description="// TODO: replace with real Create Event screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Create Tournament" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.APPROVALS} element={<ProtectedRoute><PlaceholderScreen title="Approvals" description="// TODO: replace with real Approvals screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><PlaceholderScreen title="Team Management" description="// TODO: replace with real Team Management screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Athlete Directory" description="// TODO: replace with real Athlete Directory screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Organization Directory" description="// TODO: replace with real Organization Directory screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.REPORTS} element={<ProtectedRoute><PlaceholderScreen title="Reports" description="// TODO: replace with real Reports screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><PlaceholderScreen title="Leaderboards" description="// TODO: replace with real Leaderboards screen" /></ProtectedRoute>} />
+
         {/* Fallback */}
         <Route
           path="*"

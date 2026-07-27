@@ -1,9 +1,13 @@
 import styles from './OrganiserDashboardScreen.module.css';
+import { useNavigate } from 'react-router-dom';
 import { ORGANISER_MOCK_DATA } from '../../constants/mockData';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
+import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
+import { ROUTES } from '../../../../routing/routes';
 
 export function OrganiserDashboardScreen() {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -11,11 +15,26 @@ export function OrganiserDashboardScreen() {
         <p className={styles.description}>Director, Premier Academy</p>
       </header>
 
-      <div className={styles.kpiGrid}>
-        {ORGANISER_MOCK_DATA.stats.map(stat => (
-          <DashboardStatCard key={stat.id} data={stat} />
-        ))}
-      </div>
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          {ORGANISER_MOCK_DATA.stats.map(stat => (
+            <DashboardStatCard key={stat.id} data={stat} />
+          ))}
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className={styles.quickActionsSection}>
+        <h3 className={styles.quickActionsTitle}>Quick Actions</h3>
+        <div className={styles.quickActionsGrid}>
+          <DashboardQuickActionButton iconName="add_circle" label="Create Event" onClick={() => navigate(ROUTES.CREATE_EVENT)} />
+          <DashboardQuickActionButton iconName="emoji_events" label="New Tourney" onClick={() => navigate(ROUTES.CREATE_TOURNAMENT)} />
+          <DashboardQuickActionButton iconName="how_to_reg" label="Approve" onClick={() => navigate(ROUTES.APPROVALS)} />
+          <DashboardQuickActionButton iconName="campaign" label="Announce" onClick={() => navigate(ROUTES.ANNOUNCEMENTS)} />
+          <DashboardQuickActionButton iconName="groups" label="View Teams" onClick={() => navigate(ROUTES.TEAM_MANAGEMENT)} />
+          <DashboardQuickActionButton iconName="chat" label="Message" onClick={() => navigate(ROUTES.MESSAGES)} />
+        </div>
+      </section>
 
       <section className={styles.section}>
         <DashboardSectionHeader title="Upcoming Events" actionText="View All" />

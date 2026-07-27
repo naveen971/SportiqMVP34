@@ -1,9 +1,13 @@
 import styles from './CoachDashboardScreen.module.css';
+import { useNavigate } from 'react-router-dom';
 import { COACH_MOCK_DATA } from '../../constants/mockData';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
+import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
+import { ROUTES } from '../../../../routing/routes';
 
 export function CoachDashboardScreen() {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -12,11 +16,24 @@ export function CoachDashboardScreen() {
         <p className={styles.description}>Here is your academy overview for today.</p>
       </header>
 
-      <div className={styles.kpiGrid}>
-        {COACH_MOCK_DATA.stats.map(stat => (
-          <DashboardStatCard key={stat.id} data={stat} />
-        ))}
-      </div>
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          {COACH_MOCK_DATA.stats.map(stat => (
+            <DashboardStatCard key={stat.id} data={stat} />
+          ))}
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className={styles.quickActionsSection}>
+        <h3 className={styles.quickActionsTitle}>Quick Actions</h3>
+        <div className={styles.quickActionsRow}>
+          <DashboardQuickActionButton iconName="fitness_center" label="Assign Training" onClick={() => navigate(ROUTES.ASSIGN_TRAINING)} />
+          <DashboardQuickActionButton iconName="group" label="View Athletes" onClick={() => navigate(ROUTES.MY_ATHLETES)} />
+          <DashboardQuickActionButton iconName="campaign" label="Announcement" onClick={() => navigate(ROUTES.ANNOUNCEMENTS)} />
+          <DashboardQuickActionButton iconName="chat" label="Message" onClick={() => navigate(ROUTES.MESSAGES)} />
+        </div>
+      </section>
 
       <section className={styles.section}>
         <DashboardSectionHeader title="Today's Schedule" actionText="View All" />

@@ -1,9 +1,13 @@
 import styles from './GovernmentDashboardScreen.module.css';
 import { GOVERNMENT_MOCK_DATA } from '../../constants/mockData';
+import { useNavigate } from 'react-router-dom';
 import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
 import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
+import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
+import { ROUTES } from '../../../../routing/routes';
 
 export function GovernmentDashboardScreen() {
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -11,11 +15,23 @@ export function GovernmentDashboardScreen() {
         <p className={styles.description}>Sports Authority • Jurisdiction: National</p>
       </header>
 
-      <div className={styles.kpiGrid}>
-        {GOVERNMENT_MOCK_DATA.stats.map(stat => (
-          <DashboardStatCard key={stat.id} data={stat} />
-        ))}
-      </div>
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          {GOVERNMENT_MOCK_DATA.stats.map(stat => (
+            <DashboardStatCard key={stat.id} data={stat} />
+          ))}
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className={styles.quickActionsSection}>
+        <div className={styles.quickActionsGrid}>
+          <DashboardQuickActionButton iconName="search" label="Athletes" onClick={() => navigate(ROUTES.ATHLETE_DIRECTORY)} />
+          <DashboardQuickActionButton iconName="search" label="Organizations" onClick={() => navigate(ROUTES.ORGANIZATION_DIRECTORY)} />
+          <DashboardQuickActionButton iconName="description" label="Report" onClick={() => navigate(ROUTES.REPORTS)} />
+          <DashboardQuickActionButton iconName="emoji_events" label="Leaderboards" onClick={() => navigate(ROUTES.LEADERBOARDS)} />
+        </div>
+      </section>
 
       <section className={styles.section}>
         <DashboardSectionHeader title="Registration Trend" actionText="View Full" />

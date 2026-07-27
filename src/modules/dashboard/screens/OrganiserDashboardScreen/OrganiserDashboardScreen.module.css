@@ -29,9 +29,29 @@
   margin: 0;
 }
 
-.kpiGrid {
+.statsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.quickActionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.quickActionsTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-800);
+  margin: 0;
+}
+
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-4);
 }
 
