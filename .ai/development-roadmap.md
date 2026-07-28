@@ -10,7 +10,7 @@ This document defines the required build order for SportIQ.
 - Coach District Search (`4870121b7dc646bab512912d0bf9dff5`)
 - Events Module (EventsListScreen, CreateEventScreen — Law Two exception applied: no Stitch trace due to unresolved duplicate-name ambiguity)
 
-> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content uses mock/placeholder data for the demo, real data wiring is a documented follow-up.
+> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content is partially wired; real data implementations are documented in `module-registry.md`, with remaining sections using mock data for the demo.
 
 ## Phase 1
 Authentication

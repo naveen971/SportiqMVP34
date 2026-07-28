@@ -28,13 +28,16 @@
 
 All screens wrapped in `<PublicRoute>`. Verified navigation flow documented in `src/modules/authentication/README.md`.
 
+**Core Infrastructure Note:**
+- **OnboardingGate:** Implemented to guard the root `/` dashboard route. It is **Athlete-only**: redirects to `/select-sports` when `onboarding_complete` is `false`. It explicitly does **not** affect Coach, Organiser, or Government roles.
+
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
 | Splash Screen | `e6284d8b57064d34b643bee9cdeb12c4` | Built | `SplashScreen.tsx` — auto-navigates after 2500 ms |
 | Welcome to SportIQ | `5dd2f754420c452f8661d1a9b739fdb9` | Built | `WelcomeScreen.tsx` — Get Started / Sign In / Explore as Guest |
 | Login | `904ea4a3b2a94ea9b2a95c4a45b702a3` | Built | `LoginScreen.tsx` — credential form + Google login mock |
 | Sign Up | `1ecbe3fbb0e64da187c25f35ed61722b` | Built | `SignUpScreen.tsx` — role selector, persists to localStorage |
-| Verify Email | `223bbcb17016423580c0ce687e3ce88a` | Built | `VerifyEmailScreen.tsx` — mocked verification, navigates to Login |
+| Verify Email | `223bbcb17016423580c0ce687e3ce88a` | Built | `VerifyEmailScreen.tsx` — Currently **unreachable** due to "Confirm Email" disabled in Supabase. This is an accepted, documented gap per operator decision, not a bug to fix. |
 | Forgot Password | `aa5f559dd1d140c9bfadb231a301ebf9` | Built | `ForgotPasswordScreen.tsx` — email form + inline success state |
 | Account Created | `f64fb0ec78e149a989612c50b892d55e` | Deferred | Flow currently skips this screen (SignUp -> VerifyEmail directly). Pending operator decision on whether to build it. Not an oversight. |
 
@@ -148,12 +151,12 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
-| Athlete Dashboard | `0b0bcd5eb7df40f1a440d18b6c0e1d25` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock/placeholder data |
-| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock data + real Quick Actions routing (`MY_ATHLETES` renders real Coach District Search) |
-| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Uses mock data + real Quick Actions routing (`CREATE_EVENT` renders real `CreateEventScreen`) |
-| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint (operator-authorized 2026-07-26) | Partially real: stats, Top Sports, and district chart are REAL Supabase aggregate queries. Only Recent Activity remains mock. |
+| Athlete Dashboard | `0b0bcd5eb7df40f1a440d18b6c0e1d25` | ACTIVE — MVP Demo Sprint | Uses mock/placeholder data |
+| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint | Partially real: Total Athletes stat uses real Supabase aggregate query (`getTotalAthletesCount()` in `athleteSearchService.ts`, committed to main). Other sections (remaining Stats, Today's Schedule, Academy Performance Chart, Recent Activity) remain mock. Quick Actions `MY_ATHLETES` renders real Coach District Search. |
+| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint | Partially real: Upcoming Events sourced from real Supabase query (`getUpcomingEvents()` in `organiserService.ts`). Other sections (Stats Grid, Active Tournaments, Recent Activity) remain mock. Quick Actions `CREATE_EVENT` renders real `CreateEventScreen`. |
+| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint | Partially real: stats, Top Sports, and district chart are REAL Supabase aggregate queries. Only Recent Activity remains mock. |
 
-> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content uses mock/placeholder data for the demo, real data wiring is a documented follow-up.
+> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content is partially wired; real data implementations are documented above, with remaining sections using mock data for the demo.
 
 ---
 
@@ -218,5 +221,6 @@ PRIMARY CROSS-MODULE BLOCKER: Button and Input prop interfaces must be frozen an
 | Loading | `src/shared/components/Loading/` | Type-stub only — LoadingProps {} |
 | Tag | `src/shared/components/Tag/` | Type-stub only — TagProps {} |
 | Typography | `src/shared/components/Typography/` | Interface frozen — pending implementation |
+| Navigation System | `src/shared/layouts/AppLayout/`, `src/shared/navigation/BottomNav/` | ✅ Built — Shared role-aware Navigation. Sourced from Stitch ID `6abbefa84f6f43a8953a782b9d635176` ("Navigation & Menus" — a component reference sheet). Enforces `navigationByRole` config and currently wraps 16 routes (Dashboard root, Profile, Edit Profile, Search, Messages, Notifications, Settings, My Athletes, Events, Create Event, Leaderboards, Achievements, Schedule, Tournaments, Analytics, Create). |
 
 Note: PlaceholderScreen is the only currently implemented shared component (`src/shared/components/PlaceholderScreen/PlaceholderScreen.tsx`). It is used by all 5 orphaned post-auth placeholder routes.
