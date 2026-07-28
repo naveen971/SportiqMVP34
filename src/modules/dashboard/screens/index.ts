@@ -3,3 +3,9 @@ export * from './CoachDashboardScreen/CoachDashboardScreen';
 export * from './OrganiserDashboardScreen/OrganiserDashboardScreen';
 export * from './GovernmentDashboardScreen/GovernmentDashboardScreen';
 export * from './CoachAthleteSearchScreen/CoachAthleteSearchScreen';
+export * from './OrganizationDirectoryScreen/OrganizationDirectoryScreen';
+export * from './ReportsScreen/ReportsScreen';
+export * from './LeaderboardsScreen/LeaderboardsScreen';
+export * from './CreateTournamentScreen/CreateTournamentScreen';
+export * from './TeamManagementScreen/TeamManagementScreen';
+

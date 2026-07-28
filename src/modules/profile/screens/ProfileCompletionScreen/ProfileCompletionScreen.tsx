@@ -12,7 +12,7 @@ const CONFETTI_COUNT = 30;
 
 export function ProfileCompletionScreen() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
   const [screenState, setScreenState] = useState<ScreenState>('loading');
   const [errorMessage, setErrorMessage] = useState('');
   const [progressWidth, setProgressWidth] = useState('0%');
@@ -30,6 +30,7 @@ export function ProfileCompletionScreen() {
     (async () => {
       try {
         await completeOnboarding(user.id);
+        await refreshProfile();
         setScreenState('success');
         // Animate progress bar to 100% after success renders
         setTimeout(() => setProgressWidth('100%'), 300);

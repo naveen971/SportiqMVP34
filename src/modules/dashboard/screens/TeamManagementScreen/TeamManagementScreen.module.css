@@ -1,0 +1,348 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-6) var(--spacing-4);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-1);
+}
+
+.headerActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .headerActions {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+  }
+}
+
+.searchWrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+@media (min-width: 640px) {
+  .searchWrapper {
+    width: 256px;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  font-size: var(--icon-md);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-4) var(--spacing-2) 40px;
+  background: var(--color-neutral-0);
+  border: var(--border-width-thin) solid var(--color-neutral-500);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 1px var(--color-primary-500);
+}
+
+.filterBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-neutral-0);
+  border: var(--border-width-thin) solid var(--color-neutral-500);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .filterBtn {
+    display: flex;
+  }
+}
+
+.createBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-2) var(--spacing-4);
+  background: var(--color-primary-400);
+  color: var(--color-text-inverse);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .createBtn {
+    display: flex;
+  }
+}
+
+.btnIcon {
+  font-size: var(--icon-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.card {
+  background: var(--color-neutral-0);
+  border-radius: var(--radius-xl);
+  border: var(--border-width-thin) solid var(--color-neutral-400);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cardTopLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--color-neutral-400);
+  flex-shrink: 0;
+  background: var(--color-neutral-100);
+}
+
+.avatarError {
+  border-color: rgba(186, 26, 26, 0.2);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+}
+
+.teamName {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.divisionBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-2);
+  margin-top: var(--spacing-1);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-300);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+}
+
+.divisionError {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--color-error);
+  gap: 4px;
+}
+
+.errorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-error);
+}
+
+.moreBtn {
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-1);
+}
+
+.moreBtn:hover {
+  color: var(--color-primary-500);
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.marginTop {
+  margin-top: var(--spacing-1);
+}
+
+.infoIcon {
+  font-size: 18px;
+  color: var(--color-text-tertiary);
+}
+
+.infoText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.infoTextLight {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.textError {
+  color: var(--color-error);
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: var(--spacing-4);
+  border-top: var(--border-width-thin) solid var(--color-neutral-400);
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.manageBtn {
+  flex: 1;
+  padding: var(--spacing-2);
+  background: var(--color-neutral-100);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.manageBtn:hover {
+  background: var(--color-neutral-300);
+}
+
+.loadMoreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-4);
+}
+
+.loadMoreBtn {
+  padding: var(--spacing-2) var(--spacing-6);
+  border: var(--border-width-thin) solid var(--color-neutral-500);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  background: transparent;
+  cursor: pointer;
+}
+
+.loadMoreBtn:hover {
+  background: var(--color-neutral-100);
+}

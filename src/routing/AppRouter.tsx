@@ -13,7 +13,12 @@ import {
   CoachDashboardScreen, 
   OrganiserDashboardScreen, 
   GovernmentDashboardScreen,
-  CoachAthleteSearchScreen
+  CoachAthleteSearchScreen,
+  OrganizationDirectoryScreen,
+  ReportsScreen,
+  LeaderboardsScreen,
+  CreateTournamentScreen,
+  TeamManagementScreen
 } from '../modules/dashboard/screens';
 
 import {
@@ -231,13 +236,13 @@ export function AppRouter() {
         <Route path={ROUTES.EVENTS} element={<ProtectedRoute><AppLayout><EventsListScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><AppLayout><CreateEventScreen /></AppLayout></ProtectedRoute>} />
         
-        <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Create Tournament" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><AppLayout><CreateTournamentScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.APPROVALS} element={<ProtectedRoute><PlaceholderScreen title="Approvals" description="// TODO: replace with real Approvals screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><PlaceholderScreen title="Team Management" description="// TODO: replace with real Team Management screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Athlete Directory" description="// TODO: replace with real Athlete Directory screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><PlaceholderScreen title="Organization Directory" description="// TODO: replace with real Organization Directory screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.REPORTS} element={<ProtectedRoute><PlaceholderScreen title="Reports" description="// TODO: replace with real Reports screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Leaderboards" description="// TODO: replace with real Leaderboards screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><AppLayout><TeamManagementScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><AppLayout><CoachAthleteSearchScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><AppLayout><OrganizationDirectoryScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.REPORTS} element={<ProtectedRoute><AppLayout><ReportsScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><AppLayout><LeaderboardsScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></AppLayout></ProtectedRoute>} />
         
         <Route path={ROUTES.SCHEDULE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Schedule" description="// TODO: replace with real Schedule screen" /></AppLayout></ProtectedRoute>} />

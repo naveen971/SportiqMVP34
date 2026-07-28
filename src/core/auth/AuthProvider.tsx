@@ -6,6 +6,7 @@ interface AuthContextValue extends AuthState {
   setUser: (user: User | null) => void;
   login: (email: string, password: string) => Promise<void>;
   signUp: (name: string, email: string, password: string, role: UserRole) => Promise<void>;
+  refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -117,6 +118,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       throw error;
     }
   };
+  const refreshProfile = async () => {
+    if (!user?.id) return;
+    const profile = await resolveProfile(user.id, user.role);
+    setUser(prev => prev ? { ...prev, role: profile.role } : prev);
+    setOnboardingComplete(profile.onboardingComplete);
+  };
 
   const value: AuthContextValue = {
     user,
@@ -126,6 +133,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setUser,
     login,
     signUp,
+    refreshProfile,
   };
 
   return (

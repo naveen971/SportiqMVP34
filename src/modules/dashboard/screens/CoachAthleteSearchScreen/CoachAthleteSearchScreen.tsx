@@ -22,10 +22,10 @@ function useDebounce<T>(value: T, delay: number): T {
 
 export function CoachAthleteSearchScreen() {
   const { user } = useAuth();
-  
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
-  
+
   const [results, setResults] = useState<AthleteSearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,17 +50,17 @@ export function CoachAthleteSearchScreen() {
 
   useEffect(() => {
     // Only fetch if the user is authorized
-    if (user?.role === UserRole.Coach) {
+    if (user?.role === UserRole.Coach || user?.role === UserRole.Government) {
       fetchAthletes();
     }
   }, [fetchAthletes, user?.role]);
 
-  // Restrict to Coach role only
-  if (user?.role !== UserRole.Coach) {
+  // Restrict to Coach and Government roles only
+  if (user?.role !== UserRole.Coach && user?.role !== UserRole.Government) {
     return (
-      <PlaceholderScreen 
-        title="Unauthorized" 
-        description="This athlete search view is strictly restricted to Coach accounts." 
+      <PlaceholderScreen
+        title="Unauthorized"
+        description="This athlete search view is strictly restricted to Coach and Government accounts."
       />
     );
   }
@@ -76,10 +76,10 @@ export function CoachAthleteSearchScreen() {
         <div className={styles.searchBar}>
           <div className={styles.inputWrapper}>
             <span className={`material-symbols-outlined ${styles.searchIcon}`}>search</span>
-            <input 
-              type="text" 
-              className={styles.searchInput} 
-              placeholder="Search by athlete name..." 
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder="Search by athlete name..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -92,7 +92,7 @@ export function CoachAthleteSearchScreen() {
 
         <div className={styles.filtersGrid}>
           <div className={styles.dropdownWrapper}>
-            <select 
+            <select
               className={styles.dropdown}
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
@@ -104,7 +104,7 @@ export function CoachAthleteSearchScreen() {
             </select>
             <span className={`material-symbols-outlined ${styles.dropdownIcon}`}>expand_more</span>
           </div>
-          
+
           {/* Static placeholders for visual fidelity to the Stitch design */}
           <div className={styles.dropdownWrapper}>
             <select className={styles.dropdown} disabled>
@@ -112,7 +112,7 @@ export function CoachAthleteSearchScreen() {
             </select>
             <span className={`material-symbols-outlined ${styles.dropdownIcon}`}>expand_more</span>
           </div>
-          
+
           <div className={styles.dropdownWrapper}>
             <select className={styles.dropdown} disabled>
               <option>Age: 16-24</option>
@@ -142,9 +142,9 @@ export function CoachAthleteSearchScreen() {
         ) : (
           <div className={styles.resultsGrid}>
             {results.map((athlete) => (
-              <AthleteResultCard 
-                key={athlete.id} 
-                athlete={athlete} 
+              <AthleteResultCard
+                key={athlete.id}
+                athlete={athlete}
                 onViewProfile={(id) => console.log('View profile', id)}
               />
             ))}
