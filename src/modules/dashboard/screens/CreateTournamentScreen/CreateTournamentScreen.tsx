@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../routing/routes';
 import styles from './CreateTournamentScreen.module.css';
@@ -5,6 +6,39 @@ import styles from './CreateTournamentScreen.module.css';
 // STATIC DEMO DATA: This screen uses hardcoded form elements matching Stitch ID d915428c02284593997022652a8fed94
 export function CreateTournamentScreen() {
   const navigate = useNavigate();
+  
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+
+    if (startDate && endDate && endDate < startDate) {
+      setError('End date cannot be before start date.');
+      return;
+    }
+
+    if (startDate) {
+      const startYear = parseInt(startDate.split('-')[0] || '', 10);
+      if (startYear < 2026 || startYear > 2028) {
+        setError('Tournament start year must be between 2026 and 2028.');
+        return;
+      }
+    }
+
+    if (endDate) {
+      const endYear = parseInt(endDate.split('-')[0] || '', 10);
+      if (endYear < 2026 || endYear > 2028) {
+        setError('Tournament end year must be between 2026 and 2028.');
+        return;
+      }
+    }
+
+    // Success static demo flow
+    console.log('Tournament valid');
+  };
 
   return (
     <main className={styles.container}>
@@ -26,7 +60,8 @@ export function CreateTournamentScreen() {
         <div className={styles.progressEmpty}></div>
       </div>
 
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        {error && <div className={styles.errorAlert}>{error}</div>}
         <div className={styles.uploadBanner}>
           <span className={`material-symbols-outlined ${styles.uploadIcon}`}>add_photo_alternate</span>
           <span className={styles.uploadTitle}>Upload Tournament Banner</span>
@@ -96,12 +131,28 @@ export function CreateTournamentScreen() {
             <div className={styles.dateGroup}>
               <div className={styles.inputWrapper}>
                 <span className={`material-symbols-outlined ${styles.inputIcon}`}>calendar_today</span>
-                <input type="date" className={`${styles.input} ${styles.inputWithIcon}`} />
+                <input 
+                  type="date" 
+                  className={`${styles.input} ${styles.inputWithIcon}`}
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  min="2026-01-01"
+                  max="2028-12-31"
+                  required
+                />
               </div>
               <span className={styles.dateSeparator}>to</span>
               <div className={styles.inputWrapper}>
                 <span className={`material-symbols-outlined ${styles.inputIcon}`}>calendar_today</span>
-                <input type="date" className={`${styles.input} ${styles.inputWithIcon}`} />
+                <input 
+                  type="date" 
+                  className={`${styles.input} ${styles.inputWithIcon}`}
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  min={startDate || "2026-01-01"}
+                  max="2028-12-31"
+                  required
+                />
               </div>
             </div>
           </div>
@@ -170,7 +221,7 @@ export function CreateTournamentScreen() {
 
         <div className={styles.actions}>
           <button type="button" className={styles.btnSecondary}>Save Draft</button>
-          <button type="button" className={styles.btnPrimary}>
+          <button type="submit" className={styles.btnPrimary}>
             Continue
             <span className={`material-symbols-outlined ${styles.btnIcon}`}>arrow_forward</span>
           </button>
