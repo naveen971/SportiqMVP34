@@ -5,3 +5,4 @@ export * from './PersonalInformationScreen/PersonalInformationScreen';
 export * from './PlayingInformationScreen/PlayingInformationScreen';
 export * from './ProfileCompletionScreen/ProfileCompletionScreen';
 export * from './OwnProfileScreen/OwnProfileScreen';
+export * from './AthletePublicProfileScreen/AthletePublicProfileScreen';

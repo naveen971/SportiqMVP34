@@ -29,6 +29,7 @@ export const ROUTES = {
   APPROVALS: '/approvals',
   TEAM_MANAGEMENT: '/team-management',
   ATHLETE_DIRECTORY: '/athletes',
+  ATHLETE_PUBLIC_PROFILE: '/athletes/:id',
   ORGANIZATION_DIRECTORY: '/organizations',
   REPORTS: '/reports',
   LEADERBOARDS: '/leaderboards',

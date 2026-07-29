@@ -1,4 +1,5 @@
 import styles from './AthleteResultCard.module.css';
+import { useNavigate } from 'react-router-dom';
 import { AthleteSearchResult } from '../../services/athleteSearchService';
 
 // Mock function to generate an impact score based on string length to keep it deterministic per user
@@ -27,6 +28,7 @@ interface AthleteResultCardProps {
 }
 
 export function AthleteResultCard({ athlete, onViewProfile }: AthleteResultCardProps) {
+  const navigate = useNavigate();
   const sportDisplay = (athlete.selected_sports && athlete.selected_sports.length > 0) ? formatSportName(athlete.selected_sports[0] as string) : 'Unknown Sport';
   const positionDisplay = athlete.primary_position ? ` • ${athlete.primary_position}` : '';
   const locationDisplay = athlete.location ? (REGION_MAP[athlete.location] || athlete.location) : 'Unknown Location';
@@ -65,7 +67,7 @@ export function AthleteResultCard({ athlete, onViewProfile }: AthleteResultCardP
         </div>
         <button 
           className={styles.viewButton} 
-          onClick={() => onViewProfile?.(athlete.id)}
+          onClick={() => onViewProfile ? onViewProfile(athlete.id) : navigate(`/athletes/${athlete.id}`)}
         >
           View Profile <span className="material-symbols-outlined" style={{ marginLeft: '4px', fontSize: '16px' }}>arrow_forward</span>
         </button>
