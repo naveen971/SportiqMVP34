@@ -18,7 +18,8 @@ import {
   ReportsScreen,
   LeaderboardsScreen,
   CreateTournamentScreen,
-  TeamManagementScreen
+  TeamManagementScreen,
+  GovernmentAnalyticsScreen
 } from '../modules/dashboard/screens';
 
 import {
@@ -248,8 +249,8 @@ export function AppRouter() {
         
         <Route path={ROUTES.SCHEDULE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Schedule" description="// TODO: replace with real Schedule screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.TOURNAMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Tournaments" description="// TODO: replace with real Tournaments screen" /></AppLayout></ProtectedRoute>} />
-        <Route path={ROUTES.ANALYTICS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Analytics" description="// TODO: replace with real Analytics screen" /></AppLayout></ProtectedRoute>} />
-        <Route path={ROUTES.CREATE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Create" description="// TODO: replace with real Create screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ANALYTICS} element={<ProtectedRoute><AppLayout><GovernmentAnalyticsScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="Content creation suite is under development." /></AppLayout></ProtectedRoute>} />
 
         {/* Fallback */}
         <Route

@@ -145,7 +145,6 @@ export function CoachAthleteSearchScreen() {
               <AthleteResultCard
                 key={athlete.id}
                 athlete={athlete}
-                onViewProfile={(id) => console.log('View profile', id)}
               />
             ))}
           </div>

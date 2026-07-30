@@ -1,0 +1,294 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding: var(--spacing-4);
+  max-width: var(--container-max-w, 1200px);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.pageTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.demoBanner {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.statCard {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  box-shadow: var(--shadow-glass);
+}
+
+.statIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statIcon {
+  font-size: var(--icon-lg);
+}
+
+.statInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.statLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.statValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 992px) {
+  .chartsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fullWidthChart {
+    grid-column: 1 / -1;
+  }
+}
+
+.chartCard {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  box-shadow: var(--shadow-glass);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.chartTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.barChartContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+
+.barItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.barLabel {
+  width: 80px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.barTrack {
+  flex: 1;
+  height: 12px;
+  background-color: var(--color-neutral-100);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.barFill {
+  height: 100%;
+  background-color: var(--color-primary-500);
+  border-radius: var(--radius-full);
+}
+
+.barValue {
+  width: 50px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.pieChartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-2);
+}
+
+@media (max-width: 600px) {
+  .pieChartContainer {
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+}
+
+.pieVisual {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  /* STATIC DEMO PIE CHART */
+  background: conic-gradient(
+    var(--color-primary-500) 0% 35%,
+    var(--color-primary-400) 35% 60%,
+    var(--color-primary-300) 60% 80%,
+    var(--color-primary-200) 80% 92%,
+    var(--color-neutral-300) 92% 100%
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pieVisualInner {
+  width: 110px;
+  height: 110px;
+  background-color: var(--color-surface);
+  border-radius: 50%;
+}
+
+.pieLegend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.legendLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+
+.legendValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.lineChartContainer {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-top: var(--spacing-2);
+}
+
+.lineSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.linePath {
+  fill: none;
+  stroke: var(--color-primary-500);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lineArea {
+  fill: var(--color-primary-50);
+  opacity: 0.5;
+}
+
+.linePoint {
+  fill: var(--color-surface);
+  stroke: var(--color-primary-500);
+  stroke-width: 2;
+}
+
+.xAxis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--spacing-2);
+  padding: 0 var(--spacing-2);
+}
+
+.xLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}

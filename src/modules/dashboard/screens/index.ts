@@ -2,6 +2,7 @@ export * from './AthleteDashboardScreen/AthleteDashboardScreen';
 export * from './CoachDashboardScreen/CoachDashboardScreen';
 export * from './OrganiserDashboardScreen/OrganiserDashboardScreen';
 export * from './GovernmentDashboardScreen/GovernmentDashboardScreen';
+export * from './GovernmentAnalyticsScreen/GovernmentAnalyticsScreen';
 export * from './CoachAthleteSearchScreen/CoachAthleteSearchScreen';
 export * from './OrganizationDirectoryScreen/OrganizationDirectoryScreen';
 export * from './ReportsScreen/ReportsScreen';
