@@ -9,7 +9,7 @@ import { UserRole } from '../../../../core/auth/types';
 
 export function OwnProfileScreen() {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -100,6 +100,16 @@ export function OwnProfileScreen() {
             </button>
             <button className={styles.secondaryButton}>
               Share
+            </button>
+            <button 
+              className={styles.secondaryButton} 
+              style={{ color: 'var(--color-error-500)', borderColor: 'var(--color-error-500)' }}
+              onClick={async () => {
+                await signOut();
+                navigate(ROUTES.LOGIN);
+              }}
+            >
+              Logout
             </button>
           </div>
         </div>

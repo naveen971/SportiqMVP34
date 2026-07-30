@@ -7,6 +7,7 @@ interface AuthContextValue extends AuthState {
   login: (email: string, password: string) => Promise<void>;
   signUp: (name: string, email: string, password: string, role: UserRole) => Promise<void>;
   refreshProfile: () => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -125,6 +126,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setOnboardingComplete(profile.onboardingComplete);
   };
 
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
+
   const value: AuthContextValue = {
     user,
     isAuthenticated: user !== null,
@@ -134,6 +140,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     login,
     signUp,
     refreshProfile,
+    signOut,
   };
 
   return (
