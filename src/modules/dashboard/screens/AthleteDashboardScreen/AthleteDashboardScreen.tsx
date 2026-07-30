@@ -1,81 +1,133 @@
+// STATIC DEMO — Social module not yet built, this is a demo feed for pitch purposes.
 import styles from './AthleteDashboardScreen.module.css';
-import { ATHLETE_MOCK_DATA } from '../../constants/mockData';
-import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
-import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../../routing/routes';
 
 export function AthleteDashboardScreen() {
-  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.greeting}>Good Morning, Arjun</h1>
-        <p className={styles.subtitle}>FOOTBALL</p>
+        <div className={styles.headerTop}>
+          <h1 className={styles.greeting}>SportIQ</h1>
+        </div>
       </header>
 
-      <div className={styles.impactCard}>
-        <div className={styles.impactHeader}>
-          <span className={styles.impactTitle}>Impact Score</span>
-          <span className={styles.impactValue}>{ATHLETE_MOCK_DATA.impactScore}</span>
-        </div>
-        <div className={styles.rankGrid}>
-          <div className={styles.rankItem}>
-            <span className={styles.rankLabel}>District Rank</span>
-            <span className={styles.rankValue}>#{ATHLETE_MOCK_DATA.districtRank}</span>
-          </div>
-          <div className={styles.rankItem}>
-            <span className={styles.rankLabel}>State Rank</span>
-            <span className={styles.rankValue}>#{ATHLETE_MOCK_DATA.stateRank}</span>
-          </div>
-          <div className={styles.rankItem}>
-            <span className={styles.rankLabel}>Consistency</span>
-            <span className={styles.rankValue}>{ATHLETE_MOCK_DATA.consistency}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.kpiGrid}>
-        {ATHLETE_MOCK_DATA.stats.map(stat => (
-          <DashboardStatCard key={stat.id} data={stat} />
-        ))}
-      </div>
-
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Upcoming Training" />
-        <div className={styles.trainingCard}>
-          <div className={styles.trainingHeader}>
-            <h3 className={styles.trainingTitle}>{ATHLETE_MOCK_DATA.upcomingTraining.title}</h3>
-            <span className={styles.trainingCoach}>Coach: {ATHLETE_MOCK_DATA.upcomingTraining.coach}</span>
-          </div>
-          <div className={styles.trainingDetails}>
-            <div className={styles.trainingDetail}>
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>schedule</span>
-              <span>{ATHLETE_MOCK_DATA.upcomingTraining.time}</span>
-            </div>
-            <div className={styles.trainingDetail}>
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>location_on</span>
-              <span>{ATHLETE_MOCK_DATA.upcomingTraining.location}</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Recent Achievements" actionText="View All" onActionClick={() => navigate(ROUTES.ACHIEVEMENTS)} />
-        <div className={styles.achievementsList}>
-          {ATHLETE_MOCK_DATA.achievements.map(ach => (
-            <div key={ach.id} className={styles.achievementItem}>
-              <div className={styles.achievementIcon}>
-                <span className="material-symbols-outlined">{ach.iconName}</span>
+      <section className={styles.feedSection}>
+        {/* Feed Card: Match Result */}
+        <article className={styles.feedCard}>
+          <div className={styles.cardHeader}>
+            <div className={styles.authorInfo}>
+              <div className={styles.avatar}>
+                <span className="material-symbols-outlined">person</span>
               </div>
-              <div className={styles.achievementContent}>
-                <span className={styles.achievementTitle}>{ach.title}</span>
-                <span className={styles.achievementDate}>{ach.date}</span>
+              <div className={styles.authorMeta}>
+                <h3 className={styles.authorName}>Marcus Vance</h3>
+                <p className={styles.authorSubtitle}>Pro Footballer • 2 hrs ago</p>
               </div>
             </div>
-          ))}
-        </div>
+            <span className={styles.sportBadge}>
+              <span className="material-symbols-outlined">sports_soccer</span> Football
+            </span>
+          </div>
+
+          <div className={styles.cardContent}>
+            <p className={styles.postText}>
+              Solid team performance tonight to secure the 3 points away from home. Happy to contribute with a goal and an assist. Onto the next one! ⚽️🔥
+            </p>
+            <div className={styles.scoreboard}>
+              <div className={styles.team}>
+                <div className={styles.teamLogo}>AWY</div>
+                <span style={{fontSize: 'var(--font-size-xs)'}}>Away FC</span>
+              </div>
+              <div className={styles.score}>
+                <div className={styles.scoreValue}>2 - 1</div>
+                <span className={styles.scoreStatus}>FT</span>
+              </div>
+              <div className={styles.team}>
+                <div className={styles.teamLogo}>HME</div>
+                <span style={{fontSize: 'var(--font-size-xs)'}}>Home Utd</span>
+              </div>
+            </div>
+            <div className={styles.statsGrid}>
+              <div className={styles.statBox}>
+                <span className={styles.statValue}>1</span>
+                <span className={styles.statLabel}>Goals</span>
+              </div>
+              <div className={styles.statBox}>
+                <span className={styles.statValue}>1</span>
+                <span className={styles.statLabel}>Assists</span>
+              </div>
+              <div className={styles.statBox}>
+                <span className={styles.statValue}>8.4</span>
+                <span className={styles.statLabel}>Rating</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.cardActions}>
+            <div className={styles.actionGroup}>
+              <button className={styles.actionButton}>
+                <span className="material-symbols-outlined">thumb_up</span>
+                <span>2.4k</span>
+              </button>
+              <button className={styles.actionButton}>
+                <span className="material-symbols-outlined">chat_bubble_outline</span>
+                <span>142</span>
+              </button>
+              <button className={styles.actionButton}>
+                <span className="material-symbols-outlined">share</span>
+              </button>
+            </div>
+            <button className={styles.actionButton}>
+              <span className="material-symbols-outlined">bookmark_border</span>
+            </button>
+          </div>
+        </article>
+
+        {/* Feed Card: Achievement */}
+        <article className={styles.feedCard}>
+          <div className={styles.cardHeader}>
+            <div className={styles.authorInfo}>
+              <div className={styles.avatar}>
+                <span className="material-symbols-outlined">person</span>
+              </div>
+              <div className={styles.authorMeta}>
+                <h3 className={styles.authorName}>Sarah Jenkins</h3>
+                <p className={styles.authorSubtitle}>Elite Sprint Coach • 5 hrs ago</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.cardContent}>
+            <p className={styles.postText}>
+              Incredibly honored to receive the National Coaching Excellence Award for 2024. This belongs to all the dedicated athletes I work with every single day. The grind continues!
+            </p>
+            <div className={styles.achievementVisual}>
+              <div className={styles.achievementBadge}>
+                <span className="material-symbols-outlined" style={{ fontSize: '32px', color: 'var(--color-primary-500)' }}>workspace_premium</span>
+              </div>
+              <h4 className={styles.achievementTitle}>Coaching Excellence 2024</h4>
+              <p className={styles.achievementSubtitle}>National Athletics Federation</p>
+            </div>
+          </div>
+
+          <div className={styles.cardActions}>
+            <div className={styles.actionGroup}>
+              <button className={`${styles.actionButton} ${styles.actionActive}`}>
+                <span className="material-symbols-outlined">thumb_up</span>
+                <span>892</span>
+              </button>
+              <button className={styles.actionButton}>
+                <span className="material-symbols-outlined">chat_bubble_outline</span>
+                <span>56</span>
+              </button>
+              <button className={styles.actionButton}>
+                <span className="material-symbols-outlined">share</span>
+              </button>
+            </div>
+            <button className={styles.actionButton}>
+              <span className="material-symbols-outlined">bookmark_border</span>
+            </button>
+          </div>
+        </article>
       </section>
     </div>
   );

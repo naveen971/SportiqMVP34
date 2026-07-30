@@ -67,7 +67,7 @@ RESOLVED 2026-07-25 — Onboarding Wizard Step Structure: A Stitch diagnostic re
 | Personal Information | `ab64f6d07cdd4308b9e9d5f0524946a4` | ✅ Built — PersonalInformationScreen.tsx | Onboarding Step 2/4 — Full Name, Location (Region), Age, Height, Weight. **SCHEMA GAP RESOLVED** by migration 005. Location/Age/Height/Weight now persisted via completeOnboarding() in ProfileCompletionScreen. |
 | Playing Information | `c50b8ebdd26e49e088f221712c631fc6` | ✅ Built — PlayingInformationScreen.tsx | Onboarding Step 3/4 — Dominant Foot, Primary Position, Years of Experience. **SCHEMA GAP RESOLVED** by migration 005. Fields now persisted via completeOnboarding() in ProfileCompletionScreen. |
 | Profile Picture Upload | `447f102ffc074887858038b1db75698c` | ✅ Built — ProfilePictureUploadScreen.tsx (optional, reusable) | ⚠️ Optional/reusable — NOT counted in the 4-step progress. Inserted between Step 1 and Step 2 in onboarding; also callable from Edit Profile / Settings. |
-| Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | Not built | Charts and performance metrics |
+| Statistics | `a5ab76d056d5477d8dd8f2e0ba0ed81c` | ✅ Built — StatisticsScreen.tsx | Static demo data, relocated from Athlete Dashboard |
 | Achievements | `b25601c5f3a14d5d8b77068b1c7a5d54` | Not built | Full standalone achievements page (780x2126) |
 | Achievements Section | `4a2fe79c7eff405da3579fdbb7e545eb` | Not built | Embedded achievements panel within another page (780x3940) — likely inside Own Profile |
 | Select Sports | `9dcf3c98d6014b138364c73940b03698` | ✅ Built — SelectSportsScreen.tsx | Multi-select grid for sports of interest — onboarding |
@@ -89,7 +89,7 @@ The operator must confirm which is authoritative before Social module work begin
 
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
-| Home Feed | `6e6713d235b04d0eb2b65d50e0b87179` | Not built | Primary social feed — needs a route registered |
+| Home Feed | `6e6713d235b04d0eb2b65d50e0b87179` | ✅ Built — AthleteDashboardScreen.tsx | **ACTIVE — MVP Demo Sprint.** Activated early for athlete dashboard; rest of Social module remains deferred. Static demo. |
 | Post Detail (v1) | `bc326d7ec976480cb73568c23fcc9bac` | Not built | 780x2682 — see ambiguity flag above |
 | Post Detail (v2) | `e91d12a23c784df3973fffe4818d7b34` | Not built | 780x2454 — see ambiguity flag above |
 | Empty Feed | `fdaacdf294d243d29a940b171a3fa037` | Not built | Empty state when feed has no content |

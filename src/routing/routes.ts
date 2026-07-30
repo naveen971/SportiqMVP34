@@ -18,6 +18,7 @@ export const ROUTES = {
   PLAYING_INFORMATION: '/playing-information',
   PROFILE_COMPLETION: '/profile-completion',
   EDIT_PROFILE: '/profile/edit',
+  STATISTICS: '/profile/statistics',
   
   // Quick Actions (Temporary Placeholders)
   ASSIGN_TRAINING: '/assign-training',

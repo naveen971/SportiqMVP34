@@ -4,7 +4,7 @@ import { ProtectedRoute } from './ProtectedRoute';
 import { OnboardingGate } from './OnboardingGate';
 import { useAuth } from '../core/auth/AuthProvider';
 import { WelcomeScreen, SplashScreen, LoginScreen, SignUpScreen, VerifyEmailScreen, ForgotPasswordScreen } from '../modules/authentication/screens';
-import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen, AthletePublicProfileScreen } from '../modules/profile/screens';
+import { SelectSportsScreen, CreateSportsProfileScreen, ProfilePictureUploadScreen, PersonalInformationScreen, PlayingInformationScreen, ProfileCompletionScreen, OwnProfileScreen, AthletePublicProfileScreen, StatisticsScreen } from '../modules/profile/screens';
 import { PlaceholderScreen } from '@shared/components/PlaceholderScreen';
 import { AppLayout } from '@shared/layouts/AppLayout';
 import { UserRole } from '../core/auth/types';
@@ -125,6 +125,16 @@ export function AppRouter() {
             <ProtectedRoute>
               <AppLayout>
                 <OwnProfileScreen />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.STATISTICS}
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <StatisticsScreen />
               </AppLayout>
             </ProtectedRoute>
           }

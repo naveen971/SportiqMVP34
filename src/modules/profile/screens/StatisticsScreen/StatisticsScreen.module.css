@@ -1,0 +1,205 @@
+.container {
+  padding: var(--spacing-4);
+  background-color: var(--color-neutral-50);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding-bottom: var(--spacing-24);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-neutral-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.pageTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.pageSubtitle {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.impactCard {
+  background-color: var(--color-primary-500);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  color: var(--color-neutral-0);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  box-shadow: 0px 4px 12px rgba(0, 108, 70, 0.2);
+}
+
+.impactHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.impactTitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.impactValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.rankGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rankItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.rankLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  opacity: 0.8;
+}
+
+.rankValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.trainingCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.trainingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.trainingTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.trainingCoach {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.trainingDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.trainingDetail {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+}
+
+.achievementsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.achievementItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-400);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.achievementIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-400);
+  color: var(--color-primary-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achievementContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.achievementTitle {
+  color: var(--color-neutral-800);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.achievementDate {
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+}

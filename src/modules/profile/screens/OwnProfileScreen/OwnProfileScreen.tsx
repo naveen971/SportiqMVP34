@@ -162,30 +162,44 @@ export function OwnProfileScreen() {
           </section>
         )}
 
-        {/* Empty States for Mock Data Sections */}
-        <section className={styles.section}>
-          <ProfileSectionHeader title="Performance Stats" />
-          <div className={styles.emptyStateContainer}>
-            <span className="material-symbols-outlined">analytics</span>
-            <p className={styles.emptyStateText}>No performance data available</p>
-          </div>
-        </section>
+        {/* Statistics link for Athlete, empty states for others */}
+        {profile.role === UserRole.Athlete ? (
+          <section className={styles.section}>
+            <button 
+              className={styles.primaryButton}
+              style={{ width: '100%', padding: 'var(--spacing-4)', marginTop: 'var(--spacing-4)' }}
+              onClick={() => navigate(ROUTES.STATISTICS)}
+            >
+              View My Performance Stats
+            </button>
+          </section>
+        ) : (
+          <>
+            <section className={styles.section}>
+              <ProfileSectionHeader title="Performance Stats" />
+              <div className={styles.emptyStateContainer}>
+                <span className="material-symbols-outlined">analytics</span>
+                <p className={styles.emptyStateText}>No performance data available</p>
+              </div>
+            </section>
 
-        <section className={styles.section}>
-          <ProfileSectionHeader title="Recent Matches" />
-          <div className={styles.emptyStateContainer}>
-            <span className="material-symbols-outlined">sports_soccer</span>
-            <p className={styles.emptyStateText}>No matches recorded yet</p>
-          </div>
-        </section>
+            <section className={styles.section}>
+              <ProfileSectionHeader title="Recent Matches" />
+              <div className={styles.emptyStateContainer}>
+                <span className="material-symbols-outlined">sports_soccer</span>
+                <p className={styles.emptyStateText}>No matches recorded yet</p>
+              </div>
+            </section>
 
-        <section className={styles.section}>
-          <ProfileSectionHeader title="Achievements" />
-          <div className={styles.emptyStateContainer}>
-            <span className="material-symbols-outlined">workspace_premium</span>
-            <p className={styles.emptyStateText}>No achievements unlocked</p>
-          </div>
-        </section>
+            <section className={styles.section}>
+              <ProfileSectionHeader title="Achievements" />
+              <div className={styles.emptyStateContainer}>
+                <span className="material-symbols-outlined">workspace_premium</span>
+                <p className={styles.emptyStateText}>No achievements unlocked</p>
+              </div>
+            </section>
+          </>
+        )}
         
       </div>
     </div>

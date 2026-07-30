@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
+  padding-bottom: var(--spacing-24);
 }
 
 .header {
@@ -13,8 +14,13 @@
   gap: var(--spacing-1);
 }
 
+.headerTop {
+  display: flex;
+  align-items: center;
+}
+
 .greeting {
-  color: var(--color-neutral-800);
+  color: var(--color-primary-500);
   font-family: var(--font-family);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -22,169 +28,244 @@
   margin: 0;
 }
 
-.subtitle {
-  color: var(--color-neutral-700);
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wider);
-  margin: 0;
-  text-transform: uppercase;
+.feedSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
 }
 
-.impactCard {
-  background-color: var(--color-primary-500);
+.feedCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
   border-radius: var(--radius-xl);
-  padding: var(--spacing-6);
-  color: var(--color-neutral-0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
-  box-shadow: 0px 4px 12px rgba(0, 108, 70, 0.2);
 }
 
-.impactHeader {
+.cardHeader {
+  padding: var(--spacing-4);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--color-neutral-100);
 }
 
-.impactTitle {
-  font-family: var(--font-family);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-}
-
-.impactValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-}
-
-.rankGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-4);
-  padding-top: var(--spacing-4);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.rankItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
-}
-
-.rankLabel {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  opacity: 0.8;
-}
-
-.rankValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-}
-
-.kpiGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-4);
-}
-
-.section {
-  display: flex;
-  flex-direction: column;
-}
-
-.trainingCard {
-  background-color: var(--color-neutral-0);
-  border: 1px solid var(--color-neutral-400);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-4);
-}
-
-.trainingHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.trainingTitle {
-  color: var(--color-neutral-800);
-  font-family: var(--font-family);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin: 0;
-}
-
-.trainingCoach {
-  color: var(--color-neutral-700);
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-}
-
-.trainingDetails {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
-}
-
-.trainingDetail {
+.authorInfo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-1);
-  color: var(--color-neutral-700);
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  gap: var(--spacing-3);
 }
 
-.achievementsList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-4);
-}
-
-.achievementItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
-  background-color: var(--color-neutral-0);
-  border: 1px solid var(--color-neutral-400);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-}
-
-.achievementIcon {
+.avatar {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-400);
-  color: var(--color-primary-900);
+  background-color: var(--color-neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-600);
+  flex-shrink: 0;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0;
+}
+
+.authorSubtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-600);
+  margin: 0;
+}
+
+.sportBadge {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.cardContent {
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.postText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  color: var(--color-neutral-800);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.scoreboard {
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6) var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 30%;
+}
+
+.teamLogo {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  color: var(--color-neutral-800);
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.scoreValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-600);
+}
+
+.scoreStatus {
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-xs);
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-full);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-2);
+}
+
+.statBox {
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.statValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.statLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-600);
+}
+
+.achievementVisual {
+  background: linear-gradient(135deg, rgba(0, 108, 70, 0.1), rgba(0, 108, 70, 0.02));
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-3);
+}
+
+.achievementBadge {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(0, 108, 70, 0.1);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.achievementContent {
-  display: flex;
-  flex-direction: column;
-}
-
 .achievementTitle {
-  color: var(--color-neutral-800);
   font-family: var(--font-family);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0;
 }
 
-.achievementDate {
-  color: var(--color-neutral-700);
+.achievementSubtitle {
   font-family: var(--font-family);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-600);
+  margin: 0;
+}
+
+.cardActions {
+  padding: var(--spacing-2) var(--spacing-4);
+  border-top: 1px solid var(--color-neutral-100);
+  background-color: var(--color-neutral-0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionGroup {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-2) var(--spacing-3);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  color: var(--color-neutral-600);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.actionActive {
+  color: var(--color-primary-600);
 }
