@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../../core/auth/AuthProvider';
 import { ROUTES } from '../../../../routing/routes';
+import { SPORTS_LIST } from '../../../../shared/constants/sports';
+import { POSITIONS_BY_SPORT } from '../../../../shared/constants/positions';
 import styles from './PlayingInformationScreen.module.css';
 
 export function PlayingInformationScreen() {
@@ -26,6 +28,36 @@ export function PlayingInformationScreen() {
   const [dominantFoot, setDominantFoot] = useState(initialState.dominantFoot || '');
   const [position, setPosition] = useState(initialState.position || '');
   const [experience, setExperience] = useState(initialState.experience || '');
+
+  const [selectedSports] = useState<string[]>(() => {
+    const saved = sessionStorage.getItem('sportiq_onboarding_selected_sports');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const availablePositions = React.useMemo(() => {
+    const sportsWithPositions = selectedSports.filter(sportId => POSITIONS_BY_SPORT[sportId]);
+    if (sportsWithPositions.length === 0) return [];
+
+    if (sportsWithPositions.length === 1) {
+      const singleSport = sportsWithPositions[0]!;
+      return (POSITIONS_BY_SPORT[singleSport] || []).map((pos: string) => ({
+        value: pos,
+        label: pos
+      }));
+    }
+
+    const combined: { value: string, label: string }[] = [];
+    sportsWithPositions.forEach(sportId => {
+      const sportName = SPORTS_LIST.find(s => s.id === sportId)?.name || sportId;
+      (POSITIONS_BY_SPORT[sportId] || []).forEach((pos: string) => {
+        combined.push({
+          value: pos,
+          label: `${sportName}: ${pos}`
+        });
+      });
+    });
+    return combined;
+  }, [selectedSports]);
 
   // Protect route just in case
   useEffect(() => {
@@ -119,28 +151,28 @@ export function PlayingInformationScreen() {
             </div>
 
             {/* Primary Position (Dropdown) */}
-            {/* Note: Options are soccer-specific as per the Stitch design. In the future, this should be dynamically mapped per sport. */}
-            <div className={styles.inputGroup}>
-              <label className={styles.inputLabel} htmlFor="position">Primary Position</label>
-              <div className={styles.selectWrapper}>
-                <select
-                  id="position"
-                  className={styles.selectField}
-                  value={position}
-                  onChange={(e) => setPosition(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>Select position</option>
-                  <option value="forward">Forward / Striker</option>
-                  <option value="midfielder">Midfielder</option>
-                  <option value="defender">Defender</option>
-                  <option value="goalkeeper">Goalkeeper</option>
-                </select>
-                <div className={styles.selectIcon}>
-                  <span className="material-symbols-outlined">expand_more</span>
+            {availablePositions.length > 0 && (
+              <div className={styles.inputGroup}>
+                <label className={styles.inputLabel} htmlFor="position">Primary Position</label>
+                <div className={styles.selectWrapper}>
+                  <select
+                    id="position"
+                    className={styles.selectField}
+                    value={position}
+                    onChange={(e) => setPosition(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled>Select position</option>
+                    {availablePositions.map((opt: {value: string, label: string}, i: number) => (
+                      <option key={i} value={opt.value}>{opt.label}</option>
+                    ))}
+                  </select>
+                  <div className={styles.selectIcon}>
+                    <span className="material-symbols-outlined">expand_more</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Years of Experience (Input) */}
             <div className={styles.inputGroup}>
@@ -168,7 +200,7 @@ export function PlayingInformationScreen() {
             type="button" 
             className={styles.nextBtn}
             onClick={handleNextStep}
-            disabled={!position || !dominantFoot || experience === ''}
+            disabled={(!position && availablePositions.length > 0) || !dominantFoot || experience === ''}
           >
             Next Step
             <span className="material-symbols-outlined">arrow_forward</span>
