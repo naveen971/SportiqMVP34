@@ -3,3 +3,8 @@
   padding-bottom: var(--nav-height);
   background-color: var(--color-bg-secondary);
 }
+
+.layoutTopNav {
+  padding-bottom: 0;
+  padding-top: var(--nav-height);
+}

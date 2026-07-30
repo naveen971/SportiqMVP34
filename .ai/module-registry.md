@@ -158,6 +158,11 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 
 > **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content is partially wired; real data implementations are documented above, with remaining sections using mock data for the demo.
 
+### Athlete Pitch-Stage Additions (2026-07-30)
+- **TopNav Shell**: Athlete role now exclusively uses a distinct LinkedIn-style TopNav shell. This is an operator-directed demo layout.
+- **AI Coach Widget**: A static, non-functional floating action button rendering a feature sheet for an AI Coach. Explicitly flagged as "Coming Soon" for pitch purposes.
+- **New Placeholders**: `Posts` and `Network` added as placeholder screens to support the demo navigation.
+
 ---
 
 ### Events
