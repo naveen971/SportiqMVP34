@@ -1,5 +1,6 @@
 import { UserRole } from '../auth/types';
 import type { NavigationConfig } from './types';
+import { ROUTES } from '../../routing/routes';
 
 export const navigationByRole: Record<UserRole, NavigationConfig> = {
   [UserRole.Athlete]: {
@@ -31,11 +32,11 @@ export const navigationByRole: Record<UserRole, NavigationConfig> = {
   },
   [UserRole.Government]: {
     items: [
-      { label: 'Dashboard',     path: '/',              iconName: 'dashboard'     },
-      { label: 'Analytics',     path: '/analytics',     iconName: 'bar_chart'     },
-      { label: 'Search',        path: '/search',        iconName: 'search'        },
-      { label: 'Notifications', path: '/notifications', iconName: 'notifications' },
-      { label: 'Profile',       path: '/profile',       iconName: 'person'        },
+      { label: 'Dashboard',           path: '/',                    iconName: 'dashboard' },
+      { label: 'Athletes',            path: ROUTES.ATHLETE_DIRECTORY, iconName: 'group'     },
+      { label: 'Reports & Analytics', path: ROUTES.ANALYTICS,       iconName: 'bar_chart' },
+      { label: 'Profile',             path: '/profile',             iconName: 'person'    },
+      { label: 'Announcement',        path: ROUTES.ANNOUNCEMENTS,   iconName: 'campaign'  },
     ],
   },
 };
