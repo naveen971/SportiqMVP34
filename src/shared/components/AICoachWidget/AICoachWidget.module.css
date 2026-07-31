@@ -1,6 +1,6 @@
 .widgetContainer {
   position: fixed;
-  bottom: calc(var(--nav-height) + var(--spacing-4));
+  bottom: calc(var(--nav-height) + var(--spacing-8) + env(safe-area-inset-bottom, 0px));
   right: var(--spacing-4);
   z-index: 100;
   display: flex;
