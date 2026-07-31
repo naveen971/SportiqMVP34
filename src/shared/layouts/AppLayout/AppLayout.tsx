@@ -18,7 +18,7 @@ export function AppLayout({ children }: AppLayoutProps) {
     <div className={`${styles.layout} ${isAthlete ? styles.layoutTopNav : ''}`}>
       {isAthlete && <TopNav />}
       {children}
-      {!isAthlete && <BottomNavBar />}
+      <BottomNavBar />
       {isAthlete && <AICoachWidget />}
     </div>
   );

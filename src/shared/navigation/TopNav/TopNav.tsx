@@ -3,19 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../routing/routes';
 import styles from './TopNav.module.css';
 
-interface NavItem {
-  label: string;
-  path: string;
-  iconName: string;
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', path: ROUTES.HOME, iconName: 'home' },
-  { label: 'Tournaments', path: ROUTES.TOURNAMENTS, iconName: 'emoji_events' },
-  { label: 'Posts', path: ROUTES.POSTS, iconName: 'dynamic_feed' },
-  { label: 'Network', path: ROUTES.NETWORK, iconName: 'group' },
-  { label: 'Notifications', path: ROUTES.NOTIFICATIONS, iconName: 'notifications' },
-];
 
 export function TopNav() {
   const location = useLocation();
@@ -47,25 +34,8 @@ export function TopNav() {
           />
         </div>
 
-        {/* Right: Nav Items & Profile */}
+        {/* Right: Profile */}
         <nav className={styles.navItems} aria-label="Top navigation">
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.label}
-              className={`${styles.navTab} ${isActive(item.path) ? styles.navTabActive : ''}`}
-              onClick={() => navigate(item.path)}
-              aria-label={item.label}
-              aria-current={isActive(item.path) ? 'page' : undefined}
-            >
-              <span className={`material-symbols-outlined ${styles.navIcon}`}>
-                {item.iconName}
-              </span>
-              <span className={styles.navLabel}>{item.label}</span>
-            </button>
-          ))}
-
-          {/* Profile Divider */}
-          <div className={styles.divider} />
 
           {/* Profile Icon */}
           <button

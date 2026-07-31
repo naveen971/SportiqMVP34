@@ -5,6 +5,5 @@
 }
 
 .layoutTopNav {
-  padding-bottom: 0;
   padding-top: var(--nav-height);
 }
