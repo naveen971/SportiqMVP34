@@ -15,8 +15,7 @@ export function AppLayout({ children }: AppLayoutProps) {
   const isAthlete = user?.role === UserRole.Athlete;
 
   return (
-    <div className={`${styles.layout} ${isAthlete ? styles.layoutTopNav : ''}`}>
-      {isAthlete && <TopNav />}
+    <div className={styles.layout}>
       {children}
       <BottomNavBar />
       {isAthlete && <AICoachWidget />}
