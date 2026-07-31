@@ -15,20 +15,26 @@ export function CoachDashboardScreen() {
   useEffect(() => {
     getTotalAthletesCount()
       .then(setTotalAthletes)
-      .catch((error) => {
-        // error already logged in service, fallback is null (dash)
+      .catch(() => {
+        // Fallback handled in UI
       });
   }, []);
 
   return (
     <div className={styles.container}>
+      {/* Header */}
       <header className={styles.header}>
         <p className={styles.subtitle}>SportIQ Elite Performance Academy</p>
         <h1 className={styles.greeting}>Morning, Coach Anderson</h1>
         <p className={styles.description}>Here is your academy overview for today.</p>
+        <button className={styles.newSessionBtn}>
+          <span className={`material-symbols-outlined ${styles.btnIcon}`}>add</span>
+          New Session
+        </button>
       </header>
 
-      <section className={styles.statsSection}>
+      {/* KPI Grid */}
+      <section className={styles.section}>
         <div className={styles.statsGrid}>
           {COACH_MOCK_DATA.stats.map(stat => {
             if (stat.id === '1') {
@@ -58,6 +64,7 @@ export function CoachDashboardScreen() {
         </div>
       </section>
 
+      {/* Schedule */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Today's Schedule" actionText="View All" />
         <div className={styles.scheduleList}>
@@ -71,7 +78,7 @@ export function CoachDashboardScreen() {
               <div className={styles.scheduleContent}>
                 <h3 className={styles.scheduleTitle}>{item.title}</h3>
                 <div className={styles.scheduleLocation}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>location_on</span>
+                  <span className={`material-symbols-outlined ${styles.locationIcon}`}>{item.iconName || 'location_on'}</span>
                   <span>{item.location}</span>
                 </div>
               </div>
@@ -80,42 +87,7 @@ export function CoachDashboardScreen() {
         </div>
       </section>
 
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Academy Performance" />
-        <div className={styles.chartCard}>
-          <div className={styles.chartHeader}>
-            <span className={styles.chartTitle}>Completion Rate</span>
-            <span className={styles.chartSubtitle}>Growth Metric</span>
-          </div>
-          {/* Static CSS-based Bar Chart per instructions */}
-          <div className={styles.chartContainer}>
-            <div className={styles.chartYAxis}>
-              <span>100</span>
-              <span>50</span>
-              <span>0</span>
-            </div>
-            <div className={styles.chartBars}>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '40%' }}></div>
-                <span className={styles.chartXLabel}>Mon</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '65%' }}></div>
-                <span className={styles.chartXLabel}>Tue</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '85%' }}></div>
-                <span className={styles.chartXLabel}>Wed</span>
-              </div>
-              <div className={styles.chartBarCol}>
-                <div className={styles.chartBar} style={{ height: '90%' }}></div>
-                <span className={styles.chartXLabel}>Thu</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* Recent Activity */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Recent Activity" />
         <div className={styles.activityList}>
