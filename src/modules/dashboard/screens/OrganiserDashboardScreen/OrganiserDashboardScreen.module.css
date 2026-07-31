@@ -5,9 +5,17 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
+  padding-bottom: calc(var(--nav-height) + var(--spacing-4) + env(safe-area-inset-bottom, 0px));
 }
 
+/* Header */
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLeft {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
@@ -29,12 +37,35 @@
   margin: 0;
 }
 
+.headerIcon {
+  color: var(--color-neutral-800);
+  font-size: var(--icon-md);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KPI Grid */
+.statsSection {
+  display: flex;
+  flex-direction: column;
+}
+
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-4);
 }
 
+.statsGrid > :first-child {
+  grid-column: span 2;
+}
+
+/* Quick Actions */
 .quickActionsSection {
   display: flex;
   flex-direction: column;
@@ -55,11 +86,14 @@
   gap: var(--spacing-4);
 }
 
+/* Section Common */
 .section {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-4);
 }
 
+/* Upcoming Events */
 .eventList {
   display: flex;
   flex-direction: column;
@@ -67,11 +101,14 @@
 }
 
 .emptyMessage {
-  padding: var(--spacing-4);
   color: var(--color-neutral-600);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
+  padding: var(--spacing-4);
   text-align: center;
+  background-color: var(--color-neutral-0);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-neutral-400);
 }
 
 .eventItem {
@@ -81,11 +118,11 @@
   padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
 }
 
 .eventTime {
-  color: var(--color-primary-500);
+  color: var(--color-neutral-700);
   font-family: var(--font-family);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -108,33 +145,39 @@
   font-size: var(--font-size-sm);
 }
 
+.locationIcon {
+  font-size: 14px;
+}
+
 .eventFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: var(--spacing-2);
   padding-top: var(--spacing-2);
-  border-top: 1px solid var(--color-neutral-400);
+  border-top: 1px solid var(--color-neutral-200);
 }
 
 .eventAttendees {
-  color: var(--color-neutral-700);
+  color: var(--color-neutral-800);
   font-family: var(--font-family);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
 }
 
 .manageButton {
-  background-color: var(--color-neutral-300);
-  color: var(--color-neutral-900);
+  background: none;
   border: none;
-  border-radius: var(--radius-full);
-  padding: var(--spacing-1) var(--spacing-4);
+  color: var(--color-primary-600);
   font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
 }
 
+/* Active Tournaments */
 .tournamentList {
   display: flex;
   flex-direction: column;
@@ -142,37 +185,38 @@
 }
 
 .tournamentItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
   background-color: var(--color-neutral-0);
   border: 1px solid var(--color-neutral-400);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
 }
 
 .tournamentIcon {
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-neutral-200);
+  border-radius: var(--radius-md);
+  background-color: var(--color-neutral-100);
   color: var(--color-neutral-800);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .tournamentContent {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-1);
 }
 
 .tournamentTitle {
   color: var(--color-neutral-800);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   margin: 0;
 }
@@ -186,20 +230,25 @@
 .tournamentStatus {
   font-family: var(--font-family);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-neutral-200);
   color: var(--color-neutral-700);
 }
 
 .statusLive {
-  color: var(--color-error);
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
 }
 
 .tournamentDesc {
   color: var(--color-neutral-700);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
+/* Recent Activity */
 .activityList {
   display: flex;
   flex-direction: column;
@@ -211,19 +260,27 @@
   border: 1px solid var(--color-neutral-400);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.activityContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
 }
 
 .activityHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-1);
 }
 
 .activityTitle {
   color: var(--color-neutral-800);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -236,6 +293,6 @@
 .activityDesc {
   color: var(--color-neutral-700);
   font-family: var(--font-family);
-  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-sm);
   margin: 0;
 }

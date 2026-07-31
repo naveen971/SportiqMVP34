@@ -34,11 +34,18 @@ export function OrganiserDashboardScreen() {
 
   return (
     <div className={styles.container}>
+      {/* Header */}
       <header className={styles.header}>
-        <h1 className={styles.greeting}>SportIQ Operations</h1>
-        <p className={styles.description}>Director, Premier Academy</p>
+        <div className={styles.headerLeft}>
+          <h1 className={styles.greeting}>SportIQ Operations</h1>
+          <p className={styles.description}>Director, Premier Academy</p>
+        </div>
+        <div className={styles.headerIcon}>
+          <span className="material-symbols-outlined">notifications</span>
+        </div>
       </header>
 
+      {/* KPI Grid */}
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
           {ORGANISER_MOCK_DATA.stats.map(stat => (
@@ -60,6 +67,7 @@ export function OrganiserDashboardScreen() {
         </div>
       </section>
 
+      {/* Upcoming Events */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Upcoming Events" actionText="View All" />
         <div className={styles.eventList}>
@@ -73,7 +81,7 @@ export function OrganiserDashboardScreen() {
                 <div className={styles.eventTime}>{formatEventTime(event.event_date)}</div>
                 <h3 className={styles.eventTitle}>{event.title}</h3>
                 <div className={styles.eventLocation}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>location_on</span>
+                  <span className={`material-symbols-outlined ${styles.locationIcon}`}>location_on</span>
                   <span>{event.location}</span>
                 </div>
                 <div className={styles.eventFooter}>
@@ -86,6 +94,7 @@ export function OrganiserDashboardScreen() {
         </div>
       </section>
 
+      {/* Active Tournaments */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Active Tournaments" />
         <div className={styles.tournamentList}>
@@ -109,6 +118,7 @@ export function OrganiserDashboardScreen() {
         </div>
       </section>
 
+      {/* Recent Activity */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Recent Activity" />
         <div className={styles.activityList}>

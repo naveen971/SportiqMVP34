@@ -47,8 +47,9 @@ export const ORGANISER_MOCK_DATA = {
   stats: [
     { id: '1', label: 'Total Athletes', value: '1,240', iconName: 'groups', trend: { value: '+12% this month', isPositive: true } },
     { id: '2', label: 'Active Teams', value: 42, iconName: 'account_tree' },
-    { id: '3', label: 'Tournaments', value: 8, iconName: 'emoji_events' },
-    { id: '4', label: 'Review', value: 15, iconName: 'assignment_late' }
+    { id: '3', label: 'Upcoming Events', value: 8, iconName: 'event' },
+    { id: '4', label: 'Tournaments', value: 3, iconName: 'emoji_events' },
+    { id: '5', label: 'Pending Reg', value: 15, iconName: 'assignment_late' }
   ] as StatCardData[],
   upcomingEvents: [
     { id: '1', title: 'Regional Qualifiers', timestamp: 'Oct 24 • 10:00 AM', location: 'Main Stadium', attendees: 4 },

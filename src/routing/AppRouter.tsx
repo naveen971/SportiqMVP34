@@ -247,9 +247,9 @@ export function AppRouter() {
         <Route path={ROUTES.EVENTS} element={<ProtectedRoute><AppLayout><EventsListScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.CREATE_EVENT} element={<ProtectedRoute><AppLayout><CreateEventScreen /></AppLayout></ProtectedRoute>} />
         
-        <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><AppLayout><CreateTournamentScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.CREATE_TOURNAMENT} element={<ProtectedRoute><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Create Tournament screen" /></ProtectedRoute>} />
         <Route path={ROUTES.APPROVALS} element={<ProtectedRoute><PlaceholderScreen title="Approvals" description="// TODO: replace with real Approvals screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><AppLayout><TeamManagementScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.TEAM_MANAGEMENT} element={<ProtectedRoute><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Team Management screen" /></ProtectedRoute>} />
         <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><AppLayout><CoachAthleteSearchScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ATHLETE_PUBLIC_PROFILE} element={<ProtectedRoute><AthletePublicProfileScreen /></ProtectedRoute>} />
         <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><AppLayout><OrganizationDirectoryScreen /></AppLayout></ProtectedRoute>} />
