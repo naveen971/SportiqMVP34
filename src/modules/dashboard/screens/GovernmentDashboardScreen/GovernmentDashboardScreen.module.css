@@ -5,16 +5,34 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
+  padding-bottom: calc(var(--nav-height) + var(--spacing-4) + env(safe-area-inset-bottom, 0px));
 }
 
+/* Header */
 .header {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.locationIcon {
+  color: var(--color-neutral-700);
+  font-size: var(--icon-lg);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .greeting {
-  color: var(--color-neutral-800);
+  color: var(--color-primary-500);
   font-family: var(--font-family);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -22,11 +40,26 @@
   margin: 0;
 }
 
-.description {
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.searchIcon {
   color: var(--color-neutral-700);
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  margin: 0;
+  font-size: var(--icon-lg);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KPI Grid */
+.statsSection {
+  display: flex;
+  flex-direction: column;
 }
 
 .statsGrid {
@@ -35,6 +68,12 @@
   gap: var(--spacing-4);
 }
 
+.statsGrid > :first-child {
+  grid-column: span 2;
+  min-height: 120px;
+}
+
+/* Quick Actions */
 .quickActionsSection {
   display: flex;
   flex-direction: column;
@@ -47,93 +86,102 @@
   gap: var(--spacing-4);
 }
 
+/* Section Common */
 .section {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-4);
 }
 
+/* Registration Trend / Chart */
 .chartCard {
   background-color: var(--color-neutral-0);
   border: 1px solid var(--color-neutral-400);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-6);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
 }
 
 .chartContainer {
+  height: 200px;
   display: flex;
-  height: 120px;
+  align-items: flex-end;
+  padding-top: var(--spacing-6);
 }
 
 .chartBars {
-  flex: 1;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  border-bottom: 1px solid var(--color-neutral-400);
-  padding-bottom: 4px;
-  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .chartBarCol {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  gap: var(--spacing-2);
   height: 100%;
-  width: 100%;
+  justify-content: flex-end;
+  width: 15%;
 }
 
 .chartBar {
-  width: 32px;
-  background-color: var(--color-info);
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  transition: height 0.3s ease;
+  width: 100%;
+  background-color: var(--color-primary-400);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  min-height: 4px;
 }
 
 .chartXLabel {
-  position: absolute;
-  bottom: -24px;
   color: var(--color-neutral-700);
   font-family: var(--font-family);
   font-size: var(--font-size-xs);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
+/* Top Sports */
 .sportsList {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--spacing-3);
 }
 
 .sportItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
   background-color: var(--color-neutral-0);
   border: 1px solid var(--color-neutral-400);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
 }
 
 .sportRank {
-  font-family: var(--font-family);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
   color: var(--color-primary-500);
-  width: 24px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  width: 32px;
+  text-align: center;
 }
 
 .sportContent {
+  flex: 1;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sportName {
   color: var(--color-neutral-800);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -143,6 +191,7 @@
   font-size: var(--font-size-sm);
 }
 
+/* Recent Activity */
 .activityList {
   display: flex;
   flex-direction: column;
@@ -154,19 +203,27 @@
   border: 1px solid var(--color-neutral-400);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.activityContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
 }
 
 .activityHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-1);
 }
 
 .activityTitle {
   color: var(--color-neutral-800);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -179,6 +236,6 @@
 .activityDesc {
   color: var(--color-neutral-700);
   font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  color: var(--color-neutral-700);
+  font-size: var(--font-size-sm);
+  margin: 0;
 }

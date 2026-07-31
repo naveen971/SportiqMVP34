@@ -17,7 +17,7 @@ export function GovernmentDashboardScreen() {
   }, []);
 
   const stats = [
-    { id: '1', label: 'Total Registered Athletes', value: analytics ? analytics.totalAthletes.toString() : '-', iconName: 'groups' },
+    { id: '1', label: 'Total Registered Athletes', value: analytics ? analytics.totalAthletes.toString() : '-', iconName: 'groups', trend: { value: '+5%', isPositive: true } },
     { id: '2', label: 'Verified Coaches', value: analytics ? analytics.totalCoaches.toString() : '-', iconName: 'sports' },
     { id: '3', label: 'Organizations', value: analytics ? analytics.totalOrganisers.toString() : '-', iconName: 'corporate_fare' },
     { id: '4', label: 'Active Events', value: analytics ? analytics.totalEvents.toString() : '-', iconName: 'event' }
@@ -25,11 +25,18 @@ export function GovernmentDashboardScreen() {
 
   return (
     <div className={styles.container}>
+      {/* Header */}
       <header className={styles.header}>
-        <h1 className={styles.greeting}>Director General</h1>
-        <p className={styles.description}>Sports Authority • Jurisdiction: National</p>
+        <div className={styles.headerLeft}>
+          <span className={`material-symbols-outlined ${styles.locationIcon}`}>location_on</span>
+          <h1 className={styles.greeting}>SportIQ Dashboard</h1>
+        </div>
+        <div className={styles.headerRight}>
+          <span className={`material-symbols-outlined ${styles.searchIcon}`}>search</span>
+        </div>
       </header>
 
+      {/* KPI Grid */}
       <section className={styles.statsSection}>
         <div className={styles.statsGrid}>
           {stats.map(stat => (
@@ -48,8 +55,9 @@ export function GovernmentDashboardScreen() {
         </div>
       </section>
 
+      {/* Registration Trend / Chart */}
       <section className={styles.section}>
-        <DashboardSectionHeader title="Athletes by District" actionText="View Full" />
+        <DashboardSectionHeader title="Registration Trend" actionText="View Full" />
         <div className={styles.chartCard}>
           <div className={styles.chartContainer}>
             <div className={styles.chartBars}>
@@ -73,6 +81,7 @@ export function GovernmentDashboardScreen() {
         </div>
       </section>
 
+      {/* Top Sports */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Top Sports" actionText="View All" />
         <div className={styles.sportsList}>
@@ -93,6 +102,7 @@ export function GovernmentDashboardScreen() {
         </div>
       </section>
 
+      {/* Recent Activity */}
       <section className={styles.section}>
         <DashboardSectionHeader title="Recent Activity" />
         <div className={styles.activityList}>
