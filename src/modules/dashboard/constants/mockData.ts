@@ -1,4 +1,6 @@
-import { StatCardData, ActivityItem, EventItem } from '../types';
+import { StatCardData, ActivityItem, EventItem, PerformanceData, QuickActionItem } from '../types';
+import { ROUTES } from '../../../routing/routes';
+
 
 export const ATHLETE_MOCK_DATA = {
   impactScore: 94.2,
@@ -25,12 +27,25 @@ export const ATHLETE_MOCK_DATA = {
 };
 
 export const COACH_MOCK_DATA = {
+  greeting: 'Morning, Coach Anderson',
+  subtitle: 'Here is your academy overview for today.',
+  newSessionText: 'New Session',
+  quickActionsTitle: 'Quick Actions',
+  scheduleTitle: "Today's Schedule",
+  scheduleActionText: 'View All',
+  activityTitle: 'Recent Activity',
   stats: [
-    { id: '1', label: 'Total Athletes', value: 24, iconName: 'groups', trend: { value: '+2 this week', isPositive: true } },
-    { id: '2', label: 'Today\'s Sessions', value: 3, iconName: 'event' },
+    { id: '1', label: 'Total Athletes', value: 24, iconName: 'groups', trend: { value: '+2 this week', isPositive: true }, badge: { text: '+2 this week', variant: 'primary' } },
+    { id: '2', label: 'Today\'s Sessions', value: 3, iconName: 'event', isPulse: true },
     { id: '3', label: 'Upcoming Events', value: 2, iconName: 'calendar_month' },
-    { id: '4', label: 'Pending Reviews', value: 5, iconName: 'assignment_late' }
+    { id: '4', label: 'Pending Reviews', value: 5, iconName: 'assignment_late', badge: { text: 'Action Needed', variant: 'error' } }
   ] as StatCardData[],
+  quickActions: [
+    { id: '1', label: 'Assign Training', iconName: 'fitness_center', route: ROUTES.ASSIGN_TRAINING, variant: 'primary' },
+    { id: '2', label: 'View Athletes', iconName: 'group', route: ROUTES.MY_ATHLETES, variant: 'secondary' },
+    { id: '3', label: 'Announcement', iconName: 'campaign', route: ROUTES.ANNOUNCEMENTS, variant: 'secondary' },
+    { id: '4', label: 'Message', iconName: 'chat', route: ROUTES.MESSAGES, variant: 'primary' }
+  ] as QuickActionItem[],
   schedule: [
     { id: '1', title: 'U-18 Tactical Session', time: '14:00', location: 'Main Pitch', iconName: 'sports_soccer' },
     { id: '2', title: 'Strength & Conditioning', time: '16:00', location: 'Gym B', iconName: 'fitness_center' },
@@ -40,8 +55,24 @@ export const COACH_MOCK_DATA = {
     { id: '1', title: 'Marcus Johnson', description: 'Completed Sprint Drills Level 3 with a new personal best of 4.2s.', timestamp: '10m ago', initials: 'MJ' },
     { id: '2', title: 'Sarah Jenkins', description: 'Uploaded a new video analysis for review: "Form Check - Free Kicks".', timestamp: '1h ago', initials: 'SJ' },
     { id: '3', title: 'Elena Rodriguez', description: 'Logged a recovery session. Readiness score increased to 85%.', timestamp: '3h ago', initials: 'ER' }
-  ] as ActivityItem[]
+  ] as ActivityItem[],
+  performance: {
+    title: 'Academy Performance',
+    legend: [
+      { label: 'Completion Rate', color: 'primary' },
+      { label: 'Growth Metric', color: 'secondary' }
+    ],
+    yAxis: ['100', '50', '0'],
+    xAxis: ['Mon', 'Tue', 'Wed', 'Thu'],
+    bars: [
+      { primary: 65, secondary: 40, primaryLabel: '65%', secondaryLabel: '40%' },
+      { primary: 80, secondary: 55, primaryLabel: '80%', secondaryLabel: '55%' },
+      { primary: 90, secondary: 75, primaryLabel: '90%', secondaryLabel: '75%' },
+      { primary: 100, secondary: 85, primaryLabel: '100%', secondaryLabel: '85%' }
+    ]
+  } as PerformanceData
 };
+
 
 export const ORGANISER_MOCK_DATA = {
   stats: [

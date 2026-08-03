@@ -7,6 +7,11 @@ export interface StatCardData {
     value: string;
     isPositive: boolean;
   };
+  badge?: {
+    text: string;
+    variant?: 'error' | 'primary';
+  };
+  isPulse?: boolean;
 }
 
 export interface ActivityItem {
@@ -25,4 +30,20 @@ export interface EventItem {
   timestamp: string;
   status?: string;
   attendees?: number;
+}
+
+export interface PerformanceData {
+  title: string;
+  legend: Array<{ label: string; color: string }>;
+  yAxis: string[];
+  xAxis: string[];
+  bars: Array<{ primary: number; secondary: number; primaryLabel: string; secondaryLabel: string }>;
+}
+
+export interface QuickActionItem {
+  id: string;
+  label: string;
+  iconName: string;
+  route: string;
+  variant?: 'primary' | 'secondary' | 'tertiary';
 }

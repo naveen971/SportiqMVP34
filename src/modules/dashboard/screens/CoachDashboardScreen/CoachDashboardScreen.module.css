@@ -6,161 +6,358 @@
   flex-direction: column;
   gap: var(--spacing-6);
   padding-bottom: calc(var(--nav-height) + var(--spacing-4) + env(safe-area-inset-bottom, 0px));
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* Header */
-.header {
+/* Welcome Section */
+.welcomeSection {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
-}
-
-.subtitle {
-  color: var(--color-neutral-700);
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-wider);
-  margin: 0;
-  text-transform: uppercase;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: var(--spacing-4);
 }
 
 .greeting {
-  color: var(--color-neutral-800);
+  color: var(--color-text-primary);
   font-family: var(--font-family);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   margin: 0;
+  letter-spacing: -0.02em;
 }
 
-.description {
-  color: var(--color-neutral-700);
+.subtitle {
+  color: var(--color-text-secondary);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  margin: 0;
+  font-size: var(--font-size-base);
+  margin: var(--spacing-1) 0 0 0;
+}
+
+.newSessionBtnWrap {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .newSessionBtnWrap {
+    display: block;
+  }
 }
 
 .newSessionBtn {
-  margin-top: var(--spacing-2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  background-color: var(--color-primary-500);
+  background-color: var(--color-primary-400);
   color: var(--color-text-inverse);
   padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-lg);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   border: none;
   cursor: pointer;
-  align-self: flex-start;
+  box-shadow: var(--shadow-sm);
   transition: opacity var(--duration-fast) var(--easing-default);
 }
-.newSessionBtn:active {
-  opacity: 0.8;
-}
-.btnIcon {
-  font-size: var(--icon-sm);
+
+.newSessionBtn:hover {
+  opacity: 0.9;
 }
 
-/* KPI Grid */
-.statsGrid {
+/* Metrics Hero Bento Grid */
+.metricsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-4);
 }
 
-/* Quick Actions */
-.quickActionsSection {
+@media (min-width: 768px) {
+  .metricsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metricCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
-}
-
-.quickActionsTitle {
-  font-family: var(--font-family);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-800);
-  margin: 0;
-}
-
-.quickActionsRow {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  gap: var(--spacing-4);
+  height: 128px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--duration-fast) var(--easing-default);
+}
+
+.metricCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.metricTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.metricIcon {
+  font-size: var(--icon-md);
+  color: var(--color-primary-500);
+}
+
+.badgePrimary {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-100);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-full);
+}
+
+.badgeError {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-error);
+  background-color: var(--color-neutral-200);
+  padding: 2px var(--spacing-2);
+  border-radius: var(--radius-full);
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-info);
+  margin-top: var(--spacing-1);
+}
+
+.metricBottom {
+  position: relative;
+  z-index: 2;
+}
+
+.metricNumber {
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.metricLabel {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* 2-Column Desktop Main Grid */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+}
+
+@media (min-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.leftCol,
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
 }
 
 /* Section Common */
 .section {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
 }
 
-/* Schedule */
-.scheduleList {
+.sectionHeader {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
 }
 
-.scheduleItem {
-  display: flex;
-  gap: var(--spacing-4);
-  align-items: stretch;
+.sectionTitle {
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
 }
 
-.scheduleTime {
-  color: var(--color-neutral-700);
+.viewAllBtn {
+  background: none;
+  border: none;
+  color: var(--color-primary-500);
   font-family: var(--font-family);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
-  min-width: 45px;
-  padding-top: 4px;
+  cursor: pointer;
 }
 
-.scheduleLine {
+.moreBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--icon-sm);
+  cursor: pointer;
+}
+
+/* Quick Actions Grid */
+.quickActionsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-3);
+}
+
+.quickActionBtn {
+  background-color: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--easing-default);
 }
 
-.scheduleDot {
-  width: 12px;
-  height: 12px;
+.quickActionBtn:hover {
+  background-color: var(--color-neutral-200);
+}
+
+.quickActionIconWrap {
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-500);
-  margin-top: 6px;
+  background-color: var(--color-primary-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.scheduleTrail {
-  width: 2px;
-  flex: 1;
-  background-color: var(--color-neutral-400);
-  margin-top: 4px;
-  margin-bottom: 4px;
+.quickActionIconWrapSecondary {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quickActionIcon {
+  font-size: var(--icon-md);
+  color: var(--color-primary-500);
+}
+
+.quickActionLabel {
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+/* Today's Schedule Card */
+.scheduleCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.scheduleList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scheduleItem {
+  padding: var(--spacing-4);
+  display: flex;
+  gap: var(--spacing-4);
+  border-bottom: 1px solid var(--color-neutral-200);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--easing-default);
+}
+
+.scheduleItem:last-child {
+  border-bottom: none;
+}
+
+.scheduleItemPrimary {
+  border-left: 4px solid var(--color-primary-500);
+}
+
+.scheduleItemSecondary {
+  border-left: 4px solid var(--color-info);
+}
+
+.scheduleItemTransparent {
+  border-left: 4px solid transparent;
+  opacity: 0.6;
+}
+
+.scheduleItem:hover {
+  background-color: var(--color-neutral-50);
+}
+
+.scheduleTimeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  background-color: var(--color-neutral-100);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+}
+
+.scheduleTimeText {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
 }
 
 .scheduleContent {
-  flex: 1;
-  background-color: var(--color-neutral-0);
-  border: 1px solid var(--color-neutral-400);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  margin-bottom: var(--spacing-4);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: var(--spacing-1);
 }
 
 .scheduleTitle {
-  color: var(--color-neutral-800);
+  color: var(--color-text-primary);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   margin: 0;
 }
@@ -169,16 +366,135 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-1);
-  color: var(--color-neutral-700);
+  color: var(--color-text-secondary);
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-}
-.locationIcon {
-  font-size: 14px;
+  font-size: var(--font-size-xs);
 }
 
-/* Activity Feed */
+/* Academy Performance Chart Card */
+.performanceCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-sm);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.legendRow {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.legendDotPrimary {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-400);
+}
+
+.legendDotSecondary {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-100);
+}
+
+.legendLabel {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chartArea {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-2);
+  padding: var(--spacing-8) var(--spacing-2) var(--spacing-2) var(--spacing-8);
+  border-left: 1px solid var(--color-neutral-300);
+  border-bottom: 1px solid var(--color-neutral-300);
+  position: relative;
+}
+
+.yAxis {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+  padding: var(--spacing-2) 0;
+}
+
+.barsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.barPair {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 100%;
+}
+
+.barSecondary {
+  width: 16px;
+  background-color: var(--color-primary-100);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+.barPrimary {
+  width: 16px;
+  background-color: var(--color-primary-400);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+.xAxis {
+  position: absolute;
+  bottom: calc(-1 * var(--spacing-6));
+  left: var(--spacing-8);
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+/* Recent Activity Card */
+.activityCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
 .activityList {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
@@ -187,56 +503,58 @@
 .activityItem {
   display: flex;
   gap: var(--spacing-4);
-  background-color: var(--color-neutral-0);
-  border: 1px solid var(--color-neutral-400);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
+  align-items: flex-start;
 }
 
 .activityAvatar {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-400);
-  color: var(--color-primary-900);
+  background-color: var(--color-neutral-200);
+  color: var(--color-info);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-semibold);
   flex-shrink: 0;
 }
 
 .activityContent {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: var(--spacing-1);
+  flex-grow: 1;
+  border-bottom: 1px solid var(--color-neutral-200);
+  padding-bottom: var(--spacing-4);
 }
 
-.activityHeader {
+.activityItem:last-child .activityContent {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.activityTitleRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
-.activityTitle {
-  color: var(--color-neutral-800);
+.activityName {
+  color: var(--color-text-primary);
   font-family: var(--font-family);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
+  margin: 0;
 }
 
 .activityTime {
-  color: var(--color-neutral-700);
+  color: var(--color-text-secondary);
   font-family: var(--font-family);
-  font-size: var(--font-size-xs);
+  font-size: 10px;
 }
 
 .activityDesc {
-  color: var(--color-neutral-700);
+  color: var(--color-text-secondary);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
-  margin: 0;
-  line-height: var(--line-height-relaxed);
+  margin: var(--spacing-1) 0 0 0;
 }
