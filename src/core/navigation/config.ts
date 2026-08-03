@@ -5,11 +5,11 @@ import { ROUTES } from '../../routing/routes';
 export const navigationByRole: Record<UserRole, NavigationConfig> = {
   [UserRole.Athlete]: {
     items: [
-      { label: 'Home',     path: '/',          iconName: 'home'       },
-      { label: 'Search',   path: '/search',    iconName: 'search'     },
-      { label: 'Create',   path: '/create',    iconName: 'add',       isFab: true },
-      { label: 'Messages', path: '/messages',  iconName: 'chat'       },
-      { label: 'Profile',  path: '/profile',   iconName: 'person'     },
+      { label: 'Home',        path: '/',                  iconName: 'home' },
+      { label: 'Tournaments', path: ROUTES.TOURNAMENTS,   iconName: 'emoji_events' },
+      { label: 'Create',      path: ROUTES.CREATE,        iconName: 'add', isFab: true },
+      { label: 'Network',     path: ROUTES.NETWORK,       iconName: 'group' },
+      { label: 'Messages',    path: ROUTES.MESSAGES,      iconName: 'chat' },
     ],
   },
   [UserRole.Coach]: {
