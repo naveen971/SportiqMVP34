@@ -72,49 +72,36 @@
 }
 
 .navFabContainer {
-  position: fixed;
-  bottom: var(--spacing-20);
-  right: var(--spacing-4);
-  z-index: var(--z-index-overlay);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: var(--spacing-3);
-}
-
-@media (min-width: 768px) {
-  .navFabContainer {
-    bottom: var(--spacing-8);
-    right: var(--spacing-8);
-  }
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
 }
 
 .navFab {
-  width: var(--nav-height);
-  height: var(--nav-height);
+  width: var(--spacing-12);
+  height: var(--spacing-12);
   border-radius: var(--radius-full);
   background-color: var(--color-primary-400);
   color: var(--color-text-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-sm);
   border: none;
   cursor: pointer;
-  transition: all var(--duration-slow) var(--easing-default);
+  transition: all var(--duration-fast) var(--easing-default);
   -webkit-tap-highlight-color: transparent;
-}
-
-.navFab:hover {
-  box-shadow: var(--shadow-lg);
+  transform: translateY(calc(var(--spacing-2) * -1));
 }
 
 .navFab:active {
-  transform: scale(0.95);
+  transform: translateY(calc(var(--spacing-2) * -1)) scale(0.95);
 }
 
 .navFabIcon {
   font-size: var(--icon-lg);
   line-height: 1;
-  transition: transform var(--duration-slow) var(--easing-default);
 }

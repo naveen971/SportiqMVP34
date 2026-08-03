@@ -27,27 +27,26 @@ export function BottomNavBar() {
     return location.pathname === itemPath;
   }
 
-  const tabs = items.filter((item) => !item.isFab);
-  const fab = items.find((item) => item.isFab);
-
   return (
-    <>
-      {fab && (
-        <div className={styles.navFabContainer}>
-          <button
-            className={styles.navFab}
-            onClick={() => navigate(fab.path)}
-            aria-label={fab.label}
-          >
-            <span className={`material-symbols-outlined ${styles.navFabIcon}`}>
-              {fab.iconName}
-            </span>
-          </button>
-        </div>
-      )}
-      <nav className={styles.nav} aria-label="Bottom navigation">
-        <div className={styles.navItems}>
-          {tabs.map((item) => (
+    <nav className={styles.nav} aria-label="Bottom navigation">
+      <div className={styles.navItems}>
+        {items.map((item) => {
+          if (item.isFab) {
+            return (
+              <div key={item.label} className={styles.navFabContainer}>
+                <button
+                  className={styles.navFab}
+                  onClick={() => navigate(item.path)}
+                  aria-label={item.label}
+                >
+                  <span className={`material-symbols-outlined ${styles.navFabIcon}`}>
+                    {item.iconName}
+                  </span>
+                </button>
+              </div>
+            );
+          }
+          return (
             <button
               key={item.label}
               className={`${styles.navTab} ${isActive(item.path) ? styles.navTabActive : ''}`}
@@ -60,9 +59,9 @@ export function BottomNavBar() {
               </span>
               <span className={styles.navLabel}>{item.label}</span>
             </button>
-          ))}
-        </div>
-      </nav>
-    </>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
