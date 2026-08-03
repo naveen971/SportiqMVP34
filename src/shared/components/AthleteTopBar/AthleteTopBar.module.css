@@ -45,6 +45,7 @@
   justify-content: center;
   color: var(--color-neutral-700);
   cursor: pointer;
+  overflow: hidden;
   transition: background-color var(--duration-fast) var(--easing-default);
   -webkit-tap-highlight-color: transparent;
 }
@@ -56,3 +57,11 @@
 .iconButton:active {
   background-color: var(--color-neutral-200);
 }
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
