@@ -1,398 +1,271 @@
 .container {
+  padding: var(--spacing-4);
+  background-color: var(--color-neutral-50);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
-  padding: var(--spacing-4);
-  max-width: var(--max-width-mobile);
-  margin: 0 auto;
+  padding-bottom: var(--spacing-24);
 }
 
-/* Header */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.headerLeft {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
 }
 
+.headerTop {
+  display: flex;
+  align-items: center;
+}
+
 .greeting {
+  color: var(--color-primary-500);
   font-family: var(--font-family);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  margin: 0;
+}
+
+.feedSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.feedCard {
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader {
+  padding: var(--spacing-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-600);
+  flex-shrink: 0;
+}
+
+.authorMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0;
+}
+
+.authorSubtitle {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-600);
   margin: 0;
 }
 
 .sportBadge {
-  align-self: flex-start;
-  background-color: var(--color-primary-50);
-  color: var(--color-primary-600);
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
   font-family: var(--font-family);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  letter-spacing: var(--letter-spacing-wide);
-}
-
-.headerRight {
-  display: flex;
-  gap: var(--spacing-2);
-}
-
-.iconButton {
-  background: transparent;
-  border: none;
-  color: var(--color-text-secondary);
-  cursor: pointer;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--spacing-1);
+  gap: var(--spacing-1);
 }
 
-/* Impact Score Card */
-.impactCard {
-  background-color: var(--color-bg-surface);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-4) var(--spacing-5);
-  box-shadow: var(--shadow-sm);
+.cardContent {
+  padding: var(--spacing-4);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-4);
 }
 
-.impactHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.impactLabel {
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-}
-
-.impactTrend {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1);
-  background-color: var(--color-success-50);
-  color: var(--color-success-600);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-}
-
-.trendIcon {
-  font-size: var(--icon-sm);
-}
-
-.trendValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-}
-
-.impactScoreValue {
-  font-family: var(--font-family);
-  font-size: 3rem; /* Specifically large display font */
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  line-height: 1;
-}
-
-.impactRanksGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-2);
-  padding-top: var(--spacing-3);
-  border-top: 1px solid var(--color-border-subtle);
-}
-
-.rankItem {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-1);
-}
-
-.rankLabel {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-}
-
-.rankValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-.progressSection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-}
-
-.progressHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.progressLabel, .progressValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-}
-
-.progressBarBg {
-  width: 100%;
-  height: 6px;
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.progressBarFill {
-  height: 100%;
-  background-color: var(--color-primary-500);
-  border-radius: var(--radius-full);
-}
-
-/* KPI Grid */
-.kpiGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-3);
-}
-
-.kpiCard {
-  background-color: var(--color-bg-surface);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-2);
-}
-
-.kpiIcon {
-  color: var(--color-primary-500);
-  font-size: var(--icon-md);
-  margin-bottom: var(--spacing-1);
-}
-
-.kpiValue {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  line-height: 1;
-}
-
-.kpiLabel {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
-}
-
-/* Section Common */
-.sectionTitle {
+.postText {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-3) 0;
-}
-
-/* Upcoming Training */
-.upcomingSection {
-  display: flex;
-  flex-direction: column;
-}
-
-.upcomingCard {
-  background-color: var(--color-bg-surface);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-3);
-}
-
-.upcomingHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.upcomingTitle {
-  font-family: var(--font-family);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
+  color: var(--color-neutral-800);
+  line-height: var(--line-height-relaxed);
   margin: 0;
 }
 
-.coachInfo {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1);
-  color: var(--color-text-secondary);
-}
-
-.coachIcon {
-  font-size: var(--icon-sm);
-}
-
-.coachName {
-  font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-}
-
-.upcomingDetails {
-  display: flex;
-  gap: var(--spacing-4);
-  padding-top: var(--spacing-3);
-  border-top: 1px solid var(--color-border-subtle);
-}
-
-.detailItem {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1);
-  font-family: var(--font-family);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
-}
-
-.detailIcon {
-  font-size: var(--icon-sm);
-  color: var(--color-text-tertiary);
-}
-
-/* Achievements Section */
-.achievementsSection {
-  display: flex;
-  flex-direction: column;
-}
-
-.achievementsCard {
-  background-color: var(--color-bg-surface);
+.scoreboard {
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-4);
-}
-
-.achievementItem {
+  padding: var(--spacing-6) var(--spacing-4);
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  justify-content: space-between;
 }
 
-.achievementIconWrapper {
-  width: 2.5rem;
-  height: 2.5rem;
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 30%;
+}
+
+.teamLogo {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-neutral-0);
+  border: 1px solid var(--color-neutral-200);
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-50);
-  color: var(--color-primary-600);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  color: var(--color-neutral-800);
 }
 
-.achievementIcon {
-  font-size: var(--icon-md);
-}
-
-.achievementText {
+.score {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.scoreValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-600);
+}
+
+.scoreStatus {
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-700);
+  font-size: var(--font-size-xs);
+  padding: 0 var(--spacing-2);
+  border-radius: var(--radius-full);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-2);
+}
+
+.statBox {
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.statValue {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.statLabel {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-600);
+}
+
+.achievementVisual {
+  background: linear-gradient(135deg, rgba(0, 108, 70, 0.1), rgba(0, 108, 70, 0.02));
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-3);
+}
+
+.achievementBadge {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(0, 108, 70, 0.1);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .achievementTitle {
   font-family: var(--font-family);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  color: var(--color-neutral-900);
+  margin: 0;
 }
 
-.achievementDate {
+.achievementSubtitle {
   font-family: var(--font-family);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-600);
+  margin: 0;
 }
 
-/* AI Promo */
-.aiPromoCard {
-  background: linear-gradient(135deg, var(--color-neutral-800), var(--color-neutral-900));
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-4);
-  box-shadow: var(--shadow-md);
+.cardActions {
+  padding: var(--spacing-2) var(--spacing-4);
+  border-top: 1px solid var(--color-neutral-100);
+  background-color: var(--color-neutral-0);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--spacing-3);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
 }
 
-.aiPromoContent {
+.actionGroup {
   display: flex;
-  flex-direction: column;
   gap: var(--spacing-2);
-  flex: 1;
 }
 
-.aiPromoHeader {
+.actionButton {
+  background: none;
+  border: none;
+  padding: var(--spacing-2) var(--spacing-3);
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
-  color: var(--color-primary-300);
-}
-
-.aiIcon {
-  font-size: var(--icon-md);
-}
-
-.aiPromoTitle {
-  font-family: var(--font-family);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  margin: 0;
-  color: var(--color-text-inverse);
-}
-
-.aiPromoDesc {
+  gap: var(--spacing-1);
+  color: var(--color-neutral-600);
   font-family: var(--font-family);
   font-size: var(--font-size-sm);
-  color: var(--color-neutral-200);
-  margin: 0;
-  line-height: var(--line-height-relaxed);
+  border-radius: var(--radius-full);
+  cursor: pointer;
 }
 
-.comingSoonBadge {
-  background-color: var(--color-warning);
-  color: var(--color-neutral-900);
-  font-family: var(--font-family);
-  font-size: 0.65rem;
-  font-weight: var(--font-weight-bold);
-  padding: 4px 8px;
-  border-radius: var(--radius-sm);
-  text-transform: uppercase;
-  letter-spacing: var(--letter-spacing-wide);
-  flex-shrink: 0;
+.actionActive {
+  color: var(--color-primary-600);
 }
