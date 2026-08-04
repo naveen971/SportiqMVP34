@@ -54,37 +54,52 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     // Initial session check
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      if (session?.user) {
-        const profile = await resolveProfile(
-          session.user.id,
-          session.user.user_metadata?.role as UserRole,
-        );
-        setUser({
-          id: session.user.id,
-          name: session.user.user_metadata?.full_name || '',
-          email: session.user.email || '',
-          role: profile.role,
-        });
-        setOnboardingComplete(profile.onboardingComplete);
-      }
-      setIsLoading(false);
-    });
+    supabase.auth.getSession()
+      .then(async ({ data }) => {
+        const session = data?.session;
+        if (session?.user) {
+          try {
+            const profile = await resolveProfile(
+              session.user.id,
+              session.user.user_metadata?.role as UserRole,
+            );
+            setUser({
+              id: session.user.id,
+              name: session.user.user_metadata?.full_name || '',
+              email: session.user.email || '',
+              role: profile.role,
+            });
+            setOnboardingComplete(profile.onboardingComplete);
+          } catch (e) {
+            console.warn('[AuthProvider] resolveProfile error:', e);
+          }
+        }
+      })
+      .catch((err) => {
+        console.warn('[AuthProvider] getSession error:', err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
 
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
-        const profile = await resolveProfile(
-          session.user.id,
-          session.user.user_metadata?.role as UserRole,
-        );
-        setUser({
-          id: session.user.id,
-          name: session.user.user_metadata?.full_name || '',
-          email: session.user.email || '',
-          role: profile.role,
-        });
-        setOnboardingComplete(profile.onboardingComplete);
+        try {
+          const profile = await resolveProfile(
+            session.user.id,
+            session.user.user_metadata?.role as UserRole,
+          );
+          setUser({
+            id: session.user.id,
+            name: session.user.user_metadata?.full_name || '',
+            email: session.user.email || '',
+            role: profile.role,
+          });
+          setOnboardingComplete(profile.onboardingComplete);
+        } catch (e) {
+          console.warn('[AuthProvider] authStateChange resolveProfile error:', e);
+        }
       } else {
         setUser(null);
         setOnboardingComplete(null);
