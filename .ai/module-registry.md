@@ -2,8 +2,8 @@
 
 **Authoritative Stitch Project ID:** `3941284064310403069` — SportIQ Mobile Design System
 **Governance rule:** See `.ai/stitch-workflow.md` → Project Governance section. Single project, no remixing, read-only shared MCP access for non-architects.
-**Last synced:** 2026-07-25
-**Source inventories:** Full codebase state inventory + full Stitch workspace inventory, both produced 2026-07-25.
+**Last synced:** 2026-08-04
+**Source inventories:** Full codebase state inventory + full Stitch workspace inventory, originally produced 2026-07-25; Government Dashboard status updated 2026-08-04 post-rebuild.
 
 ---
 
@@ -18,7 +18,7 @@
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
 | Notifications | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
 | Settings | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
-| Role Dashboards | Unassigned | Not created | ACTIVE — MVP Demo Sprint | 3 / 4 *(3 exact-fidelity rebuilt; Gov pending)* | Partially wired real queries with mock fallback |
+| Role Dashboards | Unassigned | Not created | ACTIVE — MVP Demo Sprint | 4 / 4 *(all 4 exact-fidelity rebuilt)* | Partially wired real queries with mock fallback |
 
 ---
 
@@ -154,7 +154,7 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 | Athlete Dashboard | `6e6713d235b04d0eb2b65d50e0b87179` *(repurposed Home Feed)* | ✅ DONE — Rebuilt/Restored | Displays social feed content (posts, match cards, likes/comments). Uses static demo data (`// STATIC DEMO`). Note: The performance-stats content previously shown here is preserved separately at `/profile/statistics` (`StatisticsScreen.tsx`, Stitch ID `a5ab76d056d5477d8dd8f2e0ba0ed81c`). |
 | Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ✅ DONE — Exact-fidelity rebuild | Partially real: Total Athletes stat executes real Supabase query (`getTotalAthletesCount()`) with mock fallback when null/error; all other stats, schedule, Academy Chart, and Recent Activity use `COACH_MOCK_DATA`. Quick Action `MY_ATHLETES` routes to real `CoachAthleteSearchScreen`. |
 | Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ✅ DONE — Exact-fidelity rebuild | Real with mock fallback: Upcoming Events executes real `getUpcomingEvents()` Supabase service query with `ORGANISER_MOCK_DATA.upcomingEvents` fallback when empty or error; Bento KPI stats, Quick Actions, Active Tournaments, and Recent Activity use `ORGANISER_MOCK_DATA`. Quick Action `CREATE_EVENT` routes to real `CreateEventScreen`. |
-| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ⏳ PENDING — Not yet rebuilt to exact fidelity | Partially real: Top-level stats, Top Sports, and district chart execute real Supabase aggregate queries (`getGovernmentAnalytics()`) without mock fallback (`-` when loading/null); Recent Activity uses `GOVERNMENT_MOCK_DATA`. Rebuild to exact Stitch fidelity is next in queue. |
+| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ✅ DONE — Exact-fidelity rebuild | **Real with mock fallback**: All 4 KPI stats (Total Registered Athletes, Verified Coaches, Organizations, Active Events) execute real Supabase aggregate queries via `getGovernmentAnalytics()` in `analyticsService.ts`; when `analytics` is null (loading/error) they fall back to `GOVERNMENT_MOCK_DATA.stats` values. Registration Trend chart renders real `athletesByDistrict` data (empty state with "No district data available" message when none). Top Sports renders real `athletesBySport` data with `GOVERNMENT_MOCK_DATA.topSports` fallback when empty. Recent Activity always uses `GOVERNMENT_MOCK_DATA.activities` (no real pipeline yet). Quick Actions: "Athletes" → real `CoachAthleteSearchScreen` (`ROUTES.ATHLETE_DIRECTORY`); "Organizations" → real `OrganizationDirectoryScreen` (`ROUTES.ORGANIZATION_DIRECTORY`); "Report" → `PlaceholderScreen` (`ROUTES.REPORTS`); "Leaderboards" → `PlaceholderScreen` (`ROUTES.LEADERBOARDS`). Government nav "Reports & Analytics" tab → `PlaceholderScreen` (`ROUTES.ANALYTICS`). |
 
 #### Unlinked-But-Present Demo & Secondary Screens on Disk
 The following files exist on disk in `src/modules/dashboard/screens/` but are explicitly **unlinked from routing** in `AppRouter.tsx` (their corresponding routes render `PlaceholderScreen`). They contain static demo or secondary content and are not currently reachable:
