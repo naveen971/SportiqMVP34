@@ -18,7 +18,7 @@
 | Messaging | Unassigned | Not created | Not started | 0 / 2 | Shared component interfaces |
 | Notifications | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
 | Settings | Unassigned | Not created | Not started | 0 / 1 | Shared component interfaces |
-| Role Dashboards | Unassigned | Not created | ACTIVE — MVP Demo Sprint | 0 / 4 | Mock data implementation only |
+| Role Dashboards | Unassigned | Not created | ACTIVE — MVP Demo Sprint | 3 / 4 *(3 exact-fidelity rebuilt; Gov pending)* | Partially wired real queries with mock fallback |
 
 ---
 
@@ -151,17 +151,21 @@ Ownership note: "Profile Settings" (`f53e82b64d484729a86a69d17e0619cd`) could be
 
 | Screen Name | Screen ID | Build Status | Notes |
 |---|---|---|---|
-| Athlete Dashboard | `0b0bcd5eb7df40f1a440d18b6c0e1d25` | ACTIVE — MVP Demo Sprint | Uses mock/placeholder data |
-| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ACTIVE — MVP Demo Sprint | Partially real: Total Athletes stat uses real Supabase aggregate query (`getTotalAthletesCount()` in `athleteSearchService.ts`, committed to main). Other sections (remaining Stats, Today's Schedule, Academy Performance Chart, Recent Activity) remain mock. Quick Actions `MY_ATHLETES` renders real Coach District Search. |
-| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ACTIVE — MVP Demo Sprint | Partially real: Upcoming Events sourced from real Supabase query (`getUpcomingEvents()` in `organiserService.ts`). Other sections (Stats Grid, Active Tournaments, Recent Activity) remain mock. Quick Actions `CREATE_EVENT` renders real `CreateEventScreen`. |
-| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ACTIVE — MVP Demo Sprint | Partially real: stats, Top Sports, and district chart are REAL Supabase aggregate queries. Only Recent Activity remains mock. |
+| Athlete Dashboard | `6e6713d235b04d0eb2b65d50e0b87179` *(repurposed Home Feed)* | ✅ DONE — Rebuilt/Restored | Displays social feed content (posts, match cards, likes/comments). Uses static demo data (`// STATIC DEMO`). Note: The performance-stats content previously shown here is preserved separately at `/profile/statistics` (`StatisticsScreen.tsx`, Stitch ID `a5ab76d056d5477d8dd8f2e0ba0ed81c`). |
+| Coach Dashboard | `c806e8b69788433483ffab466ad4bd71` | ✅ DONE — Exact-fidelity rebuild | Partially real: Total Athletes stat executes real Supabase query (`getTotalAthletesCount()`) with mock fallback when null/error; all other stats, schedule, Academy Chart, and Recent Activity use `COACH_MOCK_DATA`. Quick Action `MY_ATHLETES` routes to real `CoachAthleteSearchScreen`. |
+| Organiser Dashboard | `03c76d2b022749369496ed362c229f98` | ✅ DONE — Exact-fidelity rebuild | Real with mock fallback: Upcoming Events executes real `getUpcomingEvents()` Supabase service query with `ORGANISER_MOCK_DATA.upcomingEvents` fallback when empty or error; Bento KPI stats, Quick Actions, Active Tournaments, and Recent Activity use `ORGANISER_MOCK_DATA`. Quick Action `CREATE_EVENT` routes to real `CreateEventScreen`. |
+| Government Dashboard | `8e35604d174d41f1bc256072de7c7f53` | ⏳ PENDING — Not yet rebuilt to exact fidelity | Partially real: Top-level stats, Top Sports, and district chart execute real Supabase aggregate queries (`getGovernmentAnalytics()`) without mock fallback (`-` when loading/null); Recent Activity uses `GOVERNMENT_MOCK_DATA`. Rebuild to exact Stitch fidelity is next in queue. |
 
-> **Note explicitly:** only the single landing dashboard screen per role is in scope for this sprint — all other screens in modules 8-10 (Training Assignment, Team Management, etc.) remain deferred. Dashboard content is partially wired; real data implementations are documented above, with remaining sections using mock data for the demo.
+#### Unlinked-But-Present Demo & Secondary Screens on Disk
+The following files exist on disk in `src/modules/dashboard/screens/` but are explicitly **unlinked from routing** in `AppRouter.tsx` (their corresponding routes render `PlaceholderScreen`). They contain static demo or secondary content and are not currently reachable:
+- `CreateTournamentScreen` and `TeamManagementScreen` (Organiser role demo screens; `ROUTES.CREATE_TOURNAMENT` and `ROUTES.TEAM_MANAGEMENT` map to `PlaceholderScreen`).
+- `ReportsScreen`, `LeaderboardsScreen`, and `GovernmentAnalyticsScreen` (`ROUTES.REPORTS`, `ROUTES.LEADERBOARDS`, `ROUTES.ANALYTICS` map to `PlaceholderScreen`).
 
-### Athlete Pitch-Stage Additions (2026-07-30)
-- **TopNav Shell**: Athlete role now exclusively uses a distinct LinkedIn-style TopNav shell. This is an operator-directed demo layout.
-- **AI Coach Widget**: A static, non-functional floating action button rendering a feature sheet for an AI Coach. Explicitly flagged as "Coming Soon" for pitch purposes.
-- **New Placeholders**: `Posts` and `Network` added as placeholder screens to support the demo navigation.
+#### Athlete Role Custom Navigation & Header (Operator-Authored)
+Unlike Coach, Organiser, and Government roles—which use Stitch-derived dashboards and standard 5-tab navigation—the Athlete role uses custom **operator-authored content (not Stitch-sourced)**:
+- **`AthleteTopBar`** (`src/shared/components/AthleteTopBar/AthleteTopBar.tsx`): Sticky top header rendering SportIQ wordmark, search icon, and profile icon showing the logged-in user's real `avatar_url` (with clean generic icon fallback when null).
+- **`BottomNavBar` (Athlete Config)** (`navigationByRole[UserRole.Athlete]` in `src/core/navigation/config.ts`): Configured with exactly 5 items: `Home` (`/`), `Tournaments` (`ROUTES.TOURNAMENTS`), `Create-FAB` (`ROUTES.CREATE`, in-row elevated FAB item), `Network` (`ROUTES.NETWORK`), and `Messages` (`ROUTES.MESSAGES`). There is no Profile tab in the bottom bar; profile navigation is handled via `AthleteTopBar`.
+- **AI Coach Widget**: A static, non-functional floating widget rendering a feature sheet for an AI Coach.
 
 ---
 

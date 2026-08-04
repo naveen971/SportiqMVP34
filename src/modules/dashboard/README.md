@@ -1,13 +1,51 @@
-# Dashboard Module
+# Dashboard Module (`src/modules/dashboard`)
 
-## Data Status: Real vs Mock
-- **Athlete Dashboard**: Uses mock data (`ATHLETE_MOCK_DATA`).
-- **Coach Dashboard**: Uses mock data (`COACH_MOCK_DATA`) for stats and schedule. Quick Actions routing is real, with `MY_ATHLETES` rendering the real Coach District Search.
-- **Organiser Dashboard**: Uses mock data (`ORGANISER_MOCK_DATA`) for stats and events. Quick Actions routing is real, with `CREATE_EVENT` rendering the real `CreateEventScreen`.
-- **Government Dashboard**: Partially real. Stats (Athletes, Coaches, Organizations, Active Events), Top Sports, and Athletes by District chart use REAL Supabase aggregate queries via `analyticsService.ts`. Only the "Recent Activity" section remains mock.
+This directory houses the role-specific landing dashboards and secondary analytical screens for SportIQ's four user roles: **Athlete**, **Coach**, **Organiser**, and **Government**.
 
-## Associated Stitch Screens
-- Athlete Dashboard: `0b0bcd5eb7df40f1a440d18b6c0e1d25`
-- Coach Dashboard: `c806e8b69788433483ffab466ad4bd71`
-- Organiser Dashboard: `03c76d2b022749369496ed362c229f98`
-- Government Dashboard: `8e35604d174d41f1bc256072de7c7f53`
+---
+
+## 1. Role Landing Dashboards: Status & Data Pipeline
+
+| Role Dashboard | Component File | Stitch Screen ID | Rebuild Status | Data Split (Real vs. Mock) |
+|---|---|---|---|---|
+| **Athlete** | `AthleteDashboardScreen.tsx` | `6e6713d235b04d0eb2b65d50e0b87179` *(repurposed Home Feed)* | ✅ **DONE** (Restored) | **Static Demo (`// STATIC DEMO`)**: Displays social-feed content (posts, match cards, likes/comments). *Note:* Performance-stats content previously shown here is preserved separately at `/profile/statistics` (`StatisticsScreen.tsx`, Stitch ID `a5ab76d056d5477d8dd8f2e0ba0ed81c`). |
+| **Coach** | `CoachDashboardScreen.tsx` | `c806e8b69788433483ffab466ad4bd71` | ✅ **DONE** (Exact Fidelity) | **Partially Real**: "Total Athletes" KPI executes a real Supabase query (`getTotalAthletesCount()` in `athleteSearchService.ts`) with a mock fallback when null or error. Other sections (remaining stats, Today's Schedule, Academy Performance Chart, Recent Activity) use `COACH_MOCK_DATA`. Quick Action `MY_ATHLETES` routes to real `CoachAthleteSearchScreen`. |
+| **Organiser** | `OrganiserDashboardScreen.tsx` | `03c76d2b022749369496ed362c229f98` | ✅ **DONE** (Exact Fidelity) | **Real with Mock Fallback**: "Upcoming Events" section executes a real Supabase query (`getUpcomingEvents()` in `organiserService.ts`) with `ORGANISER_MOCK_DATA.upcomingEvents` fallback when result is empty or errors. Bento KPI stats, Quick Actions, Active Tournaments, and Recent Activity use `ORGANISER_MOCK_DATA`. Quick Action `CREATE_EVENT` routes to real `CreateEventScreen`. |
+| **Government** | `GovernmentDashboardScreen.tsx` | `8e35604d174d41f1bc256072de7c7f53` | ⏳ **PENDING** (Not Yet Rebuilt) | **Partially Real**: Top-level stats, Top Sports, and district chart execute real Supabase aggregate queries (`getGovernmentAnalytics()`) without mock fallback (`-` shown when loading/null). Recent Activity uses `GOVERNMENT_MOCK_DATA`. Rebuild to exact Stitch fidelity is next in queue. |
+
+---
+
+## 2. Unlinked-But-Present Demo & Secondary Screens on Disk
+
+The following component files exist on disk in `src/modules/dashboard/screens/` but are **explicitly unlinked from routing** in `src/routing/AppRouter.tsx` (their corresponding routes render `PlaceholderScreen`). They contain static demo or secondary content, are preserved on disk for future integration, but are **not currently reachable**:
+
+- **`CreateTournamentScreen.tsx`** & **`TeamManagementScreen.tsx`**:
+  - Organiser role demo screens.
+  - In `AppRouter.tsx`, `ROUTES.CREATE_TOURNAMENT` (`/tournaments/create`) and `ROUTES.TEAM_MANAGEMENT` (`/teams/manage`) map to `<PlaceholderScreen title="Coming Soon" ... />`.
+- **`ReportsScreen.tsx`**, **`LeaderboardsScreen.tsx`**, & **`GovernmentAnalyticsScreen.tsx`**:
+  - Secondary analytical screens.
+  - In `AppRouter.tsx`, `ROUTES.REPORTS` (`/reports`), `ROUTES.LEADERBOARDS` (`/leaderboards`), and `ROUTES.ANALYTICS` (`/analytics`) map to `<PlaceholderScreen title="Coming Soon" ... />`.
+
+> **Rule for Developers:** Do not delete these unlinked screen files from disk. Do not route to them until their data integration and fidelity audits are scheduled.
+
+---
+
+## 3. Athlete Role Navigation & Header (Operator-Authored Content)
+
+Unlike Coach, Organiser, and Government roles—which use Stitch-derived dashboards and standard 5-tab bottom navigation—the **Athlete** role uses custom **operator-authored content (not Stitch-sourced)**:
+
+- **`AthleteTopBar`** (`src/shared/components/AthleteTopBar/AthleteTopBar.tsx`):
+  - Renders only for the Athlete role (guarded in `AppLayout.tsx`).
+  - Displays exactly 3 elements: **SportIQ Wordmark** (left), **Search Icon** (right), and **Profile Icon** (far right).
+  - The profile icon shows the logged-in user's real avatar photo (`avatar_url` from auth profile) and falls back cleanly to a generic Material Symbols `person` icon when `avatar_url` is null.
+  - Clicking the profile icon navigates directly to `ROUTES.PROFILE` (`/profile`).
+- **`BottomNavBar` (Athlete Role Configuration)** (`navigationByRole[UserRole.Athlete]` in `src/core/navigation/config.ts`):
+  - Renders exactly 5 items:
+    1. **Home** (`/` — `home` icon)
+    2. **Tournaments** (`ROUTES.TOURNAMENTS` — `emoji_events` icon)
+    3. **Create-FAB** (`ROUTES.CREATE` — `add` icon, rendered in-row as an elevated FAB sibling)
+    4. **Network** (`ROUTES.NETWORK` — `group` icon)
+    5. **Messages** (`ROUTES.MESSAGES` — `chat` icon)
+  - **No Profile Tab:** There is no Profile tab in the bottom bar for Athletes; profile access is handled exclusively via `AthleteTopBar`.
+- **AI Coach Widget** (`AICoachWidget.tsx`):
+  - Renders an interactive AI Coach demo card for pitch purposes.
