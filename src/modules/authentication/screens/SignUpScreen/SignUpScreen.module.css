@@ -113,6 +113,34 @@
   box-shadow: var(--shadow-focus);
 }
 
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.inputContainer .input {
+  padding-right: 48px;
+}
+
+.visibilityToggle {
+  position: absolute;
+  right: var(--spacing-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--easing-default);
+}
+
+.visibilityToggle:hover {
+  color: var(--color-text-primary);
+}
+
 .roleContainer {
   display: flex;
   flex-direction: column;
