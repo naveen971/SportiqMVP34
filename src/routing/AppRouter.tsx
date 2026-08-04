@@ -252,13 +252,13 @@ export function AppRouter() {
         <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><AppLayout><CoachAthleteSearchScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ATHLETE_PUBLIC_PROFILE} element={<ProtectedRoute><AthletePublicProfileScreen /></ProtectedRoute>} />
         <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><AppLayout><OrganizationDirectoryScreen /></AppLayout></ProtectedRoute>} />
-        <Route path={ROUTES.REPORTS} element={<ProtectedRoute><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Reports screen" /></ProtectedRoute>} />
-        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Leaderboards screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.REPORTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Reports screen" /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Leaderboards screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></AppLayout></ProtectedRoute>} />
         
         <Route path={ROUTES.SCHEDULE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Schedule" description="// TODO: replace with real Schedule screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.TOURNAMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Tournaments" description="// TODO: replace with real Tournaments screen" /></AppLayout></ProtectedRoute>} />
-        <Route path={ROUTES.ANALYTICS} element={<ProtectedRoute><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Analytics screen" /></ProtectedRoute>} />
+        <Route path={ROUTES.ANALYTICS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Analytics screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.POSTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Posts" description="// TODO: replace with real Posts screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.NETWORK} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Network" description="// TODO: replace with real Network screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.CREATE} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Create Post — Coming Soon" description="Post creation will live here." /></AppLayout></ProtectedRoute>} />
