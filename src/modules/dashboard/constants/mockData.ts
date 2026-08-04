@@ -1,5 +1,6 @@
-import { StatCardData, ActivityItem, EventItem, PerformanceData, QuickActionItem } from '../types';
+import { StatCardData, ActivityItem, EventItem, PerformanceData, QuickActionItem, TournamentItem } from '../types';
 import { ROUTES } from '../../../routing/routes';
+
 
 
 export const ATHLETE_MOCK_DATA = {
@@ -75,13 +76,29 @@ export const COACH_MOCK_DATA = {
 
 
 export const ORGANISER_MOCK_DATA = {
+  quickActionsTitle: 'Quick Actions',
+  upcomingEventsTitle: 'Upcoming Events',
+  upcomingEventsActionText: 'View All',
+  upcomingEventsManageText: 'Manage',
+  upcomingEventsRegisteredText: 'Registered',
+  tournamentsTitle: 'Active Tournaments',
+  activitiesTitle: 'Recent Activity',
+  activitiesActionText: 'View Full Log',
   stats: [
     { id: '1', label: 'Total Athletes', value: '1,240', iconName: 'groups', trend: { value: '+12% this month', isPositive: true } },
     { id: '2', label: 'Active Teams', value: 42, iconName: 'account_tree' },
     { id: '3', label: 'Upcoming Events', value: 8, iconName: 'event' },
     { id: '4', label: 'Tournaments', value: 3, iconName: 'emoji_events' },
-    { id: '5', label: 'Pending Reg', value: 15, iconName: 'assignment_late' }
+    { id: '5', label: 'Pending Reg', value: 15, iconName: 'assignment_late', badge: { text: 'Review', variant: 'error' } }
   ] as StatCardData[],
+  quickActions: [
+    { id: '1', label: 'Create Event', iconName: 'add_circle', route: ROUTES.CREATE_EVENT, variant: 'primary' },
+    { id: '2', label: 'New Tourney', iconName: 'emoji_events', route: ROUTES.CREATE_TOURNAMENT, variant: 'secondary' },
+    { id: '3', label: 'Approve', iconName: 'how_to_reg', route: ROUTES.APPROVALS, variant: 'tertiary', hasBadge: true },
+    { id: '4', label: 'Announce', iconName: 'campaign', route: ROUTES.ANNOUNCEMENTS, variant: 'primary' },
+    { id: '5', label: 'View Teams', iconName: 'groups', route: ROUTES.TEAM_MANAGEMENT, variant: 'secondary' },
+    { id: '6', label: 'Message', iconName: 'chat', route: ROUTES.MESSAGES, variant: 'tertiary' }
+  ] as QuickActionItem[],
   upcomingEvents: [
     { id: '1', title: 'Regional Qualifiers', timestamp: 'Oct 24 • 10:00 AM', location: 'Main Stadium', attendees: 4 },
     { id: '2', title: 'Academy Trials', timestamp: 'Oct 26 • 14:30 PM', location: 'Training Pitch B', attendees: 45 }
@@ -89,7 +106,7 @@ export const ORGANISER_MOCK_DATA = {
   tournaments: [
     { id: '1', title: 'National Summer League', status: 'Live', description: 'Week 4 of 10', iconName: 'emoji_events' },
     { id: '2', title: 'U-18 Regional Cup', status: 'Scheduled', description: 'Starts in 2 days', iconName: 'sports_soccer' }
-  ],
+  ] as TournamentItem[],
   activities: [
     { id: '1', title: 'New Registration Pending', description: 'John Doe applied for Academy Trials.', timestamp: '10 min ago' },
     { id: '2', title: 'Tournament Result Submitted', description: 'Eagles vs Lions match score updated by Coach Smith.', timestamp: '2 hrs ago' },
@@ -97,6 +114,7 @@ export const ORGANISER_MOCK_DATA = {
     { id: '4', title: 'System Alert', description: 'Venue \'Main Stadium\' booking conflict detected.', timestamp: 'Yesterday, 09:30' }
   ] as ActivityItem[]
 };
+
 
 export const GOVERNMENT_MOCK_DATA = {
   stats: [

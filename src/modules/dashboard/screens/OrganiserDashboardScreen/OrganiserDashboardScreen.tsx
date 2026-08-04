@@ -2,16 +2,12 @@ import styles from './OrganiserDashboardScreen.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ORGANISER_MOCK_DATA } from '../../constants/mockData';
-import { DashboardSectionHeader } from '../../components/DashboardSectionHeader/DashboardSectionHeader';
-import { DashboardStatCard } from '../../components/DashboardStatCard/DashboardStatCard';
-import { DashboardQuickActionButton } from '../../components/DashboardQuickActionButton/DashboardQuickActionButton';
-import { ROUTES } from '../../../../routing/routes';
 import { getUpcomingEvents, DashboardEvent } from '../../services/organiserService';
+import { EventItem } from '../../types';
 
 export function OrganiserDashboardScreen() {
   const navigate = useNavigate();
   const [upcomingEvents, setUpcomingEvents] = useState<DashboardEvent[]>([]);
-  const [loadingEvents, setLoadingEvents] = useState(true);
 
   useEffect(() => {
     getUpcomingEvents()
@@ -19,122 +15,257 @@ export function OrganiserDashboardScreen() {
       .catch((err) => {
         console.error('Failed to load upcoming events:', err);
         setUpcomingEvents([]);
-      })
-      .finally(() => {
-        setLoadingEvents(false);
       });
   }, []);
 
-  const formatEventTime = (isoString: string) => {
-    const date = new Date(isoString);
-    const datePart = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-    const timePart = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    return `${datePart} • ${timePart}`;
+  const formatEventTimestamp = (event: DashboardEvent | EventItem): string => {
+    if ('event_date' in event && event.event_date) {
+      const date = new Date(event.event_date);
+      const datePart = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const timePart = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      return `${datePart} • ${timePart}`;
+    }
+    if ('timestamp' in event) {
+      return event.timestamp;
+    }
+    return '';
   };
+
+  const displayEvents: Array<DashboardEvent | EventItem> =
+    upcomingEvents.length > 0 ? upcomingEvents : ORGANISER_MOCK_DATA.upcomingEvents;
+
+  const getStatCardClassName = (index: number) => {
+    if (index === 0) {
+      return `${styles.statCard} ${styles.statCardPrimary}`;
+    }
+    if (index === 4) {
+      return `${styles.statCard} ${styles.statCardError}`;
+    }
+    return styles.statCard;
+  };
+
+  const getStatIconClassName = (index: number) => {
+    if (index === 0) return styles.statIconPrimary;
+    if (index === 1 || index === 3) return styles.statIconSecondary;
+    if (index === 4) return styles.statIconError;
+    return styles.statIconTertiary;
+  };
+
+  const getQuickActionIconWrapClassName = (index: number) => {
+    if (index === 0 || index === 3) return styles.quickActionIconWrapPrimary;
+    if (index === 1 || index === 4) return styles.quickActionIconWrapSecondary;
+    return styles.quickActionIconWrapTertiary;
+  };
+
+  const getTimelineDotClassName = (index: number) => {
+    if (index === 0) return styles.timelineDotPrimary;
+    if (index === 1) return styles.timelineDotSecondary;
+    if (index === 3) return styles.timelineDotError;
+    return styles.timelineDotNeutral;
+  };
+
 
   return (
     <div className={styles.container}>
-      {/* Header */}
-      <header className={styles.header}>
-        <div className={styles.headerLeft}>
-          <h1 className={styles.greeting}>SportIQ Operations</h1>
-          <p className={styles.description}>Director, Premier Academy</p>
-        </div>
-        <div className={styles.headerIcon}>
-          <span className="material-symbols-outlined">notifications</span>
-        </div>
-      </header>
-
-      {/* KPI Grid */}
-      <section className={styles.statsSection}>
-        <div className={styles.statsGrid}>
-          {ORGANISER_MOCK_DATA.stats.map(stat => (
-            <DashboardStatCard key={stat.id} data={stat} />
-          ))}
-        </div>
-      </section>
-
-      {/* Quick Actions */}
-      <section className={styles.quickActionsSection}>
-        <h3 className={styles.quickActionsTitle}>Quick Actions</h3>
-        <div className={styles.quickActionsGrid}>
-          <DashboardQuickActionButton iconName="add_circle" label="Create Event" onClick={() => navigate(ROUTES.CREATE_EVENT)} />
-          <DashboardQuickActionButton iconName="emoji_events" label="New Tourney" onClick={() => navigate(ROUTES.CREATE_TOURNAMENT)} />
-          <DashboardQuickActionButton iconName="how_to_reg" label="Approve" onClick={() => navigate(ROUTES.APPROVALS)} />
-          <DashboardQuickActionButton iconName="campaign" label="Announce" onClick={() => navigate(ROUTES.ANNOUNCEMENTS)} />
-          <DashboardQuickActionButton iconName="groups" label="View Teams" onClick={() => navigate(ROUTES.TEAM_MANAGEMENT)} />
-          <DashboardQuickActionButton iconName="chat" label="Message" onClick={() => navigate(ROUTES.MESSAGES)} />
-        </div>
-      </section>
-
-      {/* Upcoming Events */}
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Upcoming Events" actionText="View All" />
-        <div className={styles.eventList}>
-          {loadingEvents ? (
-            <div className={styles.emptyMessage}>Loading upcoming events...</div>
-          ) : upcomingEvents.length === 0 ? (
-            <div className={styles.emptyMessage}>No upcoming events</div>
-          ) : (
-            upcomingEvents.map(event => (
-              <div key={event.id} className={styles.eventItem}>
-                <div className={styles.eventTime}>{formatEventTime(event.event_date)}</div>
-                <h3 className={styles.eventTitle}>{event.title}</h3>
-                <div className={styles.eventLocation}>
-                  <span className={`material-symbols-outlined ${styles.locationIcon}`}>location_on</span>
-                  <span>{event.location}</span>
-                </div>
-                <div className={styles.eventFooter}>
-                  <span className={styles.eventAttendees}>{event.sport}</span>
-                  <button className={styles.manageButton}>Manage</button>
-                </div>
+      {/* Bento Stats Grid (5 Cards) */}
+      <section className={styles.statsGrid}>
+        {ORGANISER_MOCK_DATA.stats.map((stat, index) => (
+          <div key={stat.id} className={getStatCardClassName(index)}>
+            {index === 0 && <div className={styles.cardHighlightPrimary} />}
+            <div className={styles.statTop}>
+              <span className={index === 4 ? styles.statLabelError : styles.statLabel}>
+                {stat.label}
+              </span>
+              <span
+                className={`material-symbols-outlined ${getStatIconClassName(index)}`}
+                style={index === 0 ? { fontVariationSettings: "'FILL' 1" } : undefined}
+              >
+                {stat.iconName}
+              </span>
+            </div>
+            <div className={styles.statBottom}>
+              <div className={styles.statBottomRow}>
+                <span className={styles.statNumber}>{stat.value}</span>
+                {stat.badge && (
+                  <button className={styles.reviewBtn}>{stat.badge.text}</button>
+                )}
               </div>
-            ))
-          )}
-        </div>
-      </section>
-
-      {/* Active Tournaments */}
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Active Tournaments" />
-        <div className={styles.tournamentList}>
-          {ORGANISER_MOCK_DATA.tournaments.map(tournament => (
-            <div key={tournament.id} className={styles.tournamentItem}>
-              <div className={styles.tournamentIcon}>
-                <span className="material-symbols-outlined">{tournament.iconName}</span>
-              </div>
-              <div className={styles.tournamentContent}>
-                <h3 className={styles.tournamentTitle}>{tournament.title}</h3>
-                <div className={styles.tournamentDetails}>
-                  <span className={`${styles.tournamentStatus} ${tournament.status === 'Live' ? styles.statusLive : ''}`}>
-                    {tournament.status}
+              {stat.trend && (
+                <div className={styles.trendRow}>
+                  <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>
+                    arrow_upward
                   </span>
-                  <span className={styles.tournamentDesc}>{tournament.description}</span>
+                  <span>{stat.trend.value}</span>
                 </div>
-              </div>
-              <span className="material-symbols-outlined">chevron_right</span>
+              )}
             </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Quick Actions 6-Card Grid */}
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle} style={{ marginBottom: '16px' }}>
+          {ORGANISER_MOCK_DATA.quickActionsTitle}
+        </h3>
+        <div className={styles.quickActionsGrid}>
+          {ORGANISER_MOCK_DATA.quickActions.map((action, index) => (
+            <button
+              key={action.id}
+              className={styles.quickActionBtn}
+              onClick={() => navigate(action.route)}
+            >
+              {action.hasBadge && <span className={styles.badgeDot} />}
+              <div className={getQuickActionIconWrapClassName(index)}>
+                <span
+                  className={`material-symbols-outlined ${styles.quickActionIcon}`}
+                  style={index === 0 ? { fontVariationSettings: "'FILL' 1" } : undefined}
+                >
+                  {action.iconName}
+                </span>
+              </div>
+              <span className={styles.quickActionLabel}>{action.label}</span>
+            </button>
           ))}
         </div>
       </section>
 
-      {/* Recent Activity */}
-      <section className={styles.section}>
-        <DashboardSectionHeader title="Recent Activity" />
-        <div className={styles.activityList}>
-          {ORGANISER_MOCK_DATA.activities.map(activity => (
-            <div key={activity.id} className={styles.activityItem}>
-              <div className={styles.activityContent}>
-                <div className={styles.activityHeader}>
-                  <span className={styles.activityTitle}>{activity.title}</span>
-                  <span className={styles.activityTime}>{activity.timestamp}</span>
-                </div>
-                <p className={styles.activityDesc}>{activity.description}</p>
-              </div>
+      {/* Main Content Area Grid (2 Columns on Desktop) */}
+      <div className={styles.mainGrid}>
+        {/* Left Column (Wider): Upcoming Events + Active Tournaments */}
+        <div className={styles.leftCol}>
+          {/* Upcoming Events Horizontal Scrolling Cards */}
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <h3 className={styles.sectionTitle}>
+                {ORGANISER_MOCK_DATA.upcomingEventsTitle}
+              </h3>
+              <button className={styles.sectionActionBtn}>
+                {ORGANISER_MOCK_DATA.upcomingEventsActionText}
+              </button>
             </div>
-          ))}
+            <div className={styles.eventScrollContainer}>
+              {displayEvents.map((event, index) => (
+                <div key={event.id} className={styles.eventCard}>
+                  <div
+                    className={
+                      index === 0 ? styles.eventTopBarPrimary : styles.eventTopBarSecondary
+                    }
+                  />
+                  <div className={styles.eventCardBody}>
+                    <div className={styles.eventHeaderRow}>
+                      <span className={styles.eventDateBadge}>
+                        {formatEventTimestamp(event)}
+                      </span>
+                      <div
+                        className={
+                          index === 0
+                            ? styles.eventStatusDotPrimary
+                            : styles.eventStatusDotSecondary
+                        }
+                      />
+                    </div>
+                    <h4 className={styles.eventTitle}>{event.title}</h4>
+                    <div className={styles.eventLocation}>
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>
+                        location_on
+                      </span>
+                      <span>{event.location}</span>
+                    </div>
+                    <div className={styles.eventCardFooter}>
+                      <div className={styles.eventAttendees}>
+                        {'attendees' in event ? (
+                          <>
+                            <span className={styles.attendeeCount}>
+                              {event.attendees || '45'}
+                            </span>{' '}
+                            {ORGANISER_MOCK_DATA.upcomingEventsRegisteredText}
+                          </>
+                        ) : (
+                          <span>{'sport' in event ? event.sport : ''}</span>
+                        )}
+                      </div>
+                      <button className={styles.eventManageBtn}>
+                        {ORGANISER_MOCK_DATA.upcomingEventsManageText}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Active Tournaments Preview */}
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <h3 className={styles.sectionTitle}>
+                {ORGANISER_MOCK_DATA.tournamentsTitle}
+              </h3>
+            </div>
+            <div className={styles.tournamentCard}>
+              {ORGANISER_MOCK_DATA.tournaments.map((tournament) => (
+                <div key={tournament.id} className={styles.tournamentItem}>
+                  <div className={styles.tournamentIconWrap}>
+                    <span
+                      className="material-symbols-outlined"
+                      style={{ fontVariationSettings: "'FILL' 1" }}
+                    >
+                      {tournament.iconName}
+                    </span>
+                  </div>
+                  <div className={styles.tournamentContent}>
+                    <h4 className={styles.tournamentTitle}>{tournament.title}</h4>
+                    <div className={styles.tournamentMetaRow}>
+                      <span
+                        className={
+                          tournament.status === 'Live'
+                            ? styles.badgeLive
+                            : styles.badgeScheduled
+                        }
+                      >
+                        {tournament.status}
+                      </span>
+                      <span className={styles.tournamentDesc}>
+                        {tournament.description}
+                      </span>
+                    </div>
+                  </div>
+                  <button className={styles.chevronBtn}>
+                    <span className="material-symbols-outlined">chevron_right</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
-      </section>
+
+        {/* Right Column (Narrower): Timeline / Recent Activity */}
+        <div className={styles.rightCol}>
+          <section className={styles.activityCard}>
+            <div className={styles.sectionHeader}>
+              <h3 className={styles.sectionTitle}>
+                {ORGANISER_MOCK_DATA.activitiesTitle}
+              </h3>
+              <button className={styles.iconButton}>
+                <span className="material-symbols-outlined">filter_list</span>
+              </button>
+            </div>
+            <div className={styles.timelineContainer}>
+              {ORGANISER_MOCK_DATA.activities.map((activity, index) => (
+                <div key={activity.id} className={styles.timelineItem}>
+                  <div className={getTimelineDotClassName(index)} />
+                  <span className={styles.timelineTime}>{activity.timestamp}</span>
+                  <div className={styles.timelineTitle}>{activity.title}</div>
+                  <p className={styles.timelineDesc}>{activity.description}</p>
+                </div>
+              ))}
+            </div>
+            <button className={styles.viewFullLogBtn}>
+              {ORGANISER_MOCK_DATA.activitiesActionText}
+            </button>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

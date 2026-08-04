@@ -17,10 +17,9 @@ import {
   OrganizationDirectoryScreen,
   ReportsScreen,
   LeaderboardsScreen,
-  CreateTournamentScreen,
-  TeamManagementScreen,
   GovernmentAnalyticsScreen
 } from '../modules/dashboard/screens';
+
 
 import {
   EventsListScreen,

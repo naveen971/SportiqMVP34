@@ -46,4 +46,14 @@ export interface QuickActionItem {
   iconName: string;
   route: string;
   variant?: 'primary' | 'secondary' | 'tertiary';
+  hasBadge?: boolean;
 }
+
+export interface TournamentItem {
+  id: string;
+  title: string;
+  status: string;
+  description: string;
+  iconName: string;
+}
+
