@@ -32,6 +32,7 @@ export const ROUTES = {
   ATHLETE_DIRECTORY: '/athletes',
   ATHLETE_PUBLIC_PROFILE: '/athletes/:id',
   ORGANIZATION_DIRECTORY: '/organizations',
+  ORGANIZATION_DETAIL: '/organizations/:id',
   REPORTS: '/reports',
   LEADERBOARDS: '/leaderboards',
   ACHIEVEMENTS: '/achievements',

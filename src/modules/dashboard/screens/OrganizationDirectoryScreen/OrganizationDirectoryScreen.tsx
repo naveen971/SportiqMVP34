@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../../../core/database/supabaseClient';
+import { ROUTES } from '../../../../routing/routes';
 import styles from './OrganizationDirectoryScreen.module.css';
 
 interface Organization {
@@ -10,6 +12,7 @@ interface Organization {
 }
 
 export function OrganizationDirectoryScreen() {
+  const navigate = useNavigate();
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -126,7 +129,13 @@ export function OrganizationDirectoryScreen() {
                   </div>
                 </div>
                 <div className={styles.cardFooter}>
-                  <button className={styles.viewBtn}>View Organization</button>
+                  <button
+                    className={styles.viewBtn}
+                    onClick={() => navigate(ROUTES.ORGANIZATION_DETAIL.replace(':id', org.id))}
+                    type="button"
+                  >
+                    View Organization
+                  </button>
                 </div>
               </div>
             ))}

@@ -9,4 +9,5 @@ export * from './ReportsScreen/ReportsScreen';
 export * from './LeaderboardsScreen/LeaderboardsScreen';
 export * from './CreateTournamentScreen/CreateTournamentScreen';
 export * from './TeamManagementScreen/TeamManagementScreen';
+export * from './OrganizationDetailScreen/OrganizationDetailScreen';
 

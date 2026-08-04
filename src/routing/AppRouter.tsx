@@ -15,6 +15,7 @@ import {
   GovernmentDashboardScreen,
   CoachAthleteSearchScreen,
   OrganizationDirectoryScreen,
+  OrganizationDetailScreen,
   ReportsScreen,
   LeaderboardsScreen,
   GovernmentAnalyticsScreen
@@ -252,6 +253,7 @@ export function AppRouter() {
         <Route path={ROUTES.ATHLETE_DIRECTORY} element={<ProtectedRoute><AppLayout><CoachAthleteSearchScreen /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ATHLETE_PUBLIC_PROFILE} element={<ProtectedRoute><AthletePublicProfileScreen /></ProtectedRoute>} />
         <Route path={ROUTES.ORGANIZATION_DIRECTORY} element={<ProtectedRoute><AppLayout><OrganizationDirectoryScreen /></AppLayout></ProtectedRoute>} />
+        <Route path={ROUTES.ORGANIZATION_DETAIL} element={<ProtectedRoute><OrganizationDetailScreen /></ProtectedRoute>} />
         <Route path={ROUTES.REPORTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Reports screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.LEADERBOARDS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Coming Soon" description="// TODO: replace with real Leaderboards screen" /></AppLayout></ProtectedRoute>} />
         <Route path={ROUTES.ACHIEVEMENTS} element={<ProtectedRoute><AppLayout><PlaceholderScreen title="Achievements" description="// TODO: replace with real Achievements screen" /></AppLayout></ProtectedRoute>} />
